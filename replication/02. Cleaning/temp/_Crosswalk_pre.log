@@ -1,0 +1,2719 @@
+---------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\_Crosswalk_pre
+> .log
+  log type:  text
+ opened on:  16 Apr 2025, 15:02:05
+
+. 
+. *******************************************
+. **** AMC generation from IBGE data     ****
+. **** version 1.0  24.06.2015           ****
+. **** Ehrl (2017) Estudos Economicos 47/1 ** 
+. *******************************************
+. **** part 1                            ****
+. *******************************************
+. **** prepare a data set from IBGE data ****
+. **** on municipios that can be used    ****
+. **** for the AMC generation with Stata ****
+. *******************************************
+. 
+. *** general note on timing: 
+. // entry is e.g.: desmembrado in 1960; correct name in 1970;
+. // --> the municipal reform takes place until 1970. 
+. 
+. *** load original IBGE spreadsheet
+. clear all
+
+. set mem 200m 
+set memory ignored.
+    Memory no longer needs to be set in modern Statas; memory adjustments are performed on the fly automatically.
+
+. xmluse "$input\IBGE_1872_2010_original.xml", first doctype(excel) missing
+
+. compress
+  variable code2010 was double now long
+  variable mun_name_1872 was str2045 now str33
+  variable mun1872 was str2045 now str62
+  variable mun1900 was str2045 now str66
+  variable mun1911 was str2045 now str54
+  variable mun1920 was str2045 now str73
+  variable mun1933 was str2045 now str57
+  variable mun1940 was str2045 now str49
+  variable mun1950 was str2045 now str68
+  variable mun1960 was str2045 now str56
+  variable mun1970 was str2045 now str48
+  variable mun1980 was str2045 now str56
+  variable mun1991 was str2045 now str92
+  variable mun2000 was str2045 now str67
+  variable mun2010 was str2045 now str33
+  (157,071,720 bytes saved)
+
+. 
+. *** assign new names
+. rename mun_name_1872 final_name
+
+. foreach y of numlist 1872 1900 1911 1920 1933 1940 1950 1960 1970 1980 1991 2000 2010 {
+  2. rename mun`y' muname`y'
+  3. }
+
+. 
+. *** (1) take out accents
+. // this step may of couse also be performed manually
+. // by the user in the spreadsheet. 
+. foreach v of varlist muname* final_name {
+  2. di "`v'"
+  3. do "$code\amc\no_accents.do" `v'
+  4. }
+muname1872
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(150 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(57 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(64 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(79 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(6 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(51 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(27 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(13 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1900
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(195 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(80 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(60 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(70 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(24 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(54 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(22 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(5 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(2 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(18 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1911
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(184 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(53 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(64 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(75 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(70 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(18 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(3 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(4 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(4 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(25 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1920
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(202 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(84 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(3 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(91 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(82 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(66 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(27 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(47 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(5 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(8 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(7 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(27 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1933
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(207 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(66 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(1 real change made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(82 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(89 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(6 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(59 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(0 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(38 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(6 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(8 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(1 real change made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(28 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1940
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(205 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(76 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(5 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(119 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(99 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(146 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(58 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(88 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(6 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(22 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(20 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(26 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1950
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(287 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(142 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(9 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(187 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(160 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(170 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(48 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(147 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(11 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(29 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(3 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(52 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(22 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1960
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(438 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(214 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(6 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(19 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(254 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(206 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(236 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(80 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(191 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(16 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(49 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(71 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(34 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1970
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(460 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(209 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(30 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(281 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(230 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(229 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(70 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(180 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(19 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(50 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(104 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(50 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1980
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(524 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(234 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(4 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(31 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(316 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(258 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(260 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(85 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(192 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(25 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(59 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(114 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(58 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname1991
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(655 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(274 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(2 real changes made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(9 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(38 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(384 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(324 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(339 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(100 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(254 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(29 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(78 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(3 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(0 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(161 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(65 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname2000
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(706 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(267 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(3 real changes made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(44 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(389 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(321 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(334 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(102 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(242 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(30 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(70 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(4 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(160 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(70 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+muname2010
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(700 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(265 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(44 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(389 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(318 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(334 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(101 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(243 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(29 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(70 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(4 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(161 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(71 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+final_name
+
+. 
+. *************************************************
+. **** Auxiliary file 1                        ****
+. **** Replace all accents with normal letters ****
+. *************************************************
+. **** Ehrl (2017) Estudos Economicos 47/1     **** 
+. *************************************************
+. 
+. *** call: variable name
+. 
+. replace `1' = subinstr(`1',"ã","a",.) // a tilde
+(709 real changes made)
+
+. replace `1' = subinstr(`1',"ç","c",.) // cedille
+(271 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Â"," A",.) // some strange a (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Â","a",.) // some strange a (minor letter)
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," Á"," A",.) // �  (capital letter)
+(1 real change made)
+
+. replace `1' = subinstr(`1',"Á","a",.) // �
+(44 real changes made)
+
+. replace `1' = subinstr(`1'," á"," A",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"á","a",.) // �
+(394 real changes made)
+
+. replace `1' = subinstr(`1'," é"," E",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"é","e",.) // �
+(323 real changes made)
+
+. replace `1' = subinstr(`1'," í"," I",.) // �  (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"í","i",.) // �
+(340 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," ú"," U",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ú","u",.) // � 
+(101 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"Ó","o",.) // some strange O
+(2 real changes made)
+
+. replace `1' = subinstr(`1'," ó"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ó","o",.) // some strange O
+(246 real changes made)
+
+. replace `1' = subinstr(`1'," õ"," O",.) // some strange O (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"õ","o",.) // some strange O
+(29 real changes made)
+
+. replace `1' = subinstr(`1'," ê"," E",.) // some strange E (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ê","e",.) // some strange E
+(70 real changes made)
+
+. 
+. replace `1' = subinstr(`1'," Í"," I",.) // some strange I (capital letter)
+(4 real changes made)
+
+. replace `1' = subinstr(`1',"Í","i",.) // some strange I
+(1 real change made)
+
+. 
+. replace `1' = subinstr(`1'," â"," A",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"â","a",.) // � 
+(163 real changes made)
+
+. replace `1' = subinstr(`1'," ô"," O",.) // � (capital letter)
+(0 real changes made)
+
+. replace `1' = subinstr(`1',"ô","o",.) // � 
+(71 real changes made)
+
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+
+. 
+. *** reshape the data. code2010 x year
+. reshape long muname, i(code2010 final_name) j(year)
+(j = 1872 1900 1911 1920 1933 1940 1950 1960 1970 1980 1991 2000 2010)
+
+Data                               Wide   ->   Long
+-----------------------------------------------------------------------------
+Number of observations            5,646   ->   73,398      
+Number of variables                  15   ->   4           
+j variable (13 values)                    ->   year
+xij variables:
+   muname1872 muname1900 ... muname2010   ->   muname
+-----------------------------------------------------------------------------
+
+. 
+. *** gen new variables
+. ** muname will be the variable to make changes 
+. ** data remains the original IBGE entry
+. gen data = muname
+(32,788 missing values generated)
+
+. compress
+  variable final_name was str33 now str32
+  variable muname was str92 now str86
+  (513,786 bytes saved)
+
+. 
+. 
+. **********************************
+. *** changes in municipality names:
+. **********************************
+. 
+. ************
+. *** (2) problem: some variables have a blank at the end
+. // is due to IBGE formating of file
+. ** solution: remove the blank at the end
+. replace data=rtrim(data)
+(17,916 real changes made)
+
+. replace muname=rtrim(muname)
+(17,916 real changes made)
+
+. replace final_name=rtrim(final_name)
+(1,924 real changes made)
+
+. 
+. *** problem: typo: double space 
+. replace muname = subinstr(muname,"  "," ",.) 
+(2 real changes made)
+
+. ************
+. 
+. ************
+. *** (3) problem: some mun exist, but the administration is still in another mun
+. // denominated "sede em" in the data
+. // the IBGE apparently does not consider those mun as independent
+. // treat them as dependent, i.e. part of one cluster !!!
+. // is very similar to anexado a
+. 
+. *** related problem:
+. // "sede em" e desmem. etc. at the same time
+. // is at least the case for Exu (2605301)
+. replace muname = subinstr(muname,"sede em Granito, desmembrado","anexado e desmembrado",.) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"sede em Pocoes, desmembrado","anexado e desmembrado",.) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"sede em Esplanada, desmembrado","anexado e desmembrado",.) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"sede em Sao Gotardo, desmembrado","anexado e desmembrado",.) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"sede em Santo Andre, desmembrado","anexado e desmembrado",.) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Couto Magalhaes, sede na vila de Santa Maria do Araguaia","Couto de Magalhaes",.)
+(1 real change made)
+
+. // the later is dispensable because the mun is the same. 
+. // the name is changed in the following period.
+. 
+. ** solution: replace sede em with anexado a
+. replace muname = subinstr(muname,"sede em","anexado a", 1)
+(45 real changes made)
+
+. 
+. *** problem: some mun were even anex. and desmem. within the same period
+. replace muname = subinstr(muname,"anexado e desmembrado","desmembrado",1) 
+(99 real changes made)
+
+. // mun. will be part of a cluster, no matter if it was desmembr. or anex.
+. 
+. *** related problem: one mun is anex. to 2 mun and desmembr. from one of those
+. ** without adjustment, the procedure would suggest that the mun has 3 different destinies,
+. ** while in fact the destinies are only two distinct ones
+. replace muname=subinstr(muname,"anexado a Itabaiana e Natuba e desmembrado de Itabaiana", "anexado a Itabaiana e Natuba",
+> 1)
+(1 real change made)
+
+. 
+. *** problem: other additional information in the mun-name that
+. *** doesn't add essential information for the AMCs
+. ** solution: delete this additional information
+. replace muname = subinstr(muname,", poligono nao identificado","",1) 
+(4 real changes made)
+
+. replace muname = subinstr(muname,"depois a ","",1) 
+(2 real changes made)
+
+. replace muname = subinstr(muname, `"*"', "", .)
+(168 real changes made)
+
+. replace muname = subinstr(muname," - Territorio Municipal","",1) 
+(6 real changes made)
+
+. ************
+. 
+. ************
+. *** problem: some mun are twice in the data
+. // however only either of the entries contains the information, the other is blank
+. ** solution: delete the blank entries
+. sort code2010 final_name year muname
+
+. drop if code2010==code2010[_n+1] & final_name==final_name[_n+1] & year==year[_n+1] & muname==""
+(702 observations deleted)
+
+. ************
+. 
+. 
+. ****************************************************
+. *** (4) problems with individual mun in the data ***
+. ****************************************************
+. 
+. sort code2010 year
+
+. 
+. ************
+. *** problem: inconsistent names in the same period, i.e. typos
+. ** adjust, or otherwise matching procedure cannot identify
+. ** the right destiny/origin in muname.
+. replace muname = subinstr(muname,"Itapeva de Faxina","Itapeva da Faxina",1)
+(2 real changes made)
+
+. replace muname = subinstr(muname,"mirirm","mirim",1) 
+(2 real changes made)
+
+. replace muname = subinstr(muname,"Sao Bento de Perizes","Sao Bento dos Perizes",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Benjamim Constant","Benjamin Constant",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Pedras do Fogo","Pedras de Fogo",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Garanhus","Garanhuns",1) 
+(2 real changes made)
+
+. replace muname = subinstr(muname,"Ingazeiras","Ingazeira",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Remanso do Pilao Arcado","Remanso",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Lagoa Vermenlha","Lagoa Vermelha",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Meia-Ponte","Meia Ponte",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Sao Jose do Triumpho","desmembrado de Sao Joao do Triumpho",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Curytibanos","desmembrado de Curitybanos",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Sao Joao d'el Rei","desmembrado de Sao Joao d'El Rey",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Arassuai","desmembrado de Arassuahy",1) if year==1900
+(1 real change made)
+
+. replace muname = subinstr(muname,"Bernardo do Paranahyba","Bernardo do Parnahyba",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Parajui","desmembrado de Pirajui",1) if year==1920
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Taquaritinga","desmembrado de Taquaretinga",1) if year==1920
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Piratiniga","desmembrado de Piratininga",1) if year==1920
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Boa Vista do Tremendal","desmembrado de Boa Vista do Tremedal",1) if yea
+> r==1920
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Guraru","desmembrado de Gararu",1) if year==1920
+(1 real change made)
+
+. replace muname = subinstr(muname,"Jaguraibe-mirim","Jaguaribe-mirim",1) if year==1933
+(1 real change made)
+
+. replace muname = subinstr(muname,"anexado a Sao Pedro de Itabapoana","anexado a Joao Pessoa",1) if year==1933
+(1 real change made)
+
+. replace muname = subinstr(muname,"anexado a Santa Quiteira","anexado a Santa Quiteria",1) if year==1933
+(1 real change made)
+
+. // the two latter cases refer to an old name in the prior period 
+. replace muname = subinstr(muname,"desmembrado de Oliveria","desmembrado de Oliveira",1) // 2
+(2 real changes made)
+
+. replace muname = subinstr(muname,"Jaguarahyva","Jaguariahyva",1) if year==1933
+(1 real change made)
+
+. replace muname = subinstr(muname,"Jequtinhonha","Jequitinhonha",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado e Mandaguari","desmembrado de Mandaguari",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Poxoreu","Poxoreo",1)                                 // 2
+(7 real changes made)
+
+. replace muname = subinstr(muname,"Lupinopolis","Lupionopolis",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Dores de Campo","Dores de Campos",1) if code2010==3105905 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Dom joaquim","Dom Joaquim",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Cristianapolis","Cristinapolis",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Congoninhas","Congonhinhas",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Carauaru","Caruaru",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Avanhadava","Avanhandava",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Guandu","Gandu",1) if code2010==2915700 // in 1960
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Itaucu","desmembrado de Ituacu",1) if code2010==2908804
+(1 real change made)
+
+. replace muname = subinstr(muname,"Sao Jose de Alegre","Sao Jose do Alegre",1) //1
+(1 real change made)
+
+. replace muname = subinstr(muname,"Arguacema","Araguacema",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Tupacireta","Tupancireta",1)           //2; in 1980
+(2 real changes made)
+
+. replace muname = subinstr(muname,"Santa Barabara do Sul","Santa Barbara do Sul",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Leopoldo Bulhoes","Leopoldo de Bulhoes",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Itapicuru Mirim","Itapecuru Mirim",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"Franncisco","Francisco",1)             //     in 1991
+(1 real change made)
+
+. replace muname = subinstr(muname,"Pirancajuba","Piracanjuba",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Lencois Paulistas","Lencois Paulista",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Gurapuava","Guarapuava",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Canddo Mendes","Candido Mendes",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Campo Novo dos Parecis","Campo Novo do Parecis",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Aberlardo Luz","Abelardo Luz",1)
+(1 real change made)
+
+. replace muname = subinstr(muname,"Nova iguacu","Nova Iguacu",1)         // in 2000
+(1 real change made)
+
+. // the latter was not an accent problem.
+. replace muname = subinstr(muname,"Santa Quiteira do Maranhao","Santa Quiteria do Maranhao",1)
+(1 real change made)
+
+. // somethimes the name is just badly specified. 
+. // There are several Sao ... but only one in the first period
+. replace muname = subinstr(muname,"desmembrado de Santo Antonio","desmembrado de Santo Antonio da Patrulha",1) if code2010
+> ==4321204 | code2010==4322509
+(2 real changes made)
+
+. replace muname = subinstr(muname,"Sao Goncalo","Sao Goncalo do Sapucahy",1) if code2010==3159605
+(1 real change made)
+
+. ************
+. 
+. 
+. ***********************************************************
+. *** (5) changes based on additional information from
+. *** the Federal Ministry of Cities (Ministerio das Cidades)
+. *** http://cidades.ibge.gov.br/. 
+. ***********************************************************
+. 
+. *** "Sao Jose do Cristianismo" simply does not exist.
+. // confering the maps (after the procedure) clearly reveals that
+. // the entire region goes back to "Castro".
+. replace muname = subinstr(muname,"desmembrado de Sao Jose do Cristianismo","desmembrado de Castro",1) 
+(1 real change made)
+
+. // also misspecified to a mun that not even existed
+. replace muname = subinstr(muname,"desmembrado de Pacoti","desmembrado de Baturite",1) if year==1872
+(1 real change made)
+
+. 
+. *** next problems is that desmembr. refers to future name of the mun
+. replace muname = subinstr(muname,"Cachoeiro de Santa Leopoldina","Santa Leopoldina",1) if year==1872
+(3 real changes made)
+
+. *** problem: desmembr. refers to mun that does not even exist
+. // in this case all of the related mun go back to "Cruz Alta"
+. replace muname=subinstr(muname,"desmembrado de Santo Augusto","desmembrado de Cruz Alta",1) 
+(4 real changes made)
+
+. ** problem: crossref. two mun out of themselves (out of nowhere)
+. // IBGE cidades says the following is right:
+. replace muname = subinstr(muname,"desmembrado de Santopolis do Aguapei","desmembrado de Birigui",1) // ok
+(1 real change made)
+
+. 
+. *** AMC territory is found to be inconsistent after the procedure.
+. ** 1. probable reason: typo --> clean up
+. replace muname = subinstr(muname,"desmembrado de Sao Miguel Arcanjo","desmembrado de Sao Manuel",1) if code2010==3541059
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Sao Joao do Piaui","desmembrado de Picos",1) if code2010==2210201
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Sao Felix do Piaui e Baixa Grande do Ribeiro", "desmembrado de Sao Felix
+>  do Piaui",1) 
+(1 real change made)
+
+. replace muname = subinstr(muname,"desmembrado de Nova Rezende","desmembrado de Carmo do Rio Claro",1) if year==1933     
+(1 real change made)
+
+. 
+. ** 2. reason:
+. // data says: Lins (3527108) was 'desmembrado de' Pirajú (in 1911, mun: 3538808 Piraju)
+. // however, before that, Lins was part of Baurú, and soon afterward transfered its government to Pirajú
+. // nevertheless the territory of Lins in 1872 was in the former territory of Baurú. 
+. replace muname = subinstr(muname,"desmembrado de Piraju","desmembrado de Bauru",1) if year==1911
+(1 real change made)
+
+. ***********
+. 
+. ************
+. *** problem: territory is "contestado"
+. // Amapá was under dispute between Brazilians and French until 1901.
+. ** solution: delete the entry before 1901 and start as a new territory in 1911
+. replace muname="" if strmatch(data, "*contestado *")
+(1 real change made)
+
+. ************
+. 
+. ************
+. *** problem: the territory of ACRE was anexed from Bolivia
+. ** it thus needs to emerge out of nowhere in the data
+. replace muname=subinstr(muname,"O Acre nao era brasileiro","",1)
+(3 real changes made)
+
+. ************
+. 
+. ************
+. *** (6) problem: some mun have a destiny/origin outside their own UF_amc
+. // therefore the matching partner cannot be found by the procedure
+. // these cases are:
+. /*
+> code2010        final_name      year    muname
+> 2205706 Luis Correia    1872    desmembrado de Granja, CE
+> 4204202 Chapeco                 1911    desmembrado de Palmas, PR
+> 4209003 Joacaba                 1911    desmembrado de Palmas, PR
+> 4213609 Porto Uniao             1911    desmembrado de Palmas, PR
+> 4208104 Itaiopolis              1911    desmembrado de Rio Negro, PR
+> 4210100 Mafra                   1911    desmembrado de Rio Negro, PR
+> 1100205 Porto Velho             1911    desmembrado de Humaitá, AM
+> // the latter "AM" is not inlcuded in the original data!
+> 1100106 Guajara-Mirim   1920    desmembrado de Santo Antonio do Rio Madeira, MT
+> // is not a problem, since MT is part of the combined State already.
+> */
+. // do the procedure without these mun
+. // i.e. assume that they were not desmembr. but simply surged
+. // after the procedure: join the groups of these mun
+. // so far: replace name with the mun name in the next period
+. sort code2010 year
+
+. replace muname=muname[_n+1] if code2010==2205706 & year==1872
+(1 real change made)
+
+. replace muname=muname[_n+1] if code2010==4204202 & year==1911
+(1 real change made)
+
+. replace muname=muname[_n+1] if code2010==4209003 & year==1911
+(1 real change made)
+
+. replace muname=muname[_n+1] if code2010==4213609 & year==1911
+(1 real change made)
+
+. replace muname=muname[_n+1] if code2010==4208104 & year==1911
+(1 real change made)
+
+. replace muname=muname[_n+1] if code2010==4210100 & year==1911
+(1 real change made)
+
+. replace muname=muname[_n+1] if code2010==1100205 & year==1911
+(1 real change made)
+
+. 
+. *** problem: Fernando de Noronha comes out of nowhere in the data.
+. ** IBGE Cidades says, it was desmembr from Recife
+. replace muname="desmembrado de Recife" if code2010==2605459 & year==1940
+(1 real change made)
+
+. 
+. *** problem: dispute between UFs MG/ES over some areas.
+. // data says "litigio MG/ES"
+. ** 1. the area originally emerges from "Teofilo Otoni". 
+. // This is not visible in the IBGE data.
+. replace muname="desmembrado de Teofilo Otoni" if final_name=="Ataleia" & year==1933
+(1 real change made)
+
+. 
+. ** 2. repeat "litigio MG/ES" in the following years, 
+. ** so that the two other mun in MG can be matched
+. ** "litigio MG/ES" may then be taken as the "name" of a disputed mun
+. replace muname="litigio MG/ES" if final_name=="Ataleia" & (year==1940 | year==1950 | year==1960)
+(2 real changes made)
+
+. // for the following mun that were created out of that region, (only in 1960)
+. // the addition "desmembr" needs to be inserted
+. replace muname=subinstr(muname,"litigio MG/ES","desmembrado de litigio MG/ES",1) if code2010==3139607 | code2010==3141504
+(2 real changes made)
+
+. // the other two mun, are in another uf_amc (ES)
+. // join the group in the end (as above) 
+. // for now, they emerge from nowhere
+. // treat the latter two as existing, in contrast to the prior two in MG (see below)
+. replace muname=subinstr(muname,"litigio MG/ES","",1) if code2010>=3200000
+(2 real changes made)
+
+. ************
+. 
+. 
+. ******************************************
+. **** preperation of the matching procedure
+. ******************************************
+. 
+. ************
+. *** (7) treatment of changes:
+. *** delete desmem. and anex. in the names, to have only the origin/destiny mun name
+. replace muname = subinstr(muname,"desmembrado de ","",1) 
+(5,084 real changes made)
+
+. replace muname = subinstr(muname,"anexado a ","",1) 
+(128 real changes made)
+
+. 
+. *** problem: some capital letters are changed to small instead of
+. *** capital letters during the de-accentuation (above)
+. ** change the beginning letters to be capital letters
+. gen muname2=muname
+(32,090 missing values generated)
+
+. gen muname3=muname
+(32,090 missing values generated)
+
+. replace muname2=substr(muname,1,1)
+(40,606 real changes made)
+
+. replace muname3=substr(muname,2,244)
+(40,606 real changes made)
+
+. replace muname2=proper(muname2) if muname2!="l" 
+(197 real changes made)
+
+. // in order not to change "litigio MG/ES"
+. egen muname4=concat(muname2 muname3)
+(32,090 missing values generated)
+
+. drop muname muname2 muname3
+
+. rename muname4 muname
+
+. 
+. *** create desmem. and anex. dummies
+. gen desmem_d =1 if strmatch(data, "*desmem*") 
+(67,608 missing values generated)
+
+. *** account for some exeptions
+. replace desmem_d =1 if strmatch(muname,"litigio MG/ES") & (code2010==3139607 | code2010==3141504)
+(2 real changes made)
+
+. replace desmem_d =1 if strmatch(muname,"Teofilo Otoni") & code2010==3104700 
+(1 real change made)
+
+. // also due to area ligitiada de MG/ES
+. replace desmem_d =1 if code2010==2605459 & year==1940 
+(1 real change made)
+
+. // Fernando de Noronha
+. gen anex_d =1 if strmatch(data, "anexado*")
+(72,519 missing values generated)
+
+. replace anex_d =1 if strmatch(data, "sede em*")
+(50 real changes made)
+
+. ************
+. 
+. ************
+. *** (8) separate the mun, in case the new mun emerged from more than one
+. split muname, p(", " " e ")
+variables created as string: 
+muname1  muname2  muname3  muname4  muname5
+
+. 
+. foreach n of numlist 1/5{
+  2. rename muname`n' dest`n' 
+  3. } 
+
+. 
+. *** only "unchanged" mun have an entry in muname ***
+. replace muname="" if desmem_d==1 | anex_d==1
+(5,218 real changes made)
+
+. ************
+. 
+. ************
+. *** problem: some mun names have a "e" in between, e.g. "Passa e Fica"
+. ** solution: delete name in dest2 and restore original name from "data"
+. replace dest2="" if desmem_d==. & anex_d==. & strmatch(muname, "* e *")
+(13 real changes made)
+
+. replace dest1=data if desmem_d==. & anex_d==. & strmatch(muname, "* e *")
+(13 real changes made)
+
+. 
+. *** related problem: "Pontes e Lacerda" are themselves the origin of some mun.
+. // the procedure creates two destinies. causes problems in 2000.
+. ** solution by hand: write name into a single dest1:
+. replace dest2="" if desmem_d==1 & anex_d==. & strmatch(data, "desmembrado de Pontes e Lacerda")
+(2 real changes made)
+
+. replace dest1="Pontes e Lacerda" if desmem_d==1 & anex_d==. & strmatch(data, "desmembrado de Pontes e Lacerda")
+(2 real changes made)
+
+. ************
+. 
+. ************
+. *** (3) problem: some mun do not show the right population numbers at times in the IBGE file
+. // the note "populacao incluida" appears in the mun-name
+. // This is not important here; only geography matters. 
+. ** solve one typo:
+. replace muname = subinstr(muname,"inlcuida","incluida",1) 
+(1 real change made)
+
+. ** solution: drop that frase
+. replace dest2 = "" if strmatch(muname, "*, populacao incluida *")
+(21 real changes made)
+
+. replace muname  = dest1 if strmatch(muname, "*, populacao incluida *")
+(21 real changes made)
+
+. 
+. *** problem: some mun have the UF in their names, separated by a comma
+. // solution: delete entry for dest2
+. replace dest2="" if length(dest2)==2
+(29 real changes made)
+
+. ************
+. 
+. ************
+. *** (8) repeat the mun-name in all dest+ entries
+. // only for original entries that did not experience any change
+. // serves to identify the origin mun for those mun with changes
+. foreach n of numlist 2 3 4 5 {
+  2. replace dest`n'=dest1 if dest`n'=="" & desmem_d!=1 & anex_d!=1
+  3. }
+(35,380 real changes made)
+variable dest3 was str23 now str43
+(35,388 real changes made)
+variable dest4 was str22 now str43
+(35,388 real changes made)
+variable dest5 was str7 now str43
+(35,388 real changes made)
+
+. 
+. ************
+. *** (9) create variables to control the procedure
+. ** variable for unchanged mun
+. gen byte exist_d = data!=""
+
+. replace exist_d = 0 if desmem_d==1 | anex_d==1
+(5,216 real changes made)
+
+. // change also for some mun manipulated above..
+. replace exist_d = 0 if muname==""
+(6 real changes made)
+
+. 
+. ** number of origins/destinies
+. egen n_dest = rownonmiss(dest1 dest2 dest3 dest4 dest5) if exist_d==0 & dest1!="", strok
+(67,478 missing values generated)
+
+. replace n_dest=0 if n_dest==.
+(67,478 real changes made)
+
+. 
+. ** generate common UF
+. gen uf_amc=code2010
+
+. replace uf_amc=uf_amc/100000
+(72,696 real changes made)
+
+. replace uf_amc=int(uf_amc)
+(72,696 real changes made)
+
+. recode uf_amc (11 50 51 =20) (13 14 =1) (15 16 =2) ///
+>         (17 52 53 =19) (21 =3) (22 =4) (23 =5) (24      =6) ///
+>         (25     =7) (26 =8) (27 =9) (28 =10) (29 =11) (31 =18) ///
+>         (32     =12) (33 =13) (35 =14) (41 =15) (42 =16) (43 =17) ///
+>         (12=21) 
+(72,696 changes made to uf_amc)
+
+. ************
+. 
+. ** drop unecessary variables
+. drop desmem_d anex_d data
+
+. 
+. *****************
+. *** reshape again
+. order code2010 exist_d muname dest1 dest2 dest3 dest4 dest5
+
+. reshape wide muname exist_d dest1 dest2 dest3 dest4 dest5 n_dest, i(code2010 uf_amc final_name) j(year)
+(j = 1872 1900 1911 1920 1933 1940 1950 1960 1970 1980 1991 2000 2010)
+
+Data                               Long   ->   Wide
+-----------------------------------------------------------------------------
+Number of observations           72,696   ->   5,592       
+Number of variables                  12   ->   107         
+j variable (13 values)             year   ->   (dropped)
+xij variables:
+                                 muname   ->   muname1872 muname1900 ... muname2010
+                                exist_d   ->   exist_d1872 exist_d1900 ... exist_d2010
+                                  dest1   ->   dest11872 dest11900 ... dest12010
+                                  dest2   ->   dest21872 dest21900 ... dest22010
+                                  dest3   ->   dest31872 dest31900 ... dest32010
+                                  dest4   ->   dest41872 dest41900 ... dest42010
+                                  dest5   ->   dest51872 dest51900 ... dest52010
+                                 n_dest   ->   n_dest1872 n_dest1900 ... n_dest2010
+-----------------------------------------------------------------------------
+
+. *****************
+. 
+. *** save data 
+. order code2010 uf_amc 
+
+. compress
+  variable uf_amc was float now byte
+  variable n_dest1872 was float now byte
+  variable n_dest1900 was float now byte
+  variable n_dest1911 was float now byte
+  variable n_dest1920 was float now byte
+  variable n_dest1933 was float now byte
+  variable n_dest1940 was float now byte
+  variable n_dest1950 was float now byte
+  variable n_dest1960 was float now byte
+  variable n_dest1970 was float now byte
+  variable n_dest1980 was float now byte
+  variable n_dest1991 was float now byte
+  variable n_dest2000 was float now byte
+  variable n_dest2010 was float now byte
+  variable muname1872 was str71 now str43
+  variable dest21872 was str51 now str43
+  variable muname1900 was str71 now str33
+  variable dest11900 was str43 now str29
+  variable dest21900 was str51 now str29
+  variable dest31900 was str43 now str29
+  variable dest41900 was str43 now str29
+  variable dest51900 was str43 now str29
+  variable muname1911 was str71 now str39
+  variable dest11911 was str43 now str39
+  variable dest21911 was str51 now str39
+  variable dest31911 was str43 now str39
+  variable dest41911 was str43 now str39
+  variable dest51911 was str43 now str39
+  variable muname1920 was str71 now str32
+  variable dest11920 was str43 now str29
+  variable dest21920 was str51 now str29
+  variable dest31920 was str43 now str29
+  variable dest41920 was str43 now str29
+  variable dest51920 was str43 now str29
+  variable muname1933 was str71 now str32
+  variable dest11933 was str43 now str29
+  variable dest21933 was str51 now str29
+  variable dest31933 was str43 now str29
+  variable dest41933 was str43 now str29
+  variable dest51933 was str43 now str29
+  variable muname1940 was str71 now str32
+  variable dest11940 was str43 now str29
+  variable dest21940 was str51 now str29
+  variable dest31940 was str43 now str29
+  variable dest41940 was str43 now str29
+  variable dest51940 was str43 now str29
+  variable muname1950 was str71 now str32
+  variable dest11950 was str43 now str28
+  variable dest21950 was str51 now str28
+  variable dest31950 was str43 now str28
+  variable dest41950 was str43 now str28
+  variable dest51950 was str43 now str28
+  variable muname1960 was str71 now str28
+  variable dest11960 was str43 now str28
+  variable dest21960 was str51 now str28
+  variable dest31960 was str43 now str28
+  variable dest41960 was str43 now str28
+  variable dest51960 was str43 now str28
+  variable muname1970 was str71 now str32
+  variable dest11970 was str43 now str32
+  variable dest21970 was str51 now str32
+  variable dest31970 was str43 now str32
+  variable dest41970 was str43 now str32
+  variable dest51970 was str43 now str32
+  variable muname1980 was str71 now str32
+  variable dest11980 was str43 now str32
+  variable dest21980 was str51 now str32
+  variable dest31980 was str43 now str32
+  variable dest41980 was str43 now str32
+  variable dest51980 was str43 now str32
+  variable muname1991 was str71 now str32
+  variable dest11991 was str43 now str32
+  variable dest21991 was str51 now str32
+  variable dest31991 was str43 now str32
+  variable dest41991 was str43 now str32
+  variable dest51991 was str43 now str32
+  variable muname2000 was str71 now str32
+  variable dest12000 was str43 now str32
+  variable dest22000 was str51 now str32
+  variable dest32000 was str43 now str32
+  variable dest42000 was str43 now str32
+  variable dest52000 was str43 now str32
+  variable muname2010 was str71 now str32
+  variable dest12010 was str43 now str32
+  variable dest22010 was str51 now str32
+  variable dest32010 was str43 now str32
+  variable dest42010 was str43 now str32
+  variable dest52010 was str43 now str32
+  (7,621,896 bytes saved)
+
+. save "$temp\_Crosswalk_pre.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\_Crosswalk_pre.dta
+    not found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\_Crosswalk_pre.dta
+    saved
+
+. 
+. 
+. 
+. 
+. 
+. 
+end of do-file
+
+. 
+. *** main procedure ***
+. do "$code\amc\_Crosswalk_main.do"
+
+. 
+. *******************************************
+. **** AMC generation from IBGE data     ****
+. **** version 1.0  24.06.2015           ****
+. **** Ehrl (2017) Estudos Economicos 47/1 ** 
+. *******************************************
+. *******************************************
+. **** part 2: main procedure            ****
+. *******************************************
+. **** (10) define period for AMCs
+. **** may be a combination of any two census
+. **** yearsto be chosen by the user
+. local startyear = 1970
+
+. local endyear = 2010
+
+. *******************************************
+. 
+. local y0=`startyear'
+
+. 
+. *****************************************************
+. *** (18) loop over all years until endyear is reached
+. while `y0' != `endyear' {
+  2. 
+. ** save results in separate log-files
+. cap log close
+  3. log using "$temp\_Crosswalk_`startyear'_`endyear'_`y0'.log", replace
+  4. 
+. ** chose data set
+. if `y0' == `startyear' {
+  5. use "$temp\_Crosswalk_pre.dta", clear
+  6. }
+  7. else {
+  8. use "$temp\_Crosswalk_`y_1'.dta", clear
+  9. }
+ 10. 
+. ** define the following Census year
+. if `y0'==1872 {
+ 11. local y1=1900
+ 12. }
+ 13. if `y0'==1900 {
+ 14. local y1=1911
+ 15. }
+ 16. if `y0'==1911 {
+ 17. local y1=1920
+ 18. }
+ 19. if `y0'==1920 {
+ 20. local y1=1933
+ 21. }
+ 22. if `y0'==1933 {
+ 23. local y1=1940
+ 24. }
+ 25. if `y0'==1940 {
+ 26. local y1=1950
+ 27. }
+ 28. if `y0'==1950 {
+ 29. local y1=1960
+ 30. }
+ 31. if `y0'==1960 {
+ 32. local y1=1970
+ 33. }
+ 34. if `y0'==1970 {
+ 35. local y1=1980
+ 36. }
+ 37. if `y0'==1980 {
+ 38. local y1=1991
+ 39. }
+ 40. if `y0'==1991 {
+ 41. local y1=2000
+ 42. }
+ 43. if `y0'==2000 {
+ 44. local y1=2010
+ 45. }
+ 46. 
+. *******************************************************
+. *** (11) assign all new mun a number of missing matches
+. gen ch_match=n_dest`y0'
+ 47. 
+. *** define max. #destinies 
+. foreach n of numlist 2/5{
+ 48. count if n_dest`y0'==`n'
+ 49. global n_dest`n'=r(N)
+ 50. global match_dest`n'=0
+ 51. }
+ 52. 
+. **************************************
+. *** (12) generate the new cluster-var.
+. // only for the first period:
+. if `y0' == `startyear' {
+ 53.         // important to distinguish the AMC (mun may have same names)
+.         gsort uf_amc dest1`y0' -exist_d`y0' final_name
+ 54.         egen clu`y0'=group(uf_amc dest1`y0')
+ 55.         // the first cluster assignment of the data set --> keep this var. until the end
+.         gen clu`y0'_orig=clu`y0'
+ 56. }
+ 57. // other periods:
+. else {
+ 58.         // builds on the exsting groups from the prior period
+.         gen clu`y0'=clu`y_1'_final
+ 59.         gsort clu`y0' -dest1`y0' code2010
+ 60.         // assign all new-`y0'-mun a new number 
+.         replace clu`y0'=clu`y0'[_n-1]+1 if dest1`y0'!="" & clu`y0'==.
+ 61. }       
+ 62. 
+. ** mun with destiny/origin outside their own UF_amc
+. // these mun will not only be matched later on
+. replace ch_match=ch_match-1 if code2010==2205706 & `y0'==1872
+ 63. replace ch_match=ch_match-1 if code2010==4204202 & `y0'==1911
+ 64. replace ch_match=ch_match-1 if code2010==4209003 & `y0'==1911
+ 65. replace ch_match=ch_match-1 if code2010==4213609 & `y0'==1911
+ 66. replace ch_match=ch_match-1 if code2010==4208104 & `y0'==1911
+ 67. replace ch_match=ch_match-1 if code2010==4210100 & `y0'==1911
+ 68. replace ch_match=ch_match-1 if code2010==1100205 & `y0'==1911
+ 69. 
+. 
+. **********************************************
+. *** (13) begin procedure: 
+. *** assign new cluster number to 1. destinies
+. gen clu_new=.
+ 70. gsort uf_amc dest1`y0' -exist_d`y0' final_name
+ 71. replace clu_new=clu`y0'[_n-1] if dest1`y0'==dest1`y0'[_n-1] & clu`y0'[_n-1]!=. & dest1`y0'!=""
+ 72. *** replace the clu-number of the new mun. 
+. // more than one mun may emerge from the same origin:
+. replace clu_new=clu_new[_n-1] if dest1`y0'==dest1`y0'[_n-1] & clu_new[_n-1]!=.
+ 73. *** subtract 1 from the number of missing matches:
+. replace ch_match=ch_match - 1 if clu_new!=.
+ 74. 
+. *** (15) generate consistent clusters
+. do "$code\amc\matching.do" "`y0'"
+ 75. 
+. di "missing matches per group #1"
+ 76. tab ch_match
+ 77. 
+. 
+. foreach p of numlist 2 3 4 5 {
+ 78. 
+. **********************************************************
+. *** (16) include those with a different dest`p'
+. // i.e. those that have `p' different origins/destinations
+. count if n_dest`y0'==`p'
+ 79. if r(N) > 0 {
+ 80. 
+. *** (13) repeat procedure above:
+. gen mis`y0'=dest`p'`y0' if n_dest`y0'>=`p'
+ 81. *** dummy for those mun:
+. gen target= mis`y0'!=""
+ 82. gen clu_new=.
+ 83. 
+. *** (14) try mun-name from next period:
+. replace mis`y0'=dest1`y1' if target==0 & exist_d`y1'==1 
+ 84. gsort uf_amc mis`y0' -target final_name
+ 85. replace clu_new=clu`y0'[_n+1] if mis`y0'==mis`y0'[_n+1] & clu`y0'[_n+1]!=. & target==1
+ 86. 
+. // may not work bc. mun name in `y0' and `y0' are different. try with mun-name of current period
+. *** overwrite entry of mis`y0' but do NOT OVERWRITE clu_new in case there has been a matching already
+. replace mis`y0'=dest1`y0' if target==0 & exist_d`y0'==1
+ 87. gsort uf_amc mis`y0' -target final_name
+ 88. replace clu_new=clu`y0'[_n+1] if mis`y0'==mis`y0'[_n+1] & clu`y0'[_n+1]!=. & target==1 & clu_new==.
+ 89.         
+. // may not work bc. mun name in `y0' and `y1' are still different. try with the final_name
+. *** --> overwrite entry of mis`y0' but do NOT OVERWRITE clu_new in case there has been a matching
+. replace mis`y0'=final_name if target==0
+ 90. gsort uf_amc mis`y0' -target final_name
+ 91. replace clu_new=clu`y0'[_n+1] if mis`y0'==mis`y0'[_n+1] & clu`y0'[_n+1]!=. & target==1 & clu_new==.
+ 92. 
+. *** (11) adjust the ch_match for matches:
+. count if clu_new!=.
+ 93. global match_dest`p'=r(N)
+ 94. replace ch_match=ch_match-1 if clu_new!=.
+ 95. drop target mis`y0'
+ 96. 
+. *** (15) apply matching between old and new cluster numbers
+. do "$code\amc\matching.do" "`y0'"
+ 97. 
+. di "missing matches per group #`p'"
+ 98. tab ch_match
+ 99. 
+. if `p'==2 {
+100. assert $match_dest2==$n_dest2 + $n_dest3 + $n_dest4 + $n_dest5
+101. }
+102. if `p'==3 {
+103. assert $match_dest3==$n_dest3 + $n_dest4 + $n_dest5
+104. }
+105. if `p'==4 {
+106. assert $match_dest4== $n_dest4 + $n_dest5
+107. }
+108. if `p'==5 {
+109. assert $match_dest5==$n_dest5
+110. }
+111. 
+. }
+112. }
+113. 
+. *********************************************************************
+. *** (14) procedure for dest1, bc not all groups may be matched so far
+. // these are the ones to be matched:
+. gen mis`y0'=dest1`y0' if ch_match>0
+114. *** dummy for those mun:
+. gen target= mis`y0'!=""
+115. gen clu_new=.
+116. 
+. // try possible matching partners from next period
+. *** replace with muname, otherwise the mun may not yet exist in current period or may be desmembr. of that mun in the nex
+> t period
+. replace mis`y0'=muname`y1' if target==0 & muname`y1'!=""
+117. gsort uf_amc mis`y0' -target final_name
+118. replace clu_new=clu`y0'[_n+1] if mis`y0'==mis`y0'[_n+1] & clu`y0'[_n+1]!=. & target==1
+119. 
+. // may not work bc. mun name in `y0' and `y1' are still different. try with the final name
+. // --> overwrite entry of mis`y0' but do NOT OVERWRITE clu_new in case there has been a matching
+. // only replace those there are NOT required to be matched, considering the previous matching round already.
+. replace mis`y0'=final_name if target==0 | clu_new!=.
+120. gsort uf_amc mis`y0' -target -clu_new final_name, mfirst
+121. replace clu_new=clu`y0'[_n+1] if mis`y0'==mis`y0'[_n+1] & clu`y0'[_n+1]!=. & target==1 & clu_new==.
+122. 
+. *** (11) adjust the ch_match for matches:
+. replace ch_match=ch_match - 1 if clu_new!=.
+123. drop target mis`y0'
+124. 
+. *** (15) apply matching between old and new cluster numbers
+. do "$code\amc\matching.do" "`y0'"
+125. 
+. di "missing matches per group"
+126. tab ch_match
+127. 
+. 
+. ******************************
+. *** crossref problem:
+. // may occur in rare occasions 
+. count if ch_match!=0
+128. if r(N) != 0 { 
+129. 
+. // i.e. two mun are created at the same time and both refer their origin to the other
+. // is at least the case for "Sao Goncalo / Macahyba" in 1872 (RN)
+. // these are the ones to be matched:
+. gen mis`y0'=dest1`y0' if ch_match>0
+130. sort uf_amc mis`y0'
+131. *** replace only the second in each uf_amc group
+. replace mis`y0'=dest1`y1' if mis`y0'!="" & mis`y0'[_n-1]!="" & uf_amc==uf_amc[_n-1]
+132. gen clu_new=.
+133. replace clu_new=clu`y0'[_n-1] if mis`y0'==mis`y0'[_n-1] & clu`y0'[_n-1]!=. & mis`y0'!="" & ch_match!=0 
+134. *** adjustment for both ch_match
+. replace ch_match=ch_match - 1 if mis`y0'==mis`y0'[_n-1] & clu`y0'[_n-1]!=. & mis`y0'!="" & ch_match!=0 
+135. replace ch_match=ch_match - 1 if mis`y0'==mis`y0'[_n+1] & clu`y0'[_n+1]!=. & mis`y0'!="" & ch_match!=0 
+136. 
+. do "$code\amc\matching.do" "`y0'"
+137. 
+. di "missing matches per group"
+138. tab ch_match
+139. }
+140. 
+. **********************
+. *** (17) last check:
+. assert ch_match==0
+141. // everything matched
+. **********************
+. 
+. 
+. *** new cluster-var for next period
+. egen clu`y0'_final=group(clu`y0')
+142. sort clu`y0'_final
+143. order uf_amc final_name muname`y0' clu`y0' clu`y0'_final
+144. sum clu*_final
+145. 
+. *** clear up data from current period
+. drop dest1`y0' dest2`y0' n_dest`y0' exist_d`y0' dest3`y0' dest4`y0' dest5`y0' ch_match
+146. 
+. *** save
+. order uf_amc clu`y0' code2010
+147. compress
+148. save "$temp\_Crosswalk_`y0'.dta", replace
+149. 
+. *** define the new years and begin next loop
+. local y_1 = `y0'
+150. local y0 = `y1'
+151. 
+. log close
+152. }

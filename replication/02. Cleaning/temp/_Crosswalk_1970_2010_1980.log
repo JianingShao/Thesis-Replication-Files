@@ -1,0 +1,1182 @@
+---------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\_Crosswalk_197
+> 0_2010_1980.log
+  log type:  text
+ opened on:  16 Apr 2025, 15:02:12
+  1
+  0
+  1
+  0
+(1,596 missing values generated)
+(499 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(0 real changes made)
+(5,592 missing values generated)
+(495 real changes made)
+(123 real changes made)
+(495 real changes made)
+
+. 
+. *******************************************
+. **** Auxiliary file 2: "matching.do"   ****
+. **** matching of cluster-numbers       ****
+. *******************************************
+. **** Ehrl (2017) Estudos Economicos 47/1 ** 
+. *******************************************
+. 
+. *** save the current data in use (to restore it later)
+. save "$temp\current.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta not
+    found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta saved
+
+. 
+. *** keep only the two different group numbers
+. keep clu`1' clu_new
+
+. keep if clu_new!=.
+(5,097 observations deleted)
+
+. sort clu`1' clu_new
+
+. ** drop unecessary obs:
+. drop if clu`1'==clu_new
+(0 observations deleted)
+
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+(0 observations deleted)
+
+. 
+. *** 1. check
+. *** problem for several destinies (to be replaced by only 1 new clu-number)
+.  count if clu`1'==clu`1'[_n-1]
+  0
+
+.  while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  save "$temp\temp.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta not found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta saved
+
+.  
+.  *** 2. check if a problem will occur:
+.  *** problem for cross-ref (a new cluster number is at the same time replaced by another new one)
+.  preserve 
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+. restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no:
+. else {
+. restore
+. }
+
+. 
+. *** repeat this procedure several times
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** final checks:
+. assert clu`1'!=clu`1'[_n-1]
+
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+.  assert r(N)==0
+
+.  restore
+
+. 
+. // procedure is complete. restore data
+. use "$temp\current.dta", clear
+
+. 
+. *** finally, replace cluster number of all mun of one group
+. *** with the new number of the other group
+. drop clu_new
+
+. merge m:1 clu`1' using "$temp\temp.dta", nogen
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         5,097
+        from master                     5,097  
+        from using                          0  
+
+    Matched                               495  
+    -----------------------------------------
+
+. replace clu`1'=clu_new if clu_new!=.
+(495 real changes made)
+
+. drop clu_new
+
+. 
+. erase "$temp\temp.dta"
+
+. erase "$temp\current.dta"
+
+. cap erase "$temp\temp2.dta"
+
+. 
+end of do-file
+missing matches per group #1
+
+   ch_match |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,584       99.86       99.86
+          1 |          7        0.13       99.98
+          3 |          1        0.02      100.00
+------------+-----------------------------------
+      Total |      5,592      100.00
+  1
+(5,590 missing values generated)
+(5,592 missing values generated)
+variable mis1980 was str14 now str32
+(4,489 real changes made)
+(2 real changes made)
+(11 real changes made)
+(0 real changes made)
+(1,165 real changes made)
+(0 real changes made)
+  2
+(2 real changes made)
+
+. 
+. *******************************************
+. **** Auxiliary file 2: "matching.do"   ****
+. **** matching of cluster-numbers       ****
+. *******************************************
+. **** Ehrl (2017) Estudos Economicos 47/1 ** 
+. *******************************************
+. 
+. *** save the current data in use (to restore it later)
+. save "$temp\current.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta not
+    found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta saved
+
+. 
+. *** keep only the two different group numbers
+. keep clu`1' clu_new
+
+. keep if clu_new!=.
+(5,590 observations deleted)
+
+. sort clu`1' clu_new
+
+. ** drop unecessary obs:
+. drop if clu`1'==clu_new
+(1 observation deleted)
+
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+(0 observations deleted)
+
+. 
+. *** 1. check
+. *** problem for several destinies (to be replaced by only 1 new clu-number)
+.  count if clu`1'==clu`1'[_n-1]
+  0
+
+.  while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  save "$temp\temp.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta not found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta saved
+
+.  
+.  *** 2. check if a problem will occur:
+.  *** problem for cross-ref (a new cluster number is at the same time replaced by another new one)
+.  preserve 
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+. restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no:
+. else {
+. restore
+. }
+
+. 
+. *** repeat this procedure several times
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** final checks:
+. assert clu`1'!=clu`1'[_n-1]
+
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+.  assert r(N)==0
+
+.  restore
+
+. 
+. // procedure is complete. restore data
+. use "$temp\current.dta", clear
+
+. 
+. *** finally, replace cluster number of all mun of one group
+. *** with the new number of the other group
+. drop clu_new
+
+. merge m:1 clu`1' using "$temp\temp.dta", nogen
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         5,590
+        from master                     5,590  
+        from using                          0  
+
+    Matched                                 2  
+    -----------------------------------------
+
+. replace clu`1'=clu_new if clu_new!=.
+(2 real changes made)
+
+. drop clu_new
+
+. 
+. erase "$temp\temp.dta"
+
+. erase "$temp\current.dta"
+
+. cap erase "$temp\temp2.dta"
+
+. 
+end of do-file
+missing matches per group #2
+
+   ch_match |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,585       99.87       99.87
+          1 |          6        0.11       99.98
+          2 |          1        0.02      100.00
+------------+-----------------------------------
+      Total |      5,592      100.00
+  0
+  1
+(5,591 missing values generated)
+(5,592 missing values generated)
+variable mis1980 was str3 now str32
+(4,490 real changes made)
+(1 real change made)
+(11 real changes made)
+(0 real changes made)
+(1,165 real changes made)
+(0 real changes made)
+  1
+(1 real change made)
+
+. 
+. *******************************************
+. **** Auxiliary file 2: "matching.do"   ****
+. **** matching of cluster-numbers       ****
+. *******************************************
+. **** Ehrl (2017) Estudos Economicos 47/1 ** 
+. *******************************************
+. 
+. *** save the current data in use (to restore it later)
+. save "$temp\current.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta not
+    found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta saved
+
+. 
+. *** keep only the two different group numbers
+. keep clu`1' clu_new
+
+. keep if clu_new!=.
+(5,591 observations deleted)
+
+. sort clu`1' clu_new
+
+. ** drop unecessary obs:
+. drop if clu`1'==clu_new
+(0 observations deleted)
+
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+(0 observations deleted)
+
+. 
+. *** 1. check
+. *** problem for several destinies (to be replaced by only 1 new clu-number)
+.  count if clu`1'==clu`1'[_n-1]
+  0
+
+.  while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  save "$temp\temp.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta not found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta saved
+
+.  
+.  *** 2. check if a problem will occur:
+.  *** problem for cross-ref (a new cluster number is at the same time replaced by another new one)
+.  preserve 
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+. restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no:
+. else {
+. restore
+. }
+
+. 
+. *** repeat this procedure several times
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** final checks:
+. assert clu`1'!=clu`1'[_n-1]
+
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+.  assert r(N)==0
+
+.  restore
+
+. 
+. // procedure is complete. restore data
+. use "$temp\current.dta", clear
+
+. 
+. *** finally, replace cluster number of all mun of one group
+. *** with the new number of the other group
+. drop clu_new
+
+. merge m:1 clu`1' using "$temp\temp.dta", nogen
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         5,589
+        from master                     5,589  
+        from using                          0  
+
+    Matched                                 3  
+    -----------------------------------------
+
+. replace clu`1'=clu_new if clu_new!=.
+(3 real changes made)
+
+. drop clu_new
+
+. 
+. erase "$temp\temp.dta"
+
+. erase "$temp\current.dta"
+
+. cap erase "$temp\temp2.dta"
+
+. 
+end of do-file
+missing matches per group #4
+
+   ch_match |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,585       99.87       99.87
+          1 |          7        0.13      100.00
+------------+-----------------------------------
+      Total |      5,592      100.00
+  0
+(5,585 missing values generated)
+(5,592 missing values generated)
+variable mis1980 was str21 now str32
+(4,484 real changes made)
+(7 real changes made)
+(1,161 real changes made)
+(0 real changes made)
+(7 real changes made)
+
+. 
+. *******************************************
+. **** Auxiliary file 2: "matching.do"   ****
+. **** matching of cluster-numbers       ****
+. *******************************************
+. **** Ehrl (2017) Estudos Economicos 47/1 ** 
+. *******************************************
+. 
+. *** save the current data in use (to restore it later)
+. save "$temp\current.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta not
+    found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\current.dta saved
+
+. 
+. *** keep only the two different group numbers
+. keep clu`1' clu_new
+
+. keep if clu_new!=.
+(5,585 observations deleted)
+
+. sort clu`1' clu_new
+
+. ** drop unecessary obs:
+. drop if clu`1'==clu_new
+(1 observation deleted)
+
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+(0 observations deleted)
+
+. 
+. *** 1. check
+. *** problem for several destinies (to be replaced by only 1 new clu-number)
+.  count if clu`1'==clu`1'[_n-1]
+  0
+
+.  while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  save "$temp\temp.dta", replace
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta not found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\temp.dta saved
+
+.  
+.  *** 2. check if a problem will occur:
+.  *** problem for cross-ref (a new cluster number is at the same time replaced by another new one)
+.  preserve 
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+. restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no:
+. else {
+. restore
+. }
+
+. 
+. *** repeat this procedure several times
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** 1. check:
+. count if clu`1'==clu`1'[_n-1]
+  0
+
+. while r(N)!=0 {
+  2.         replace clu`1'=clu_new if clu`1'==clu`1'[_n-1]
+  3.         replace clu_new=clu_new[_n-1] if clu_new==clu`1'
+  4.         sort clu`1' clu_new
+  5.         // drop double obs. (in case)
+.         drop if clu`1'==clu_new
+  6.         drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+  7.         // to end the loop:
+.         count if clu`1'==clu`1'[_n-1]
+  8. }
+
+.  
+. *** 2. check if a problem will occur
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+. // if yes:
+.  if r(N)!=0 {
+.  restore
+. 
+. rename clu_new clu_new2 
+. rename clu`1' clu_new
+. save "$temp\temp2.dta", replace
+. use "$temp\temp.dta", clear
+. merge m:1 clu_new using "$temp\temp2.dta", nogen
+. replace clu_new2=clu_new if clu_new2==.
+. keep if clu`1'!=.
+. drop clu_new
+. rename clu_new2 clu_new 
+. sort clu`1' clu_new
+. // drop unecessary obs:
+. drop if clu`1'==clu_new
+. drop if clu`1'==clu`1'[_n-1] & clu_new==clu_new[_n-1]
+. save "$temp\temp.dta", replace
+. }
+
+. // if no
+. else {
+. restore
+. }
+
+. 
+. *** final checks:
+. assert clu`1'!=clu`1'[_n-1]
+
+.  preserve 
+
+.  cap drop help
+
+.  rename clu_new help
+
+.  rename clu`1' clu_new
+
+.  append using "$temp\temp.dta"
+
+.  gsort clu_new -help, mfirst
+
+.  count if clu_new==clu_new[_n+1] & help[_n+1]!=.
+  0
+
+.  assert r(N)==0
+
+.  restore
+
+. 
+. // procedure is complete. restore data
+. use "$temp\current.dta", clear
+
+. 
+. *** finally, replace cluster number of all mun of one group
+. *** with the new number of the other group
+. drop clu_new
+
+. merge m:1 clu`1' using "$temp\temp.dta", nogen
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                         5,582
+        from master                     5,582  
+        from using                          0  
+
+    Matched                                10  
+    -----------------------------------------
+
+. replace clu`1'=clu_new if clu_new!=.
+(10 real changes made)
+
+. drop clu_new
+
+. 
+. erase "$temp\temp.dta"
+
+. erase "$temp\current.dta"
+
+. cap erase "$temp\temp2.dta"
+
+. 
+end of do-file
+missing matches per group
+
+   ch_match |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          0 |      5,592      100.00      100.00
+------------+-----------------------------------
+      Total |      5,592      100.00
+  0
+(1,097 missing values generated)
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+clu1980_fi~l |      4,495    2020.254     1173.29          1       3948
+clu1970_fi~l |      3,996    1996.475    1151.082          1       3952
+  variable clu1980 was float now int
+  variable clu1980_final was float now int
+  (22,368 bytes saved)
+(file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\_Crosswalk_1980.dta
+    not found)
+file C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\_Crosswalk_1980.dta
+    saved
+      name:  <unnamed>
+       log:  C:\Users\JianingShao\OneDrive - London School of Economics\Thesis\replication\02. Cleaning\temp\_Crosswalk_197
+> 0_2010_1980.log
+  log type:  text
+ closed on:  16 Apr 2025, 15:02:12
+---------------------------------------------------------------------------------------------------------------------------
