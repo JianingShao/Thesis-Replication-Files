@@ -1,0 +1,35 @@
+\contentsline {section}{\numberline {1}Introduction}{3}{section.1}%
+\contentsline {section}{\numberline {2}Historical Context}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Plan for National Integration (1970)}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Trade Liberalization (1990s)}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Agriculture to Growth}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Spatial Pattern of Economic Development}{6}{subsection.2.4}%
+\contentsline {section}{\numberline {3}Theoretical Model}{7}{section.3}%
+\contentsline {paragraph}{A. Preferences}{8}{section*.3}%
+\contentsline {paragraph}{B. Production}{9}{section*.4}%
+\contentsline {paragraph}{C. Wage-Rental Ratio}{10}{section*.5}%
+\contentsline {paragraph}{D. General Equilibrium Definition}{11}{section*.6}%
+\contentsline {paragraph}{E. Trade Frontier and Complete Specialization}{11}{section*.7}%
+\contentsline {paragraph}{F. Local Equilibrium}{13}{section*.8}%
+\contentsline {section}{\numberline {4}Data}{16}{section.4}%
+\contentsline {section}{\numberline {5}Identification Strategy}{17}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Instrument Construction}{17}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Long-Differenced Estimation}{18}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Dynamic Estimation}{19}{subsection.5.3}%
+\contentsline {section}{\numberline {6}Results}{19}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Long-Differenced Estimates}{19}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Dynamic Estimates}{22}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Extensive and Intensive Margins}{23}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Heterogeneity}{25}{subsection.6.4}%
+\contentsline {subsubsection}{\numberline {6.4.1}Waterway Access}{26}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\numberline {6.4.2}Geographic Region}{26}{subsubsection.6.4.2}%
+\contentsline {subsubsection}{\numberline {6.4.3}Core and Periphery}{26}{subsubsection.6.4.3}%
+\contentsline {section}{\numberline {7}Robustness Checks}{28}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Alternative Robust Estimator}{28}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Pseudo Poisson Maximum Likelihood}{28}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Alternative Measures and Sample Choices}{30}{subsection.7.3}%
+\contentsline {section}{\numberline {8}Discussion}{33}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Link to Theoretical Framework}{33}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Concerns}{34}{subsection.8.2}%
+\contentsline {section}{\numberline {9}Conclusion}{35}{section.9}%
+\contentsline {section}{Appendix}{36}{section*.20}%

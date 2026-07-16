@@ -6,7 +6,9 @@
 \usepackage{amsmath, amssymb, graphicx, hyperref}
 \usepackage{amsmath, amsthm, amssymb}
 \newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
 \newtheorem{corollary}{Corollary}
+\newtheorem{remark}{Remark}
 \usepackage{booktabs}
 \usepackage{caption}    
 \usepackage{subcaption}
@@ -54,7 +56,7 @@ The analysis proceeds as follows. To guide the empirical investigation, I adapt 
 
 I find strong empirical support for these predictions. My baseline specification is a long-differenced estimation that controls for long-run trends during the 1970-2010 period. Using the newly constructed spatially disaggregated dataset, I find that over the 40-year period, locations with 10\% reductions in transport costs to world markets have a 2.7\% more increase in GDP and a 3.3\% more increase in urban population. I further examine the timing-varying effects of the reduction in travel time on outcomes of interest in an event study design. Dynamic estimates confirm that there are no pre-trends in population growth but a sudden spike in urban population from 1980 onwards for those micro-regions predicted to experience larger reductions in travel time to ports. Furthermore, the results reveal that locations with 10\% more reductions in transport costs experience 36.3\% more production in transport-cost-sensitive soybeans, while no significant increases are found in insensitive cattle production. I employ a probability model to uncover the expansion pattern of the agricultural production and confirm that such expansion in soybeans is driven by both the extensive and intensive margins. Additional heterogeneity analysis reveals that the effect of transport cost reductions is more pronounced in micro-regions where the newly built infrastructure is particularly valuable, i.e., regions with worse access to waterways, located in the Center-West, and farther away from the state capital benefit more from the road construction. The main results survive a battery of robustness checks, including alternative robust estimators and alternative specifications and sample choices.
 
-This paper relates to several bodies of literature. First, a rich set of spatial literature on the pattern of migration assumed that workers are immobile across space (Donaldson, 2018; Topalova, 2010), or migration costs are purely due to preferences without frictions (Allen and Arkolakis, 2014; Redding, 2016). Recent literature relaxes these assumptions to consider costly migration (Tombe and Zhu, 2019; Morten and Oliveria, 2024). I follow their approach to allow for migration under frictions and focus on the role of transport costs separately on migration, trade, and economic growth relative to other papers considering an interaction between them. Second, this paper is related to research on economic geography and market access, including Hanson (1996), Venables and Limão (2002), Redding and Sturm (2008), Allen and Arkolakis (2014), Coşar and Fajgelbaum (2016), Redding (2016), Sotelo (2020), Fajgelbaum and Redding (2022), and Morten and Oliveira (2024). Third, a growing empirical literature has examined the relationship between economic activity and transport infrastructure, including Chandra and Thompson (2000), Baum-Snow (2007), Michaels (2008), Berlinski, Galiani, and Jaitman (2011), Duranton and Turner (2012), Duranton, Morrow, and Turner (2014), Faber (2014), Atkin and Donaldson (2015), Coşar and Demir (2016), Storeygard (2016), Baum-Snow et al. (2017), Donaldson (2018), Pérez (2018), Banerjee, Duflo, and Qian (2020), and Heblich, Redding, and Sturm (2020), as reviewed in Redding and Turner (2015). Last, I build on the economic and historical literature on Brazil's economic development, including Bird and Straub (2014), Pellegrina (2014), Pellegrina and Sotelo (2021), Pellegrina (2022), and Soled et al. (2024). This paper aims to investigate the role of road access in promoting agricultural production and urbanization through the lens of trade, with a specific focus on the production of disaggregated agricultural commodities in Brazil.
+This paper relates to several bodies of literature. First, a rich set of spatial literature on the pattern of migration assumed that workers are immobile across space (Donaldson, 2018; Topalova, 2010), or migration costs are purely due to preferences without frictions (Allen and Arkolakis, 2014; Redding, 2016). Recent literature relaxes these assumptions to consider costly migration (Tombe and Zhu, 2019; Morten and Oliveria, 2024). I model imperfect labor mobility through idiosyncratic location preferences, so that population responds to spatial real-income differences with a finite migration elasticity, and focus on the role of transport costs separately on migration, trade, and economic growth relative to other papers considering an interaction between them. Second, this paper is related to research on economic geography and market access, including Hanson (1996), Venables and Limão (2002), Redding and Sturm (2008), Allen and Arkolakis (2014), Coşar and Fajgelbaum (2016), Redding (2016), Sotelo (2020), Fajgelbaum and Redding (2022), and Morten and Oliveira (2024). Third, a growing empirical literature has examined the relationship between economic activity and transport infrastructure, including Chandra and Thompson (2000), Baum-Snow (2007), Michaels (2008), Berlinski, Galiani, and Jaitman (2011), Duranton and Turner (2012), Duranton, Morrow, and Turner (2014), Faber (2014), Atkin and Donaldson (2015), Coşar and Demir (2016), Storeygard (2016), Baum-Snow et al. (2017), Donaldson (2018), Pérez (2018), Banerjee, Duflo, and Qian (2020), and Heblich, Redding, and Sturm (2020), as reviewed in Redding and Turner (2015). Last, I build on the economic and historical literature on Brazil's economic development, including Bird and Straub (2014), Pellegrina (2014), Pellegrina and Sotelo (2021), Pellegrina (2022), and Soled et al. (2024). This paper aims to investigate the role of road access in promoting agricultural production and urbanization through the lens of trade, with a specific focus on the production of disaggregated agricultural commodities in Brazil.
 
 The remainder of the paper is organized as follows. Section 2 discusses the historical background in Brazil between 1970 and 2010. Section 3 develops the theoretical model and derives the two key empirical predictions. Sections 4 and 5 discuss the data and identification strategy. Section 6 presents the main empirical results. Section 7 performs several robustness checks to validate the results. Section 8 interprets the results based on the theoretical model and discusses potential concerns. Section 9 concludes.
 
@@ -105,15 +107,15 @@ Locations close to work markets have not only higher GDP and population but also
 In this section, I adapt the theoretical model from Fajgelbaum and Redding (2022) into the Brazillian setting. The model is developed based on a Ricardian Trade model (Eaton and Kortum, 2002) to capture the distribution of economic activities within Brazil across sectors and locations.
 The purpose of this section is not to provide a full structural quantitative framework, but rather to derive two key empirical predictions to guide the empirical analysis: first, locations with larger reductions in internal trade costs to world markets experience greater structural transformation toward non-tradable activity; second, such locations specialize in transport-cost-sensitive agricultural goods.
 
-Consider a small open economy with a set of locations $\ell \in L$. Each location is endowed with a fixed amount of land $L_\ell$ and a mobile labor force. There are two three sectors: agriculture ($A$), manufacture ($M$), and nontradables ($N$). Agriculture and manufacturing are tradable, and nontradables are locally consumed.  Given the dominance of Brazilian exports in agricultural products, I focus on the empirically relevant case in which all locations in Brazil have a comparative advantage in agriculture relative to the rest of the world.
+Consider a small open economy with a set of locations $\ell \in L$. Each location is endowed with a fixed amount of land $L_\ell$ and a mobile labor force. There are three sectors: agriculture ($A$), manufacturing ($M$), and nontradables ($N$). Agriculture and manufacturing are tradable, and nontradables are locally consumed.  Given the dominance of Brazilian exports in agricultural products, I focus on the empirically relevant case in which all locations in Brazil have a comparative advantage in agriculture relative to the rest of the world.
 
-Within agriculture, there is a set of disaggregated agricultural goods indexed by $g = 1,\dots,G$ to account for the observed differences in the composition of agricultural production across locations. Each location $\ell$ has a land area $L_\ell$ and a continuum of land plots $j\in[0,L_{\ell}]$ that are heterogeneous in productivity for disaggregated agricultural goods $g=1,..., G$. 
+Within agriculture, there is a set of disaggregated agricultural goods indexed by $g = 1,\dots,G$ to account for the observed differences in the composition of agricultural production across locations. Each location's land consists of a continuum of land plots $j\in[0,L_{\ell}]$ that are heterogeneous in productivity for disaggregated agricultural goods $g=1,..., G$. 
 
-Each location is connected through an internal road network to international markets and transport cost changes over time with the expansion of road network. Let $\delta_{g(\ell,\ell^*)}=e^{(-\tau_g t_\ell)}$ denote the transport cost from location $\ell$ to the closest international gateway $\ell^*$ for good $g$, where $\tau_g$ is the heterogeneous transport-cost sensitivity for each good and $t_\ell$ is the common travel time term from location $\ell$ to the closest international port. I abstract from internal bilateral trade in disaggregated agricultural goods and focus on the case in which local prices are ultimately pinned down through no-arbitrage by exogenous world prices at the closest international gateway ($\{P_g^\ast\}_{g=1}^{G}, P_M^\ast$) and internal transport costs.
+Each location is connected through an internal road network to international markets and transport cost changes over time with the expansion of road network. Let $\delta_{g(\ell,\ell^*)}=e^{\tau_g t_\ell}\geq 1$ denote the iceberg transport cost between location $\ell$ and the closest international gateway $\ell^*$ for good $g$: shipping one unit between $\ell$ and $\ell^*$ delivers $1/\delta_{g(\ell,\ell^*)}$ units, where $\tau_g>0$ is the heterogeneous transport-cost sensitivity for each good and $t_\ell$ is the common travel time term from location $\ell$ to the closest international port. The transport cost for manufactures is defined analogously as $\delta_{M(\ell,\ell^*)}=e^{\tau_M t_\ell}$ with $\tau_M>0$. I abstract from internal bilateral trade in disaggregated agricultural goods and focus on the case in which local prices are ultimately pinned down through no-arbitrage by exogenous world prices at the closest international gateway ($\{P_g^\ast\}_{g=1}^{G}, P_M^\ast$) and internal transport costs.
 
 \paragraph{A. Preferences}~\\
 
-\noindent Workers' preferences $b_\ell u_\ell$ for each location consist of a common component same for all workers and an idiosyncratic component. 
+\noindent Workers' preferences $b_\ell u_\ell$ for each location consist of a common component that is the same for all workers and an idiosyncratic component.
 
 The common component has two tiers: Workers consume tradable and non-tradable goods with constant elasticity of substitution (CES) preferences
 \begin{equation}
@@ -123,24 +125,20 @@ The common component has two tiers: Workers consume tradable and non-tradable go
 \end{equation}
 where $\beta_T \in (0,1)$ controls the relative weights of tradable and non-tradable goods. I assume inelastic demand between sectors ($0<\sigma<1$) as in the macroeconomics literature on structural transformation. 
 
-Tradables comsumption is defined over consumption of a composite of manufacturing good and a set of agricultural goods with Cobb-Douglas preferences:
+Tradables consumption is defined over the manufacturing good and the set of disaggregated agricultural goods with Cobb-Douglas preferences:
 \begin{equation}
-    C_{T\ell}=C_{A\ell}^{\,\gamma_A} C_{M\ell}^{\,1-\gamma_A},
-    \quad
-    C_{A\ell}=\prod_{g=1}^G C_{g\ell}^{\gamma_g}
+    C_{T\ell}= C_{M\ell}^{\,1-\gamma_A}\prod_{g=1}^G C_{g\ell}^{\gamma_g},
+    \qquad
+    \sum_{g=1}^G \gamma_g = \gamma_A \in (0,1),
     \label{eq:tradables_nest}
 \end{equation}
-with $0<\gamma_A<1$ and $\sum_{g=1}^G \gamma_g = 1$ and the following tradeables price index
+where $\gamma_g$ is the expenditure share of agricultural good $g$ within tradables and $\gamma_A$ is the total agricultural expenditure share within tradables. The corresponding tradables price index is, up to a multiplicative constant,
 \begin{equation}
-        E_{T\ell}= E_{A\ell}^{\,\gamma_A} P_{M\ell}^{\,1-\gamma_A},
-    \quad
-    E_{A\ell}=\prod_{g=1}^G P_{g\ell}^{\gamma_g}, 
-    \qquad 
-    \sum_g \gamma_g = \gamma_A <1
+        E_{T\ell}= P_{M\ell}^{\,1-\gamma_A}\prod_{g=1}^G P_{g\ell}^{\gamma_g}.
     \label{eq:ET}
 \end{equation}
  
-The idiosyncratic component $b_\ell$ captures heterogeneity in workers' tastes for locations drawn independently from a Fréchet distribution with shape parameter $\epsilon$. 
+The idiosyncratic component $b_\ell$ captures heterogeneity in workers' tastes for locations drawn independently from a Fréchet distribution with shape parameter $\epsilon>1$.
 \begin{equation}
     b_\ell \sim \text{Prob}[b_{\ell}<b] = \exp(-b^{-\epsilon})
 \end{equation}
@@ -157,7 +155,7 @@ N_\ell = N \left(\frac{u_\ell}{u^*}\right)^{\epsilon},
 u^* = \left( \sum_{\ell \in L} u_\ell^\epsilon \right)^{1/\epsilon},
 \label{eq:labor_supply}
 \end{equation}
-where $u^*$ is the expected utility and $\epsilon>0$ controls the elasticity of population with respect to utility. As the variance of the Fréchet distribution decreases as $\epsilon$ increases, i.e., a larger Fréchet shape parameter $\epsilon$ implies greater internal labor mobility within Brazil, such that the supply of labor to each location is more responsive to relative utility levels in goods consumption. In density form,
+where $u^*$ is proportional to workers' expected utility, $E[\max_\ell b_\ell u_\ell]=\Gamma(1-1/\epsilon)\,u^*$, which is finite given $\epsilon>1$, and $\epsilon$ controls the elasticity of population with respect to utility. As the variance of the Fréchet distribution decreases as $\epsilon$ increases, i.e., a larger Fréchet shape parameter $\epsilon$ implies greater internal labor mobility within Brazil, such that the supply of labor to each location is more responsive to relative utility levels in goods consumption. In density form,
 \begin{equation}
 n_\ell L_\ell = N \left(\frac{u_\ell}{u^*}\right)^{\epsilon},
 \label{eq:density_supply}
@@ -170,10 +168,10 @@ where $n_\ell \equiv N_\ell/L_\ell$ is population density.
 \noindent Each worker is endowed with one unit of labor supplied inelastically with zero disutility. Land is owned by immobile landowners who do not own any labor. Production in each sector is characterized by a Cobb-Douglas technology with constant returns to scale in land and labor. Output per unit of land in non-tradable and for an agricultural good $g$ in land plot $j$ in location $\ell$ are
 \begin{align}
     q_{N\ell} = z_{N\ell} n_{N\ell}^{1-\alpha_N}, \quad
-    q_{M\ell} = z_{M\ell} n_{N\ell}^{1-\alpha_M}, \quad
+    q_{M\ell} = z_{M\ell} n_{M\ell}^{1-\alpha_M}, \quad
     q_{g\ell j} = z_{g\ell j} n_{g\ell j}^{1-\alpha_A},
-\end{align} 
-where $z_{N\ell},z_{M\ell}, z_{g\ell j}$ are sectoral productivities; $0<\alpha_i<1$ is the land intensity in sector $i=A, M, N$ such that agriculture is the more land intensive than non-tradables ($\alpha_A > \alpha_N >0$).
+\end{align}
+where $z_{N\ell},z_{M\ell}, z_{g\ell j}$ are sectoral productivities; $0<\alpha_i<1$ is the land intensity in sector $i=A, M, N$ such that agriculture is more land intensive than non-tradables ($\alpha_A > \alpha_N >0$). For tractability, I assume the two traded sectors share a common land intensity ($\alpha_M = \alpha_A$), as in Coşar and Fajgelbaum (2016). \footnote{Fajgelbaum and Redding (2022) instead assume $\alpha_N<\alpha_M<\alpha_A$, under which complete specialization of traded production in agriculture obtains for sufficiently high agricultural productivity. Setting $\alpha_M=\alpha_A$ delivers the same specialization pattern while yielding a closed-form trade frontier in Section 3.E.}
 
 Land plots differ in productivity for disaggregated agricultural goods drawn from the following Fr\'echet distribution with a shape parameter $\theta$ \footnote{Note that this Fr\'echet distribution has a different shape parameter than the distribution of idiosyncratic taste.}:
 \begin{equation}
@@ -197,9 +195,9 @@ If a land plot is used in agriculture, it is allocated to the agricultural good 
     r_{g\ell j} = \max_{n_{g\ell j}} \left( P_{g\ell} q_{g\ell} (n_{g\ell j}) - w_{\ell} n_{g\ell j} \right).
 \end{equation}
 
-Hence, the land-allocation decision depends on land rents in the manufacture, non-tradable sector ($r_{n\ell}$ and expected land rents in the agriculture ($r_{A\ell}=E[r_{\ell j}]$), and if a land plot has been allocated to agriculture, the landowner observe the realizations for productivity of each good and decides which good to produce. 
+Hence, the land-allocation decision depends on land rents in the manufacturing and non-tradable sectors ($r_{M\ell}$, $r_{N\ell}$) and expected land rents in agriculture ($r_{A\ell}=E[r_{\ell j}]$), and if a land plot has been allocated to agriculture, the landowner observes the realizations for productivity of each good and decides which good to produce.
 
-Before deriving the equilibrium wage-rental ratio, I first establish a aggregate measure of agricultural revenue productivity ($z_{A\ell}$). Under equation \eqref{eq:frechet_prod}, there exists a sufficient statistic for the disaggregated agricultural goods on aggregate employment and output in the agriculture: 
+Before deriving the equilibrium wage-rental ratio, I first establish an aggregate measure of agricultural revenue productivity ($z_{A\ell}$). Under equation \eqref{eq:frechet_prod}, there exists a sufficient statistic for the disaggregated agricultural goods on aggregate employment and output in agriculture (see Fajgelbaum and Redding, 2022, for the derivation):
 
 \begin{equation}
 z_{A\ell}
@@ -210,7 +208,15 @@ z_{A\ell}
 \right]^{\frac{1}{\theta}},
 \label{eq:zA}
 \end{equation}
-where $\Gamma(\cdot)$ is the Gamma function. Define adjusted agricultural productivity as
+where $\Gamma(\cdot)$ is the Gamma function and $\alpha_A\theta>1$ is required for the mean of realized productivity to be finite. The same Fréchet structure pins down the allocation of agricultural land across goods: with a continuum of plots, the share of agricultural land in location $\ell$ allocated to good $g$ equals the probability that an individual plot obtains its highest rent from good $g$,
+\begin{equation}
+l_{g\ell}
+=
+\frac{T_{g\ell}P_{g\ell}^\theta}
+{\sum_{h=1}^G T_{h\ell}P_{h\ell}^\theta},
+\label{eq:landshare}
+\end{equation}
+which is also the weight of good $g$ in the elasticity of $z_{A\ell}$ with respect to prices. Define adjusted agricultural productivity as
 
 \begin{equation}
 \tilde z_{A\ell} \equiv \frac{z_{A\ell}}{E_{T\ell}},
@@ -222,7 +228,7 @@ where $E_{T\ell}$ is the price index for tradables.
 
 \noindent Let the wage-rental ratio in sector $i$ and location $\ell$ be $\omega_{i\ell} \equiv \frac{w_\ell}{r_{i\ell}}$.
 
-Using profit maximization and the zero-profit condition $P_{i\ell}z_{i\ell} \leq w_\ell^{1-\alpha_i} r_{i\ell}^{\alpha_i}$, employment density in any active sector can be written in terms of the equilibrium wage-rental ratio by deriving the marginal product of labor and land
+Using profit maximization and the zero-profit condition $P_{i\ell}z_{i\ell} \leq w_\ell^{1-\alpha_i} r_{i\ell}^{\alpha_i}$, which holds with equality in active sectors and where the constant terms $\alpha_i^{-\alpha_i}(1-\alpha_i)^{-(1-\alpha_i)}$ are absorbed into productivities, employment density in any active sector can be written in terms of the equilibrium wage-rental ratio by deriving the marginal product of labor and land
 \begin{equation}
     n_{i\ell}=\frac{1-\alpha_i}{\alpha_i}\frac{1}{\omega_{i\ell}}
     \label{eq:n}
@@ -254,21 +260,25 @@ $\ell \in L$, such that:
 
 \paragraph{E. Trade Frontier and Complete Specialization}~\\
 
-To obtain a scalar trade frontier, I impose the following restriction: All location-level heterogeneity relevant for the open/closed trade decision is summarized by travel time $t_\ell$. In particular, for the frontier result, $\{T_{g\ell}\}_{g=1}^G$ and $z_{M\ell}$ are either common across locations or depend on location only through $t_\ell$.
-
-Write $T_{g\ell}=T_g$ and $z_{M\ell}=z_M$. Using equations \eqref{eq:zA} and \eqref{eq:zad}, aggregate agricultural revenue productivity can be written as a function of travel time alone:
+\noindent I now characterize which locations trade with the world market. To obtain a scalar trade frontier, I assume that the fundamentals relevant for the trade decision are common across locations, $T_{g\ell}=T_g$ for all $g$ and $z_{M\ell}=z_M$, so that all location-level heterogeneity relevant for the open/closed decision is summarized by travel time $t_\ell$. \footnote{If $\{T_{g\ell}\}_{g=1}^G$ or $z_{M\ell}$ vary across locations, the trade decision depends on these fundamentals in addition to $t_\ell$, so the frontier is a surface rather than a scalar cutoff in travel time; the monotonicity argument below continues to apply holding fundamentals fixed.} Using equations \eqref{eq:zA} and \eqref{eq:zad}, aggregate agricultural revenue productivity can then be written as a function of travel time alone:
 \begin{equation}
 z_A(t)
 =
 \Gamma\!\left(\frac{\alpha_A\theta-1}{\alpha_A\theta}\right)^{\alpha_A}
 \left[
 \sum_{g=1}^G T_g (P_g^\ast)^\theta e^{-\theta \tau_g t}
-\right]^{1/\theta},
-\qquad \alpha_A \theta > 1.
+\right]^{1/\theta}.
 \label{eq:zA_t}
 \end{equation}
 
-Define the openness index
+Consider a candidate open equilibrium in which location $\ell$ exports agricultural goods and imports manufactures, so that factor prices are pinned down by the agricultural zero-profit condition, $w_\ell^{1-\alpha_A} r_\ell^{\alpha_A}=z_A(t_\ell)$. Producing manufactures locally is unprofitable in this equilibrium if and only if the delivered import price falls short of the local unit cost of manufacturing production:
+\begin{equation}
+P_M(t_\ell)\, z_M \;\leq\; w_\ell^{1-\alpha_M} r_\ell^{\alpha_M},
+\qquad
+P_M(t)\equiv P_M^\ast e^{\tau_M t}.
+\label{eq:M_margin}
+\end{equation}
+With a common land intensity in the two traded sectors ($\alpha_M=\alpha_A$), the right-hand side equals $z_A(t_\ell)$, and condition \eqref{eq:M_margin} reduces to $\Omega(t_\ell)\geq 1$, where $\Omega(t)$ is the openness index
 \begin{equation}
 \Omega(t)
 \equiv
@@ -284,13 +294,11 @@ P_M^\ast e^{\tau_M t} z_M
 }.
 \label{eq:openness_index}
 \end{equation}
-which is continuous and strictly decreasing on $[0,\bar T]$
-
-Let $\bar \Omega>0$ denote the threshold value at which a location is indifferent between openness and autarky. Then a location is open if and only if $\Omega(t_\ell)\geq \bar \Omega$.
+The openness index compares the location's revenue productivity in its export sector with the delivered cost of obtaining manufactures through trade. When $\Omega(t_\ell)\geq 1$, importing manufactures dominates producing them locally and the location is open; when $\Omega(t_\ell)<1$, the location produces its own manufactures and stops importing. The threshold value of one is thus derived from the zero-profit conditions rather than imposed. \footnote{I assume throughout that no location finds it profitable to export manufactures, i.e., $P_M^\ast e^{-\tau_M t} z_M < z_A(t)$ on $[0,\bar T]$, consistent with the maintained assumption that all locations in Brazil have a comparative advantage in agriculture relative to the rest of the world.}
 
 \begin{proposition}[Existence of a trade frontier]
 \label{prop:trade_frontier}
-Suppose $\{T_{g\ell}\}_{g=1}^G$ and $z_{M\ell}$ are either common across locations or depend on location only through $t_\ell$. Then if $\Omega(0)>\bar \Omega$ and $\Omega(\bar T)<\bar \Omega$, there exists a unique cutoff $\bar t \in (0,\bar T)$ such that $\Omega(\bar t)=\bar \Omega$; the set of open locations is exactly $\{\ell: t_\ell \leq \bar t\}$ and all locations with $t_\ell>\bar t$ are in autarky.
+Suppose $T_{g\ell}=T_g$ for all $g$, $z_{M\ell}=z_M$, and $\alpha_M=\alpha_A$. If $\Omega(0)>1$ and $\Omega(\bar T)<1$, there exists a unique cutoff $\bar t \in (0,\bar T)$ such that $\Omega(\bar t)=1$; every location with $t_\ell \leq \bar t$ is open, exporting agricultural goods and importing manufactures, and every location with $t_\ell>\bar t$ produces manufactures locally and does not import them.
 \end{proposition}
 
 \begin{proof}
@@ -308,12 +316,12 @@ To show monotonicity, differentiate $\log \Omega(t)$:
 }
 -\tau_M \nonumber \\
 &=
--\sum_{g=1}^G \omega_g(t)\tau_g - \tau_M,
+-\sum_{g=1}^G l_g(t)\tau_g - \tau_M,
 \label{eq:dlogOmega}
 \end{align}
 where
 \begin{equation}
-\omega_g(t)
+l_g(t)
 \equiv
 \frac{
 T_g (P_g^\ast)^\theta e^{-\theta \tau_g t}
@@ -321,27 +329,32 @@ T_g (P_g^\ast)^\theta e^{-\theta \tau_g t}
 \sum_{h=1}^G T_h (P_h^\ast)^\theta e^{-\theta \tau_h t}
 },
 \qquad
-\omega_g(t)\geq 0,
+l_g(t)\geq 0,
 \qquad
-\sum_{g=1}^G \omega_g(t)=1.
-\label{eq:omega_g}
+\sum_{g=1}^G l_g(t)=1,
+\label{eq:lg_t}
 \end{equation}
-Because $\tau_g,\tau_M>0$, equation \eqref{eq:dlogOmega} implies
+is the agricultural land share of good $g$ from equation \eqref{eq:landshare}, evaluated at the no-arbitrage prices $P_{g\ell}=P_g^\ast e^{-\tau_g t}$ and $T_{g\ell}=T_g$. Because $\tau_g,\tau_M>0$, equation \eqref{eq:dlogOmega} implies
 \[
 \frac{d}{dt}\log \Omega(t)<0,
 \]
 so $\Omega(t)$ is strictly decreasing.
 
-Since $\Omega(t)$ is continuous on $[0,\bar T]$, the Intermediate Value Theorem implies that there exists at least one $\bar t \in (0,\bar T)$ such that $\Omega(\bar t)=\bar \Omega$. Since $\Omega(t)$ is strictly decreasing, $\bar t$ is unique.
+Since $\Omega(t)$ is continuous on $[0,\bar T]$ with $\Omega(0)>1$ and $\Omega(\bar T)<1$, the Intermediate Value Theorem implies that there exists at least one $\bar t \in (0,\bar T)$ such that $\Omega(\bar t)=1$. Since $\Omega(t)$ is strictly decreasing, $\bar t$ is unique.
 
 Finally, strict monotonicity implies
 \[
-t\leq \bar t \;\Rightarrow\; \Omega(t)\geq \bar \Omega,
+t\leq \bar t \;\Rightarrow\; \Omega(t)\geq 1,
 \qquad
-t>\bar t \;\Rightarrow\; \Omega(t)<\bar \Omega.
+t>\bar t \;\Rightarrow\; \Omega(t)<1.
 \]
-Locations with $t_\ell \leq \bar t$ are open, while those with $t_\ell > \bar t$ are in autarky.
+By condition \eqref{eq:M_margin}, locations with $t_\ell \leq \bar t$ import manufactures and are open, while those with $t_\ell > \bar t$ produce manufactures locally.
 \end{proof}
+
+\begin{remark}
+\label{rem:partial_autarky}
+Locations beyond the frontier need not be in complete autarky: a location with $t_\ell>\bar t$ may continue to export a subset of agricultural goods with low transport-cost sensitivity, and export margins close good by good as travel time increases, following the ordering of $\tau_g$ (cf. Proposition \ref{prop:specialization}). The frontier $\bar t$ characterizes the manufacturing-import margin, which is the empirically relevant notion of integration with world markets in this setting.
+\end{remark}
 
 \begin{corollary}[The frontier moves inland as travel times fall]
 \label{cor:frontier_inland}
@@ -355,14 +368,14 @@ t'_\ell \leq t_\ell
 \quad\Rightarrow\quad
 \Omega(t'_\ell)\geq \Omega(t_\ell).
 \]
-Therefore any location that was open before remains open after the infrastructure improvement, and some previously autarkic locations may become open. Thus the frontier moves inland.
+Therefore any location that was open before remains open after the infrastructure improvement, and some locations that previously produced manufactures locally may switch to importing them. Thus the frontier moves inland.
 \end{proof}
 
 
 
 \paragraph{F. Local Equilibrium}~\\
 
-\noindent Let $\lambda_{A\ell}$ and $\nu_{A\ell}$ denote the agricultural land and labor share respectively. 
+\noindent Consider a location within the trade frontier ($t_\ell\leq\bar t$). By the analysis in Section 3.E, such a location produces no manufactures, so its active sectors are agriculture and non-tradables; the non-tradable sector always operates because the CES preferences in \eqref{eq:utility} imply unbounded marginal utility as consumption of non-tradables approaches zero. Since land is allocated to the sector with the highest rent, both active sectors pay a common land rent $r_\ell$ in equilibrium, so I write $\omega_\ell \equiv w_\ell/r_\ell$ for the location-level wage-rental ratio. Let $\lambda_{A\ell}$ and $\nu_{A\ell}$ denote the agricultural land and labor share respectively.
 
 Under CES demand, tradable expenditure share is given by
 \begin{equation}
@@ -433,11 +446,6 @@ P_{N\ell} &= \frac{z_{A\ell}}{z_{N\ell}}\,\omega_\ell^{\alpha_A-\alpha_N}.
 \label{eq:PN}
 \end{align}
 
-Define adjusted agricultural productivity as 
-\begin{equation}
-    \tilde{z}_{A\ell}=\frac{z_{A\ell}}{E_{T\ell}}
-\end{equation}
-
 Expressing the common component of utility in equation \eqref{eq:utility} in the indirect utility form $u_\ell=w_\ell/E_\ell$ together with equation \eqref{eq:wage} gives
 \begin{align}
 \frac{E_{T\ell}}{E_\ell}
@@ -453,14 +461,14 @@ and therefore
 \begin{equation}
 s_{T\ell}
 =
-\beta_A
+\beta_T
 \left(
 \frac{u_\ell}{\tilde z_{A\ell} \omega_\ell^{\alpha_A}}
 \right)^{1-\sigma}.
 \label{eq:sT}
 \end{equation}
 
-Substituting these expressions into the CES price-index identity yields one equation that pins down the wage-rental ratio:
+Substituting these expressions into the CES price-index identity yields
 \begin{equation}
 u_\ell
 =
@@ -471,8 +479,9 @@ u_\ell
 \right]^{\frac{1}{\sigma-1}},
 \label{eq:omega_eq}
 \end{equation}
+Given $u_\ell$, equation \eqref{eq:omega_eq} determines a unique wage-rental ratio $\omega_\ell$: with $\sigma<1$, its right-hand side is strictly increasing in $\omega_\ell$ and spans $(0,\infty)$. The local equilibrium is then closed as follows. Equations \eqref{eq:omega_eq} and \eqref{eq:density} jointly define a downward-sloping local labor demand relationship between $u_\ell$ and $n_\ell$ (given $\sigma<1$ and $\alpha_A>\alpha_N$), while the Fréchet location choice in equation \eqref{eq:density_supply} defines an upward-sloping local labor supply; their intersection determines $(u_\ell, \omega_\ell, n_\ell)$ given the economy-wide expected utility $u^\ast$. At the national level, $u^\ast$ adjusts so that location populations sum to $N$. Existence and uniqueness of the general equilibrium follow from the same argument as in Fajgelbaum and Redding (2022, Proposition 1).
 
-Thus, the adjusted agricultural productivity ($\tilde{z}_{A\ell}$) and non-tradable productivity ($z_{N\ell}$) are sufficient statistics for local equilibrium outcomes
+Thus, conditional on the economy-wide expected utility $u^\ast$, adjusted agricultural productivity ($\tilde{z}_{A\ell}$) and non-tradable productivity ($z_{N\ell}$) are sufficient statistics for local equilibrium outcomes
 \begin{equation}
 n(\ell)=n\!\left(\tilde z_A(\ell),z_N(\ell)\right),
 \qquad
@@ -481,43 +490,79 @@ n(\ell)=n\!\left(\tilde z_A(\ell),z_N(\ell)\right),
 \end{equation}
 
 
-\paragraph{Proposition 2 (Spatial Balassa-Samuelson effect).}
-Locations with larger reductions in trade costs will have higher adjusted agricultural productivity and larger increases in GDP, population, and urban population shares.
+I first establish that better market access raises adjusted agricultural productivity, which is the first link in the chain from trade costs to structural transformation.
 
-Assume that agricultural and non-tradable goods are complements ($\sigma<1$), agriculture is more land-intensive than non-tradables ($\alpha_A>\alpha_N$), and labor is sufficiently mobile across locations. Under these assumptions, a reduction in trade costs raises the local producer price $P_{g\ell}$, thereby increasing adjusted agricultural productivity $\tilde z_{A\ell}$. Locations with larger increases in $\tilde z_{A\ell}$ have higher population density and lower agricultural labor shares, implying a larger urban or non-tradable sector.
+\begin{lemma}[Trade costs and adjusted agricultural productivity]
+\label{lem:zad}
+Suppose location $\ell$ is open, exports every agricultural good ($l_{g\ell} > \gamma_g$ for all $g$), and imports manufactures. Then
+\begin{equation}
+\frac{d \ln \tilde z_{A\ell}}{d t_\ell}
+= -\Big[\sum_{g=1}^G \left(l_{g\ell}-\gamma_g\right)\tau_g + (1-\gamma_A)\tau_M\Big] < 0,
+\label{eq:zad_t}
+\end{equation}
+so a reduction in travel time strictly raises adjusted agricultural productivity.
+\end{lemma}
+
+\begin{proof}
+Log-differentiating equation \eqref{eq:zA} with respect to $t_\ell$ using the no-arbitrage prices $P_{g\ell}=P_g^\ast e^{-\tau_g t_\ell}$ gives $d\ln z_{A\ell}/dt_\ell = -\sum_g l_{g\ell}\tau_g$, where the weights are the land shares in equation \eqref{eq:landshare}. Log-differentiating the tradables price index \eqref{eq:ET} with $P_{M\ell}=P_M^\ast e^{\tau_M t_\ell}$ gives $d\ln E_{T\ell}/dt_\ell = -\sum_g \gamma_g\tau_g + (1-\gamma_A)\tau_M$. Subtracting the second expression from the first and using $\tilde z_{A\ell}=z_{A\ell}/E_{T\ell}$ yields \eqref{eq:zad_t}, which is strictly negative since $l_{g\ell}>\gamma_g$ and $\tau_g,\tau_M>0$.
+\end{proof}
+
+The exporting condition $l_{g\ell}>\gamma_g$ is not innocuous: better market access raises not only the prices received by local producers but also the local cost of consuming agricultural goods, and the net effect on $\tilde z_{A\ell}$ is positive precisely when the location produces more of each good than it consumes. The condition is always feasible, since land shares sum to one while $\sum_g \gamma_g=\gamma_A<1$.
+
+\begin{proposition}[Spatial Balassa-Samuelson effect]
+\label{prop:bs}
+Assume agricultural and non-tradable goods are complements ($\sigma<1$), agriculture is more land-intensive than non-tradables ($\alpha_A>\alpha_N$), and labor is perfectly mobile ($\epsilon\to\infty$), and consider a location small enough that $u^\ast$ is unaffected by its outcomes. Then an increase in adjusted agricultural productivity $\tilde z_{A\ell}$, holding $z_{N\ell}$ fixed, (i) lowers the wage-rental ratio $\omega_\ell$; (ii) lowers the tradable expenditure share $s_{T\ell}$; (iii) raises population density $n_\ell$; and (iv) lowers the agricultural employment share $\nu_{A\ell}$.
+\end{proposition}
+
+\begin{proof}
+With perfect mobility, $u_\ell = u^\ast$ for all populated locations. Define $x_\ell \equiv \tilde z_{A\ell}\,\omega_\ell^{\alpha_A}$ and $y_\ell \equiv z_{N\ell}\,\omega_\ell^{\alpha_N}$, so that equation \eqref{eq:omega_eq} reads
+\[
+\beta_T\, x_\ell^{\sigma-1} + (1-\beta_T)\, y_\ell^{\sigma-1} = (u^\ast)^{\sigma-1}.
+\]
+(i) Since $\sigma<1$, the left-hand side is strictly decreasing in both $\omega_\ell$ and $\tilde z_{A\ell}$; holding $u^\ast$ fixed, an increase in $\tilde z_{A\ell}$ therefore requires $\omega_\ell$ to fall. (ii) A lower $\omega_\ell$ with $z_{N\ell}$ fixed lowers $y_\ell$ and hence raises $y_\ell^{\sigma-1}$; the identity then requires $x_\ell^{\sigma-1}$ to fall, i.e., $x_\ell$ to rise. By equation \eqref{eq:sT}, $s_{T\ell}=\beta_T (u^\ast/x_\ell)^{1-\sigma}$ falls. (iii) In equation \eqref{eq:density}, the term in parentheses is positive and strictly decreasing in $s_{T\ell}$ given $\alpha_A>\alpha_N$, so a lower $s_{T\ell}$ raises it; combined with a lower $\omega_\ell$, population density $n_\ell$ rises. (iv) In equation \eqref{eq:nuA}, the numerator is increasing and the denominator decreasing in $s_{T\ell}$, so $\nu_{A\ell}$ is strictly increasing in $s_{T\ell}$ and therefore falls.
+\end{proof}
+
+\begin{corollary}[Effects of travel-time reductions]
+\label{cor:tt}
+Under the assumptions of Lemma \ref{lem:zad} and Proposition \ref{prop:bs}, a reduction in travel time $t_\ell$ raises population density $n_\ell$, the non-tradable (urban) employment share $1-\nu_{A\ell}$, and GDP per unit of land, defined as $Y_\ell \equiv w_\ell n_\ell + r_\ell$.
+\end{corollary}
+
+\begin{proof}
+By Lemma \ref{lem:zad}, a lower $t_\ell$ raises $\tilde z_{A\ell}$, so Proposition \ref{prop:bs} delivers the results for $n_\ell$ and $1-\nu_{A\ell}$. For GDP, write $Y_\ell = r_\ell (1+\omega_\ell n_\ell)$. From equation \eqref{eq:rent}, $r_\ell = z_{A\ell}\,\omega_\ell^{\alpha_A-1}$: a lower $t_\ell$ raises $z_{A\ell}$ (Lemma \ref{lem:zad}) and lowers $\omega_\ell$ (Proposition \ref{prop:bs}), and since $\alpha_A-1<0$ both movements raise $r_\ell$. From equation \eqref{eq:density}, $\omega_\ell n_\ell = \left[\alpha_N+(\alpha_A-\alpha_N)s_{T\ell}\right]^{-1}-1$ rises as $s_{T\ell}$ falls. Hence $Y_\ell$ rises.
+\end{proof}
+
+\begin{remark}
+\label{rem:mobility}
+Perfect mobility is stronger than necessary. Fajgelbaum and Redding (2022, Proposition 3) establish results (ii)-(iv) for any finite migration elasticity $\epsilon>0$; only the decline in the wage-rental ratio requires $\epsilon$ above a threshold, and under fully immobile labor $\omega_\ell$ instead rises. This distinction matters for the empirical analysis: the density and urbanization predictions are robust to limited migration, while the factor-price response is informative about the strength of labor mobility (see Section 8).
+\end{remark}
 
 The economic intuition is as follows. Better access to world markets raises profitability in the tradable rural sector, which increases income and attracts population. When population rises, the reward to immobile land increases relative to the reward to mobile labor. This induces either more labor-intensive techniques within sectors or a reallocation of labor toward the labor-intensive non-tradable sector. Hence, reductions in internal trade costs to world markets generate structural transformation from tradable rural activity toward non-tradable urban activity, given the inelastic demand between sectors.
 
-\paragraph{Proposition 3 (Specialization within agriculture).}
-Locations with lower good-specific trade costs to the closest international gateway, relative to domestic trade costs, allocate relatively more land to transport-cost-sensitive agricultural goods.
-
-With a continuum of land plots within each location, the share of agricultural land allocated to good $g$ equals the probability of an individual land plot being allocated to that good. Therefore, using the properties of equation \eqref{eq:frechet_prod}, 
+\begin{proposition}[Specialization within agriculture]
+\label{prop:specialization}
+Locations with shorter travel time to the international gateway allocate relatively more land to transport-cost-sensitive agricultural goods: for every good $g$,
 \begin{equation}
-l_{g\ell}
-=
-\frac{T_{g\ell}P_{g\ell}^\theta}
-{\sum_{h=1}^G T_{h\ell}P_{h\ell}^\theta}
-=
-\frac{T_{g\ell}\left(P_g^*/\delta_{g\ell,\ell^*}\right)^\theta}
-{\sum_{h=1}^G T_{h\ell}\left(P_h^*/\delta_{h\ell,\ell^*}\right)^\theta}.
-\label{eq:landshare}
-\end{equation}
-
-
-Define the good-specific competitiveness term
-\[
-A_{g\ell}(t_\ell)\equiv T_{g\ell}P_{g\ell}(t_\ell)^\theta
-= T_{g\ell}(P_g^*)^\theta e^{-\theta\tau_g t_\ell}, \quad
-l_{g\ell}=\frac{A_{g\ell}}{\sum_h A_{h\ell}}
-\]
-
-Then as $t_\ell$ increases, the share of land allocated to good $g$ varies as follows
-\begin{equation}
-    \frac{l_{g\ell}'(t_\ell)}{l_{g\ell}(t_\ell)}
-= -\theta (\tau_g - \bar{\tau_g}) 
+    \frac{d \ln l_{g\ell}}{d t_\ell}
+= -\theta \left(\tau_g - \bar{\tau}_\ell\right),
+\qquad
+\bar{\tau}_\ell \equiv \sum_{h=1}^G l_{h\ell} \tau_h,
 \label{eq:landshare_d}
 \end{equation}
-where $\bar{\tau_g}=\sum_h l_{h\ell} \tau_h$ is the land-share-weighted average transport sensitivity in location $\ell$. This implies that $\frac{l_{g\ell}'(t_\ell)}{l_{g\ell}(t_\ell)} > 0 \Leftrightarrow \tau_g < \bar{\tau_g}$, i.e., as travel time decreases, the land share will increase for goods with high transport-cost sensitivity. Intuitively, transport-cost-insensitive goods face little penalty from being produced inland, whereas transport-cost-sensitive goods benefit disproportionately from improved access to ports. Therefore, locations with better export access will specialize in transport-cost-sensitive goods. In other words, for the same reduction in $t_\ell$, land shares grow faster for more transport-cost-sensitive goods. 
+where $\bar{\tau}_\ell$ is the land-share-weighted average transport-cost sensitivity in location $\ell$. As travel time falls, the land share rises for goods with above-average transport-cost sensitivity ($\tau_g > \bar{\tau}_\ell$) and falls for goods with below-average sensitivity.
+\end{proposition}
+
+\begin{proof}
+Substituting the no-arbitrage prices $P_{g\ell}=P_g^\ast/\delta_{g(\ell,\ell^*)}=P_g^\ast e^{-\tau_g t_\ell}$ into the land shares \eqref{eq:landshare}, define the good-specific competitiveness term
+\[
+A_{g\ell}(t_\ell)\equiv T_{g\ell}P_{g\ell}(t_\ell)^\theta
+= T_{g\ell}(P_g^*)^\theta e^{-\theta\tau_g t_\ell},
+\qquad
+l_{g\ell}=\frac{A_{g\ell}}{\sum_h A_{h\ell}}.
+\]
+Then $d\ln A_{g\ell}/dt_\ell = -\theta\tau_g$ and $d \ln \left(\sum_h A_{h\ell}\right)/dt_\ell = -\theta\sum_h l_{h\ell}\tau_h = -\theta\bar{\tau}_\ell$; subtracting the second expression from the first yields \eqref{eq:landshare_d}.
+\end{proof}
+
+Intuitively, transport-cost-insensitive goods face little penalty from being produced inland, whereas transport-cost-sensitive goods benefit disproportionately from improved access to ports. Therefore, locations with better export access will specialize in transport-cost-sensitive goods: for the same reduction in $t_\ell$, land shares grow faster for more transport-cost-sensitive goods.
 
 
 
