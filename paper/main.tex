@@ -105,7 +105,7 @@ Locations close to work markets have not only higher GDP and population but also
 \section{Theoretical Model}
 
 In this section, I adapt the theoretical model from Fajgelbaum and Redding (2022) into the Brazillian setting. The model is developed based on a Ricardian Trade model (Eaton and Kortum, 2002) to capture the distribution of economic activities within Brazil across sectors and locations.
-The purpose of this section is not to provide a full structural quantitative framework, but rather to derive two key empirical predictions to guide the empirical analysis: first, locations with larger reductions in internal trade costs to world markets experience greater structural transformation toward non-tradable activity; second, such locations specialize in transport-cost-sensitive agricultural goods.
+The purpose of this section is not to provide a full structural quantitative framework, but rather to derive three key empirical predictions to guide the empirical analysis: first, locations with larger reductions in internal trade costs to world markets experience greater structural transformation toward non-tradable activity; second, such locations specialize in transport-cost-sensitive agricultural goods; third, internal and external integration are complements at the extensive margin, so that reductions in internal trade costs open a location to trade only when the trade regime is sufficiently liberal.
 
 Consider a small open economy with a set of locations $\ell \in L$. Each location is endowed with a fixed amount of land $L_\ell$ and a mobile labor force. There are three sectors: agriculture ($A$), manufacturing ($M$), and nontradables ($N$). Agriculture and manufacturing are tradable, and nontradables are locally consumed.  Given the dominance of Brazilian exports in agricultural products, I focus on the empirically relevant case in which all locations in Brazil have a comparative advantage in agriculture relative to the rest of the world.
 
@@ -294,7 +294,7 @@ P_M^\ast e^{\tau_M t} z_M
 }.
 \label{eq:openness_index}
 \end{equation}
-The openness index compares the location's revenue productivity in its export sector with the delivered cost of obtaining manufactures through trade. When $\Omega(t_\ell)\geq 1$, importing manufactures dominates producing them locally and the location is open; when $\Omega(t_\ell)<1$, the location produces its own manufactures and stops importing. The threshold value of one is thus derived from the zero-profit conditions rather than imposed. \footnote{I assume throughout that no location finds it profitable to export manufactures, i.e., $P_M^\ast e^{-\tau_M t} z_M < z_A(t)$ on $[0,\bar T]$, consistent with the maintained assumption that all locations in Brazil have a comparative advantage in agriculture relative to the rest of the world.}
+The openness index compares the location's revenue productivity in its export sector with the delivered cost of obtaining manufactures through trade. When $\Omega(t_\ell)\geq 1$, importing manufactures dominates producing them locally and the location is open; when $\Omega(t_\ell)<1$, the location produces its own manufactures and stops importing. The threshold value of one is thus derived from the zero-profit conditions rather than imposed. \footnote{I assume throughout that no location finds it profitable to export manufactures, i.e., $P_M^\ast e^{-\tau_M t} z_M < z_A(t)$ on $[0,\bar T]$, consistent with the maintained assumption that all locations have a comparative advantage in agriculture relative to the rest of the world.}
 
 \begin{proposition}[Existence of a trade frontier]
 \label{prop:trade_frontier}
@@ -353,7 +353,7 @@ By condition \eqref{eq:M_margin}, locations with $t_\ell \leq \bar t$ import man
 
 \begin{remark}
 \label{rem:partial_autarky}
-Locations beyond the frontier need not be in complete autarky: a location with $t_\ell>\bar t$ may continue to export a subset of agricultural goods with low transport-cost sensitivity, and export margins close good by good as travel time increases, following the ordering of $\tau_g$ (cf. Proposition \ref{prop:specialization}). The frontier $\bar t$ characterizes the manufacturing-import margin, which is the empirically relevant notion of integration with world markets in this setting.
+Locations beyond the frontier need not be in complete autarky: a location with $t_\ell>\bar t$ may continue to export a subset of agricultural goods with low transport-cost sensitivity, and export margins close good by good as travel time increases, following the ordering of $\tau_g$ (cf. Proposition \ref{prop:specialization}). The frontier $\bar t$ therefore characterizes the manufacturing-import margin rather than complete autarky.
 \end{remark}
 
 \begin{corollary}[The frontier moves inland as travel times fall]
@@ -533,7 +533,7 @@ By Lemma \ref{lem:zad}, a lower $t_\ell$ raises $\tilde z_{A\ell}$, so Propositi
 
 \begin{remark}
 \label{rem:mobility}
-Perfect mobility is stronger than necessary. Fajgelbaum and Redding (2022, Proposition 3) establish results (ii)-(iv) for any finite migration elasticity $\epsilon>0$; only the decline in the wage-rental ratio requires $\epsilon$ above a threshold, and under fully immobile labor $\omega_\ell$ instead rises. This distinction matters for the empirical analysis: the density and urbanization predictions are robust to limited migration, while the factor-price response is informative about the strength of labor mobility (see Section 8).
+Perfect mobility is stronger than necessary. Fajgelbaum and Redding (2022, Proposition 3) establish results (ii)-(iv) for any finite migration elasticity $\epsilon>0$; only the decline in the wage-rental ratio requires $\epsilon$ above a threshold, and under fully immobile labor $\omega_\ell$ instead rises. The density and employment-share predictions are therefore robust to limited migration, while the direction of the factor-price response depends on the strength of labor mobility.
 \end{remark}
 
 The economic intuition is as follows. Better access to world markets raises profitability in the tradable rural sector, which increases income and attracts population. When population rises, the reward to immobile land increases relative to the reward to mobile labor. This induces either more labor-intensive techniques within sectors or a reallocation of labor toward the labor-intensive non-tradable sector. Hence, reductions in internal trade costs to world markets generate structural transformation from tradable rural activity toward non-tradable urban activity, given the inelastic demand between sectors.
@@ -566,9 +566,49 @@ Intuitively, transport-cost-insensitive goods face little penalty from being pro
 
 
 
+\paragraph{G. Trade Liberalization and the Border Wedge}~\\
+
+\noindent The analysis so far takes the trade regime as given. I now consider changes in the trade regime alongside changes in internal transport costs. To that end, I introduce a border wedge $\chi \in (0,1]$ that summarizes the trade regime: producers of agricultural goods receive only a fraction $\chi$ of the world price at the gateway, and importers of manufactures pay a markup $1/\chi$ over the world price. \footnote{The symmetric treatment of the export and import wedges follows Lerner symmetry: an import tariff is equivalent to an export tax, so protection of the import-competing sector acts as an implicit tax on the export sector. A good-specific wedge $\chi_g$ is a straightforward extension; I impose a common $\chi$ for simplicity.} The no-arbitrage prices in an open location become
+\begin{equation}
+P_{g\ell} = \chi\, P_g^\ast e^{-\tau_g t_\ell},
+\qquad
+P_{M\ell} = \frac{P_M^\ast}{\chi}\, e^{\tau_M t_\ell},
+\label{eq:prices_chi}
+\end{equation}
+with $\chi=1$ corresponding to free trade, so that trade liberalization is an increase in $\chi$.
+
+Since aggregate agricultural revenue productivity in equation \eqref{eq:zA} is homogeneous of degree one in prices, and the land shares in equation \eqref{eq:landshare} are homogeneous of degree zero, the openness index scales as
+\begin{equation}
+\Omega(t;\chi) = \chi^2\, \Omega(t),
+\label{eq:omega_chi}
+\end{equation}
+and the trade frontier $\bar t(\chi)$ solves $\chi^2\, \Omega(\bar t)=1$: a more liberal trade regime supports trade at longer travel times.
+
+\begin{proposition}[Complementarity between internal and external integration]
+\label{prop:complementarity}
+Suppose the conditions of Proposition \ref{prop:trade_frontier} hold at each trade regime considered, so that the frontier $\bar t(\chi)$ is interior. Then:
+\begin{enumerate}[label=(\roman*)]
+\item Liberalization moves the frontier inland:
+\[
+\frac{d \bar t}{d \ln \chi}
+= \frac{2}{\sum_{g=1}^G l_g(\bar t)\tau_g + \tau_M} > 0.
+\]
+\item On the intensive margin, roads and liberalization are separable: for an open location, $\ln \tilde z_{A\ell}$ is additively separable in $\ln\chi$ and $t_\ell$, so the elasticity of adjusted agricultural productivity (and hence of population density and urbanization through Proposition \ref{prop:bs}) with respect to travel time does not depend on the trade regime.
+\item On the extensive margin, roads and liberalization are complements: consider a road that lowers travel time by $\Delta>0$ and a liberalization from $\chi$ to $\chi'>\chi$. A location with $\bar t(\chi) < t_\ell - \Delta \leq \bar t(\chi') < t_\ell$ is opened to trade neither by the road alone nor by the liberalization alone, but only by the combination of the two.
+\end{enumerate}
+\end{proposition}
+
+\begin{proof}
+(i) Differentiating the frontier condition $2\ln\chi + \ln\Omega(\bar t(\chi))=0$ with respect to $\ln\chi$ and using $d\ln\Omega/dt = -\left[\sum_g l_g(t)\tau_g + \tau_M\right]$ from equation \eqref{eq:dlogOmega} yields the expression, which is strictly positive since $\tau_g,\tau_M>0$.
+(ii) From equation \eqref{eq:prices_chi}, $\ln P_{g\ell} = \ln\chi + \ln P_g^\ast - \tau_g t_\ell$, so all prices are log-additive in $(\ln\chi, t_\ell)$, and the land shares $l_{g\ell}$ are invariant to the common scaling of agricultural prices by $\chi$. Hence $\ln z_{A\ell}$ shifts by $\ln\chi$, $\ln E_{T\ell}$ shifts by $(2\gamma_A-1)\ln\chi$, and $\ln \tilde z_{A\ell}$ shifts by $2(1-\gamma_A)\ln\chi>0$, uniformly across locations, while the travel-time derivative in Lemma \ref{lem:zad} is unchanged. Therefore $\partial^2 \ln\tilde z_{A\ell}/\partial\ln\chi\,\partial t_\ell = 0$.
+(iii) By Proposition \ref{prop:trade_frontier}, the set of open locations under regime $\chi$ is $\{\ell : t_\ell \leq \bar t(\chi)\}$. With the road alone, the location's travel time $t_\ell-\Delta$ exceeds $\bar t(\chi)$, so it remains closed; with the liberalization alone, its travel time $t_\ell$ exceeds $\bar t(\chi')$, so it remains closed; with both, $t_\ell-\Delta \leq \bar t(\chi')$ and the location opens.
+\end{proof}
+
+Proposition \ref{prop:complementarity} implies that the response of a location to a given reduction in internal trade costs depends on the trade regime only through the extensive margin. Under a restrictive regime, a reduction in travel time leaves locations beyond the frontier closed to trade and therefore has no effect on their tradable prices or productivity; once the regime liberalizes, the frontier moves inland and previously accumulated reductions in travel time determine which locations cross it. Part (ii) further shows that liberalization raises adjusted agricultural productivity uniformly across open locations, so cross-sectional differences in outcomes among open locations continue to be driven by differences in travel time.
+
 \vspace{0.5cm}
 \noindent This model aims to provide a microeconomic rationale for the reduced-form evidence on
-urbanization and agricultural specialization. As locations experience greater reductions in trade costs in accessing world markets, the model rationalizes their higher increase in income, population densities, urban population shares, and a sorting pattern to specialize in goods with comparative advantage.
+urbanization and agricultural specialization. As locations experience greater reductions in trade costs in accessing world markets, the model rationalizes their higher increase in income, population densities, urban population shares, and a sorting pattern to specialize in goods with comparative advantage. In addition, the trade frontier implies that these effects switch on only once a location becomes integrated with world markets, so that the timing of the response to internal integration depends on the openness of the trade regime.
 
 
 \section{Data}
@@ -851,7 +891,9 @@ The study examines the structural transformation and specialization within the t
 
 To better understand these results, I emphasize the importance of linking them back to the theoretical model. There are two main hypotheses the model predicts: 1) Locations with greater reductions in trade costs to world markets will have a larger increase in GDP, population, and urban population shares. 2) Locations with better market access will specialize in transport-cost-sensitive agricultural goods. 
 
-Overall, the above results depict a pattern that is largely consistent with the model predictions. Micro-regions see a structural transformation from a productivity increase in the tradable rural sector to the growth in the non-tradable urban sector, explained by the spatial Balassa-Samuelson effect. Micro-regions that engage in trade activities increase their income, which translates into a higher demand for both tradable and non-tradable goods. Since non-tradable goods can only be provided by local labor, the increase in demand pushes wages up in the micro-region, which brings migrants from other regions of Brazil to work in the non-tradable (urban) sector. This in-migration then reduces wages in the micro-region, pushing the local economy back to the equilibrium. Moreover, micro-regions with greater reductions in transport costs indeed specialize in more transport-cost-sensitive agricultural goods. Soybean has the largest growth in production, while the growth in the transport-cost-insensitive cattle is negligible. The significant growth shown in the production growth of cotton, another transport-cost-insensitive good as in Table 1, marks an exception. However, this can be explained by the variation in agricultural productivity across land plots for different agricultural products in the model's set-up. Landowners allocate land shares based on a combination of productivity, price, and wage. The transport cost reduction together with the technological advancement in soybean cultivation drives landowners to exploit the new comparative advantage of producing soybeans at the extensive margin, leaving more land plots in the intensive margin to cotton to grow. Furthermore, although the model predicts a certain percentage of reduction in trade costs should affect the micro-regions across Brazil equally, the heterogeneity observed across Brazil can also be rationalized in the model. The main theme of all the heterogeneity we observe is that the effect is stronger in micro-regions where the new infrastructure is more valuable. All three heterogeneous effects can be integrated into this theme, as micro-regions endowed with pre-existing waterway access, in regions better served with infrastructure, and having more domestic trade opportunities are all less dependent on the transport cost reductions brought by new roads. Therefore, the percentage reduction in transport costs may not be fully manifested in the actual reduction in trade costs. 
+Overall, the above results depict a pattern that is largely consistent with the model predictions. Micro-regions see a structural transformation from a productivity increase in the tradable rural sector to the growth in the non-tradable urban sector, explained by the spatial Balassa-Samuelson effect. Micro-regions that engage in trade activities increase their income, which translates into a higher demand for both tradable and non-tradable goods. Since non-tradable goods can only be provided by local labor, the increase in demand pushes wages up in the micro-region, which brings migrants from other regions of Brazil to work in the non-tradable (urban) sector. This in-migration then reduces wages in the micro-region, pushing the local economy back to the equilibrium. Moreover, micro-regions with greater reductions in transport costs indeed specialize in more transport-cost-sensitive agricultural goods. Soybean has the largest growth in production, while the growth in the transport-cost-insensitive cattle is negligible. The significant growth shown in the production growth of cotton, another transport-cost-insensitive good as in Table 1, marks an exception. However, this can be explained by the variation in agricultural productivity across land plots for different agricultural products in the model's set-up. Landowners allocate land shares based on a combination of productivity, price, and wage. The transport cost reduction together with the technological advancement in soybean cultivation drives landowners to exploit the new comparative advantage of producing soybeans at the extensive margin, leaving more land plots in the intensive margin to cotton to grow. Furthermore, although the model predicts a certain percentage of reduction in trade costs should affect the micro-regions across Brazil equally, the heterogeneity observed across Brazil can also be rationalized in the model. The main theme of all the heterogeneity we observe is that the effect is stronger in micro-regions where the new infrastructure is more valuable. All three heterogeneous effects can be integrated into this theme, as micro-regions endowed with pre-existing waterway access, in regions better served with infrastructure, and having more domestic trade opportunities are all less dependent on the transport cost reductions brought by new roads. Therefore, the percentage reduction in transport costs may not be fully manifested in the actual reduction in trade costs.
+
+Finally, the timing of the effects maps directly into the trade-frontier mechanism of Proposition \ref{prop:complementarity}. Roads built during the 1970s reduced travel times for interior micro-regions, but under the restrictive pre-1990 trade regime many of these locations remained beyond the trade frontier, so the model predicts muted responses to the road network in the first two decades. The liberalization of the early 1990s, which lowered average nominal tariffs from 54.9\% in 1987 to 10.5\% in 1994, corresponds to an increase in the border wedge $\chi$: the frontier shifted inland and the pre-existing road network was activated for the locations that then crossed it. This rationalizes why the event-study estimates in Section 6.2 show effects materializing disproportionately after 1990, and why the extensive-margin entry into transport-cost-sensitive soybeans documented in Section 6.3 is concentrated in the newly integrated Center-West. The model also delivers a testable restriction: the treatment effect of road access should interact positively with the post-liberalization period at the extensive margin, while intensive-margin elasticities should remain stable across trade regimes.
 
 \subsection{Concerns}
 

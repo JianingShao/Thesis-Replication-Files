@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.24)  15 JUL 2026 21:27
+This is pdfTeX, Version 3.141592653-2.6-1.40.29 (MiKTeX 26.2) (preloaded format=pdflatex 2026.4.24)  17 JUL 2026 00:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -642,313 +642,318 @@ Overfull \hbox (2.17581pt too wide) in paragraph at lines 565--566
 nalty from be-ing pro-duced in-land, whereas
  []
 
-[16] [17] [18] [19] (table2.tex) [20] (table3.tex) [21]
-<gdp.png, id=302, 1159.33125pt x 772.8875pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 569--570
+
+ []
+
+[16] [17] [18] [19] [20] (table2.tex) (table3.tex) [21] [22] [23]
+<gdp.png, id=328, 1159.33125pt x 772.8875pt>
 File: gdp.png Graphic file (type png)
 <use gdp.png>
-Package pdftex.def Info: gdp.png  used on input line 664.
+Package pdftex.def Info: gdp.png  used on input line 704.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<pop.png, id=303, 1159.33125pt x 772.8875pt>
+<pop.png, id=329, 1159.33125pt x 772.8875pt>
 File: pop.png Graphic file (type png)
 <use pop.png>
-Package pdftex.def Info: pop.png  used on input line 671.
+Package pdftex.def Info: pop.png  used on input line 711.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<urbpop.png, id=304, 1159.33125pt x 772.8875pt>
+<urbpop.png, id=330, 1159.33125pt x 772.8875pt>
 File: urbpop.png Graphic file (type png)
 <use urbpop.png>
-Package pdftex.def Info: urbpop.png  used on input line 680.
+Package pdftex.def Info: urbpop.png  used on input line 720.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<urbshare.png, id=305, 1159.33125pt x 772.8875pt>
+<urbshare.png, id=331, 1159.33125pt x 772.8875pt>
 File: urbshare.png Graphic file (type png)
 <use urbshare.png>
-Package pdftex.def Info: urbshare.png  used on input line 687.
+Package pdftex.def Info: urbshare.png  used on input line 727.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<soy.png, id=306, 1159.33125pt x 772.8875pt>
+<soy.png, id=332, 1159.33125pt x 772.8875pt>
 File: soy.png Graphic file (type png)
 <use soy.png>
-Package pdftex.def Info: soy.png  used on input line 704.
+Package pdftex.def Info: soy.png  used on input line 744.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<cotton.png, id=307, 1159.33125pt x 772.8875pt>
+<cotton.png, id=333, 1159.33125pt x 772.8875pt>
 File: cotton.png Graphic file (type png)
 <use cotton.png>
-Package pdftex.def Info: cotton.png  used on input line 710.
+Package pdftex.def Info: cotton.png  used on input line 750.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<cattle.png, id=308, 1159.33125pt x 772.8875pt>
+<cattle.png, id=334, 1159.33125pt x 772.8875pt>
 File: cattle.png Graphic file (type png)
 <use cattle.png>
-Package pdftex.def Info: cattle.png  used on input line 716.
+Package pdftex.def Info: cattle.png  used on input line 756.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
- [22] [23] (table4.tex)
-(table5.tex) [24] [25] (table6.tex) [26] [27]
-<road_twfe.png, id=341, 1159.33125pt x 772.8875pt>
+ [24] [25]
+(table4.tex) (table5.tex) [26] [27] (table6.tex) [28] [29]
+<road_twfe.png, id=367, 1159.33125pt x 772.8875pt>
 File: road_twfe.png Graphic file (type png)
 <use road_twfe.png>
-Package pdftex.def Info: road_twfe.png  used on input line 790.
+Package pdftex.def Info: road_twfe.png  used on input line 830.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<road_imputation.png, id=342, 1159.33125pt x 772.8875pt>
+<road_imputation.png, id=368, 1159.33125pt x 772.8875pt>
 File: road_imputation.png Graphic file (type png)
 <use road_imputation.png>
-Package pdftex.def Info: road_imputation.png  used on input line 796.
+Package pdftex.def Info: road_imputation.png  used on input line 836.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<road_csdid.png, id=343, 1159.33125pt x 772.8875pt>
+<road_csdid.png, id=369, 1159.33125pt x 772.8875pt>
 File: road_csdid.png Graphic file (type png)
 <use road_csdid.png>
-Package pdftex.def Info: road_csdid.png  used on input line 802.
+Package pdftex.def Info: road_csdid.png  used on input line 842.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
- [28] (table7.tex) [29]
-(table8.tex) (table9.tex) [30] [31] [32] [33]
-Overfull \hbox (1.29666pt too wide) in paragraph at lines 868--869
+ [30] (table7.tex)
+[31] (table8.tex) (table9.tex) [32] [33] [34] [35] [36]
+Overfull \hbox (1.29666pt too wide) in paragraph at lines 910--911
 []\OT1/cmr/m/n/12 Low la-bor mo-bil-ity may also ex-plain why pe-riph-eral re-g
 ions ben-e-fit more than core ar-eas|contrary
  []
 
-[34] [35]
+[37] [38]
 No file main.bbl.
-<appendix/roads/roads1960.png, id=389, 578.16pt x 578.16pt>
+<appendix/roads/roads1960.png, id=421, 578.16pt x 578.16pt>
 File: appendix/roads/roads1960.png Graphic file (type png)
 <use appendix/roads/roads1960.png>
-Package pdftex.def Info: appendix/roads/roads1960.png  used on input line 900.
+Package pdftex.def Info: appendix/roads/roads1960.png  used on input line 942.
 (pdftex.def)             Requested size: 164.20134pt x 164.19505pt.
-<appendix/roads/roads1970.png, id=390, 578.16pt x 578.16pt>
+<appendix/roads/roads1970.png, id=422, 578.16pt x 578.16pt>
 File: appendix/roads/roads1970.png Graphic file (type png)
 <use appendix/roads/roads1970.png>
-Package pdftex.def Info: appendix/roads/roads1970.png  used on input line 905.
+Package pdftex.def Info: appendix/roads/roads1970.png  used on input line 947.
 (pdftex.def)             Requested size: 164.20134pt x 164.19505pt.
-<appendix/roads/roads1980.png, id=391, 578.16pt x 578.16pt>
+<appendix/roads/roads1980.png, id=423, 578.16pt x 578.16pt>
 File: appendix/roads/roads1980.png Graphic file (type png)
 <use appendix/roads/roads1980.png>
-Package pdftex.def Info: appendix/roads/roads1980.png  used on input line 910.
+Package pdftex.def Info: appendix/roads/roads1980.png  used on input line 952.
 (pdftex.def)             Requested size: 164.20134pt x 164.19505pt.
-<appendix/roads/roads1990.png, id=392, 578.16pt x 578.16pt>
+<appendix/roads/roads1990.png, id=424, 578.16pt x 578.16pt>
 File: appendix/roads/roads1990.png Graphic file (type png)
 <use appendix/roads/roads1990.png>
-Package pdftex.def Info: appendix/roads/roads1990.png  used on input line 916.
+Package pdftex.def Info: appendix/roads/roads1990.png  used on input line 958.
 (pdftex.def)             Requested size: 164.20134pt x 164.19505pt.
-<appendix/roads/roads2000.png, id=393, 578.16pt x 578.16pt>
+<appendix/roads/roads2000.png, id=425, 578.16pt x 578.16pt>
 File: appendix/roads/roads2000.png Graphic file (type png)
 <use appendix/roads/roads2000.png>
-Package pdftex.def Info: appendix/roads/roads2000.png  used on input line 922.
+Package pdftex.def Info: appendix/roads/roads2000.png  used on input line 964.
 (pdftex.def)             Requested size: 164.20134pt x 164.19505pt.
-<appendix/roads/roads2010.png, id=394, 578.16pt x 578.16pt>
+<appendix/roads/roads2010.png, id=426, 578.16pt x 578.16pt>
 File: appendix/roads/roads2010.png Graphic file (type png)
 <use appendix/roads/roads2010.png>
-Package pdftex.def Info: appendix/roads/roads2010.png  used on input line 928.
+Package pdftex.def Info: appendix/roads/roads2010.png  used on input line 970.
 (pdftex.def)             Requested size: 164.20134pt x 164.19505pt.
-[36]
-<appendix/fmm/highway_1960.png, id=400, 475.7775pt x 350.05782pt>
+[39]
+<appendix/fmm/highway_1960.png, id=432, 475.7775pt x 350.05782pt>
 File: appendix/fmm/highway_1960.png Graphic file (type png)
 <use appendix/fmm/highway_1960.png>
-Package pdftex.def Info: appendix/fmm/highway_1960.png  used on input line 939.
+Package pdftex.def Info: appendix/fmm/highway_1960.png  used on input line 981.
 
 (pdftex.def)             Requested size: 164.20134pt x 120.8128pt.
-<appendix/fmm/fmm_1970.png, id=401, 475.7775pt x 350.05782pt>
+<appendix/fmm/fmm_1970.png, id=433, 475.7775pt x 350.05782pt>
 File: appendix/fmm/fmm_1970.png Graphic file (type png)
 <use appendix/fmm/fmm_1970.png>
-Package pdftex.def Info: appendix/fmm/fmm_1970.png  used on input line 944.
+Package pdftex.def Info: appendix/fmm/fmm_1970.png  used on input line 986.
 (pdftex.def)             Requested size: 164.20134pt x 120.8128pt.
-<appendix/fmm/highway_1980.png, id=402, 475.7775pt x 350.05782pt>
+<appendix/fmm/highway_1980.png, id=434, 475.7775pt x 350.05782pt>
 File: appendix/fmm/highway_1980.png Graphic file (type png)
 <use appendix/fmm/highway_1980.png>
-Package pdftex.def Info: appendix/fmm/highway_1980.png  used on input line 949.
+Package pdftex.def Info: appendix/fmm/highway_1980.png  used on input line 991.
 
 (pdftex.def)             Requested size: 164.20134pt x 120.8128pt.
-<appendix/fmm/highway_1990.png, id=403, 475.7775pt x 350.05782pt>
+<appendix/fmm/highway_1990.png, id=435, 475.7775pt x 350.05782pt>
 File: appendix/fmm/highway_1990.png Graphic file (type png)
 <use appendix/fmm/highway_1990.png>
-Package pdftex.def Info: appendix/fmm/highway_1990.png  used on input line 955.
+Package pdftex.def Info: appendix/fmm/highway_1990.png  used on input line 997.
 
 (pdftex.def)             Requested size: 164.20134pt x 120.8128pt.
-<appendix/fmm/highway_2000.png, id=404, 475.7775pt x 350.05782pt>
+<appendix/fmm/highway_2000.png, id=436, 475.7775pt x 350.05782pt>
 File: appendix/fmm/highway_2000.png Graphic file (type png)
 <use appendix/fmm/highway_2000.png>
-Package pdftex.def Info: appendix/fmm/highway_2000.png  used on input line 961.
-
+Package pdftex.def Info: appendix/fmm/highway_2000.png  used on input line 1003
+.
 (pdftex.def)             Requested size: 164.20134pt x 120.8128pt.
-<appendix/fmm/highway_2010.png, id=405, 475.7775pt x 350.05782pt>
+<appendix/fmm/highway_2010.png, id=437, 475.7775pt x 350.05782pt>
 File: appendix/fmm/highway_2010.png Graphic file (type png)
 <use appendix/fmm/highway_2010.png>
-Package pdftex.def Info: appendix/fmm/highway_2010.png  used on input line 967.
-
+Package pdftex.def Info: appendix/fmm/highway_2010.png  used on input line 1009
+.
 (pdftex.def)             Requested size: 164.20134pt x 120.8128pt.
- [37]
+ [40]
 File: urbpop.png Graphic file (type png)
 <use urbpop.png>
-Package pdftex.def Info: urbpop.png  used on input line 979.
+Package pdftex.def Info: urbpop.png  used on input line 1021.
 (pdftex.def)             Requested size: 256.55872pt x 171.0382pt.
-<appendix/urbpop_imputation.png, id=412, 1159.33125pt x 772.8875pt>
+<appendix/urbpop_imputation.png, id=443, 1159.33125pt x 772.8875pt>
 File: appendix/urbpop_imputation.png Graphic file (type png)
 <use appendix/urbpop_imputation.png>
-Package pdftex.def Info: appendix/urbpop_imputation.png  used on input line 985
-.
+Package pdftex.def Info: appendix/urbpop_imputation.png  used on input line 102
+7.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbpop_csdid.png, id=413, 1159.33125pt x 772.8875pt>
+<appendix/urbpop_csdid.png, id=444, 1159.33125pt x 772.8875pt>
 File: appendix/urbpop_csdid.png Graphic file (type png)
 <use appendix/urbpop_csdid.png>
-Package pdftex.def Info: appendix/urbpop_csdid.png  used on input line 990.
+Package pdftex.def Info: appendix/urbpop_csdid.png  used on input line 1032.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
- [38]
+ [41]
 File: urbshare.png Graphic file (type png)
 <use urbshare.png>
-Package pdftex.def Info: urbshare.png  used on input line 1002.
+Package pdftex.def Info: urbshare.png  used on input line 1044.
 (pdftex.def)             Requested size: 256.55872pt x 171.0382pt.
-<appendix/urbshare_imputation.png, id=419, 1159.33125pt x 772.8875pt>
+<appendix/urbshare_imputation.png, id=450, 1159.33125pt x 772.8875pt>
 File: appendix/urbshare_imputation.png Graphic file (type png)
 <use appendix/urbshare_imputation.png>
 Package pdftex.def Info: appendix/urbshare_imputation.png  used on input line 1
-008.
+050.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbshare_csdid.png, id=420, 1159.33125pt x 772.8875pt>
+<appendix/urbshare_csdid.png, id=451, 1159.33125pt x 772.8875pt>
 File: appendix/urbshare_csdid.png Graphic file (type png)
 <use appendix/urbshare_csdid.png>
-Package pdftex.def Info: appendix/urbshare_csdid.png  used on input line 1013.
+Package pdftex.def Info: appendix/urbshare_csdid.png  used on input line 1055.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
- [39]
+ [42]
 File: pop.png Graphic file (type png)
 <use pop.png>
-Package pdftex.def Info: pop.png  used on input line 1025.
+Package pdftex.def Info: pop.png  used on input line 1067.
 (pdftex.def)             Requested size: 256.55872pt x 171.0382pt.
-<appendix/pop_imputation.png, id=426, 1159.33125pt x 772.8875pt>
+<appendix/pop_imputation.png, id=457, 1159.33125pt x 772.8875pt>
 File: appendix/pop_imputation.png Graphic file (type png)
 <use appendix/pop_imputation.png>
-Package pdftex.def Info: appendix/pop_imputation.png  used on input line 1032.
+Package pdftex.def Info: appendix/pop_imputation.png  used on input line 1074.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/pop_csdid.png, id=427, 1159.33125pt x 772.8875pt>
+<appendix/pop_csdid.png, id=458, 1159.33125pt x 772.8875pt>
 File: appendix/pop_csdid.png Graphic file (type png)
 <use appendix/pop_csdid.png>
-Package pdftex.def Info: appendix/pop_csdid.png  used on input line 1038.
+Package pdftex.def Info: appendix/pop_csdid.png  used on input line 1080.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
- [40]
-<appendix/urbpop_treatment_intensity_1970.png, id=433, 1159.33125pt x 772.8875p
+ [43]
+<appendix/urbpop_treatment_intensity_1970.png, id=465, 1159.33125pt x 772.8875p
 t>
 File: appendix/urbpop_treatment_intensity_1970.png Graphic file (type png)
 <use appendix/urbpop_treatment_intensity_1970.png>
 Package pdftex.def Info: appendix/urbpop_treatment_intensity_1970.png  used on 
-input line 1049.
+input line 1091.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbpop_treatment_intensity_1980.png, id=434, 1159.33125pt x 772.8875p
+<appendix/urbpop_treatment_intensity_1980.png, id=466, 1159.33125pt x 772.8875p
 t>
 File: appendix/urbpop_treatment_intensity_1980.png Graphic file (type png)
 <use appendix/urbpop_treatment_intensity_1980.png>
 Package pdftex.def Info: appendix/urbpop_treatment_intensity_1980.png  used on 
-input line 1054.
+input line 1096.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbpop_treatment_intensity_1990.png, id=435, 1159.33125pt x 772.8875p
+<appendix/urbpop_treatment_intensity_1990.png, id=467, 1159.33125pt x 772.8875p
 t>
 File: appendix/urbpop_treatment_intensity_1990.png Graphic file (type png)
 <use appendix/urbpop_treatment_intensity_1990.png>
 Package pdftex.def Info: appendix/urbpop_treatment_intensity_1990.png  used on 
-input line 1060.
+input line 1102.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbpop_treatment_intensity_2000.png, id=436, 1159.33125pt x 772.8875p
+<appendix/urbpop_treatment_intensity_2000.png, id=468, 1159.33125pt x 772.8875p
 t>
 File: appendix/urbpop_treatment_intensity_2000.png Graphic file (type png)
 <use appendix/urbpop_treatment_intensity_2000.png>
 Package pdftex.def Info: appendix/urbpop_treatment_intensity_2000.png  used on 
-input line 1066.
+input line 1108.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbpop_treatment_intensity_2010.png, id=437, 1159.33125pt x 772.8875p
+<appendix/urbpop_treatment_intensity_2010.png, id=469, 1159.33125pt x 772.8875p
 t>
 File: appendix/urbpop_treatment_intensity_2010.png Graphic file (type png)
 <use appendix/urbpop_treatment_intensity_2010.png>
 Package pdftex.def Info: appendix/urbpop_treatment_intensity_2010.png  used on 
-input line 1072.
+input line 1114.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<appendix/urbshare_treatment_intensity_1970.png, id=438, 1159.33125pt x 772.887
+<appendix/urbshare_treatment_intensity_1970.png, id=470, 1159.33125pt x 772.887
 5pt>
 File: appendix/urbshare_treatment_intensity_1970.png Graphic file (type png)
 <use appendix/urbshare_treatment_intensity_1970.png>
 Package pdftex.def Info: appendix/urbshare_treatment_intensity_1970.png  used o
-n input line 1083.
+n input line 1125.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbshare_treatment_intensity_1980.png, id=439, 1159.33125pt x 772.887
+<appendix/urbshare_treatment_intensity_1980.png, id=471, 1159.33125pt x 772.887
 5pt>
 File: appendix/urbshare_treatment_intensity_1980.png Graphic file (type png)
 <use appendix/urbshare_treatment_intensity_1980.png>
 Package pdftex.def Info: appendix/urbshare_treatment_intensity_1980.png  used o
-n input line 1088.
+n input line 1130.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbshare_treatment_intensity_1990.png, id=440, 1159.33125pt x 772.887
+<appendix/urbshare_treatment_intensity_1990.png, id=472, 1159.33125pt x 772.887
 5pt>
 File: appendix/urbshare_treatment_intensity_1990.png Graphic file (type png)
 <use appendix/urbshare_treatment_intensity_1990.png>
 Package pdftex.def Info: appendix/urbshare_treatment_intensity_1990.png  used o
-n input line 1094.
+n input line 1136.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbshare_treatment_intensity_2000.png, id=441, 1159.33125pt x 772.887
+<appendix/urbshare_treatment_intensity_2000.png, id=473, 1159.33125pt x 772.887
 5pt>
 File: appendix/urbshare_treatment_intensity_2000.png Graphic file (type png)
 <use appendix/urbshare_treatment_intensity_2000.png>
 Package pdftex.def Info: appendix/urbshare_treatment_intensity_2000.png  used o
-n input line 1100.
+n input line 1142.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/urbshare_treatment_intensity_2010.png, id=442, 1159.33125pt x 772.887
+<appendix/urbshare_treatment_intensity_2010.png, id=474, 1159.33125pt x 772.887
 5pt>
 File: appendix/urbshare_treatment_intensity_2010.png Graphic file (type png)
 <use appendix/urbshare_treatment_intensity_2010.png>
 Package pdftex.def Info: appendix/urbshare_treatment_intensity_2010.png  used o
-n input line 1106.
+n input line 1148.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<appendix/pop_treatment_intensity_1970.png, id=443, 1159.33125pt x 772.8875pt>
+<appendix/pop_treatment_intensity_1970.png, id=475, 1159.33125pt x 772.8875pt>
 File: appendix/pop_treatment_intensity_1970.png Graphic file (type png)
 <use appendix/pop_treatment_intensity_1970.png>
 Package pdftex.def Info: appendix/pop_treatment_intensity_1970.png  used on inp
-ut line 1117.
+ut line 1159.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/pop_treatment_intensity_1980.png, id=444, 1159.33125pt x 772.8875pt>
+<appendix/pop_treatment_intensity_1980.png, id=476, 1159.33125pt x 772.8875pt>
 File: appendix/pop_treatment_intensity_1980.png Graphic file (type png)
 <use appendix/pop_treatment_intensity_1980.png>
 Package pdftex.def Info: appendix/pop_treatment_intensity_1980.png  used on inp
-ut line 1122.
+ut line 1164.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/pop_treatment_intensity_1990.png, id=445, 1159.33125pt x 772.8875pt>
+<appendix/pop_treatment_intensity_1990.png, id=477, 1159.33125pt x 772.8875pt>
 File: appendix/pop_treatment_intensity_1990.png Graphic file (type png)
 <use appendix/pop_treatment_intensity_1990.png>
 Package pdftex.def Info: appendix/pop_treatment_intensity_1990.png  used on inp
-ut line 1128.
+ut line 1170.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/pop_treatment_intensity_2000.png, id=446, 1159.33125pt x 772.8875pt>
+<appendix/pop_treatment_intensity_2000.png, id=478, 1159.33125pt x 772.8875pt>
 File: appendix/pop_treatment_intensity_2000.png Graphic file (type png)
 <use appendix/pop_treatment_intensity_2000.png>
 Package pdftex.def Info: appendix/pop_treatment_intensity_2000.png  used on inp
-ut line 1134.
+ut line 1176.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
-<appendix/pop_treatment_intensity_2010.png, id=447, 1159.33125pt x 772.8875pt>
+<appendix/pop_treatment_intensity_2010.png, id=479, 1159.33125pt x 772.8875pt>
 File: appendix/pop_treatment_intensity_2010.png Graphic file (type png)
 <use appendix/pop_treatment_intensity_2010.png>
 Package pdftex.def Info: appendix/pop_treatment_intensity_2010.png  used on inp
-ut line 1140.
+ut line 1182.
 (pdftex.def)             Requested size: 246.29417pt x 164.1863pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-(appendix/table1.tex) [41] (appendix/table2.tex) [42] [43] [44] [45] (main.aux)
+(appendix/table1.tex) [44] (appendix/table2.tex) [45] [46] [47] [48] (main.aux)
  ***********
 LaTeX2e <2025-11-01>
 L3 programming layer <2026-03-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: B1E01849F1E80542AD12EDA79CAB0309;4657.
+(rerunfilecheck)             Checksum: FEE3256BDC184CC968C16300609202AF;4657.
  ) 
 Here is how much of TeX's memory you used:
- 13940 strings out of 467691
- 227754 string characters out of 5412083
- 663933 words of memory out of 5000000
- 42625 multiletter control sequences out of 15000+600000
+ 13954 strings out of 467691
+ 227902 string characters out of 5412083
+ 664160 words of memory out of 5000000
+ 42628 multiletter control sequences out of 15000+600000
  642232 words of font info for 93 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,13n,79p,2507b,606s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,13n,79p,2507b,594s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning: \pdfdraftmode enabled, not changing output pdf
 
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 174 named destinations out of 1000 (max. 500000)
+ 504 PDF objects out of 1000 (max. 8388607)
+ 185 named destinations out of 1000 (max. 500000)
  221 words of extra memory for PDF output out of 10000 (max. 10000000)
 
