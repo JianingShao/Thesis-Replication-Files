@@ -104,8 +104,8 @@ Locations close to work markets have not only higher GDP and population but also
 
 \section{Theoretical Model}
 
-In this section, I adapt the theoretical model from Fajgelbaum and Redding (2022) into the Brazillian setting. The model is developed based on a Ricardian Trade model (Eaton and Kortum, 2002) to capture the distribution of economic activities within Brazil across sectors and locations.
-The purpose of this section is not to provide a full structural quantitative framework, but rather to derive three key empirical predictions to guide the empirical analysis: first, locations with larger reductions in internal trade costs to world markets experience greater structural transformation toward non-tradable activity; second, such locations specialize in transport-cost-sensitive agricultural goods; third, internal and external integration are complements at the extensive margin, so that reductions in internal trade costs open a location to trade only when the trade regime is sufficiently liberal.
+In this section, I adapt the theoretical model from Fajgelbaum and Redding (2022) into the Brazilian setting. The model is developed based on a Ricardian Trade model (Eaton and Kortum, 2002) to capture the distribution of economic activities within Brazil across sectors and locations.
+The purpose of this section is not to provide a full structural quantitative framework, but rather to derive three key empirical predictions to guide the empirical analysis: first, locations with larger reductions in internal trade costs to world markets experience greater structural transformation toward non-tradable activity; second, such locations specialize in transport-cost-sensitive agricultural goods; third, internal and external integration are complements at the extensive margin, so that reductions in internal trade costs open a location to trade only when the trade regime is sufficiently liberal. All proofs are collected in Appendix B.
 
 Consider a small open economy with a set of locations $\ell \in L$. Each location is endowed with a fixed amount of land $L_\ell$ and a mobile labor force. There are three sectors: agriculture ($A$), manufacturing ($M$), and nontradables ($N$). Agriculture and manufacturing are tradable, and nontradables are locally consumed.  Given the dominance of Brazilian exports in agricultural products, I focus on the empirically relevant case in which all locations in Brazil have a comparative advantage in agriculture relative to the rest of the world.
 
@@ -143,24 +143,14 @@ The idiosyncratic component $b_\ell$ captures heterogeneity in workers' tastes f
     b_\ell \sim \text{Prob}[b_{\ell}<b] = \exp(-b^{-\epsilon})
 \end{equation}
 
-Workers first observe their idiosyncratic tastes for each location within Brazil and choose a location to live in by maximizing their utility. Given that the maximum of Fréchet is also Fréchet distributed, the probability that $\ell =\operatorname{argmax}_{\ell} b_\ell u_\ell $ is given by
+Workers observe their idiosyncratic tastes for each location and choose where to live by maximizing utility. Given that the maximum of Fréchet random variables is also Fréchet distributed, the probability of choosing location $\ell$ equals $u_\ell^\epsilon/\sum_{k \in L} u_k^\epsilon$, so conditional on the exogenous total supply of labor $N$, labor allocated to location $\ell$ is
 \begin{equation}
-    \pi_\ell=\frac{u_\ell^\epsilon}{\sum_\ell u_\ell^\epsilon}
-\end{equation}
-
-Conditional on the exogenous total supply of labor $N$ within Brazil, labor allocated to location $\ell$ is
-\begin{equation}
-N_\ell = N \left(\frac{u_\ell}{u^*}\right)^{\epsilon},
+N_\ell = n_\ell L_\ell = N \left(\frac{u_\ell}{u^*}\right)^{\epsilon},
 \qquad
-u^* = \left( \sum_{\ell \in L} u_\ell^\epsilon \right)^{1/\epsilon},
-\label{eq:labor_supply}
-\end{equation}
-where $u^*$ is proportional to workers' expected utility, $E[\max_\ell b_\ell u_\ell]=\Gamma(1-1/\epsilon)\,u^*$, which is finite given $\epsilon>1$, and $\epsilon$ controls the elasticity of population with respect to utility. As the variance of the Fréchet distribution decreases as $\epsilon$ increases, i.e., a larger Fréchet shape parameter $\epsilon$ implies greater internal labor mobility within Brazil, such that the supply of labor to each location is more responsive to relative utility levels in goods consumption. In density form,
-\begin{equation}
-n_\ell L_\ell = N \left(\frac{u_\ell}{u^*}\right)^{\epsilon},
+u^* = \left( \sum_{k \in L} u_k^\epsilon \right)^{1/\epsilon},
 \label{eq:density_supply}
 \end{equation}
-where $n_\ell \equiv N_\ell/L_\ell$ is population density.
+where $n_\ell \equiv N_\ell/L_\ell$ is population density and $u^*$ is proportional to workers' expected utility, $E[\max_\ell b_\ell u_\ell]=\Gamma(1-1/\epsilon)\,u^*$, which is finite given $\epsilon>1$. A larger shape parameter $\epsilon$ implies greater internal labor mobility: the supply of labor to each location is more responsive to relative utility levels.
 
 
 \paragraph{B. Production} ~\\
@@ -175,7 +165,7 @@ where $z_{N\ell},z_{M\ell}, z_{g\ell j}$ are sectoral productivities; $0<\alpha_
 
 Land plots differ in productivity for disaggregated agricultural goods drawn from the following Fr\'echet distribution with a shape parameter $\theta$ \footnote{Note that this Fr\'echet distribution has a different shape parameter than the distribution of idiosyncratic taste.}:
 \begin{equation}
-\Pr\!\left[z_{g\ell j}(\ell)\le z\right]
+\Pr\!\left[z_{g\ell j}\le z\right]
 =
 \exp\!\left(-T_{g\ell}\, z^{-\theta}\right),
 \qquad \theta>0,
@@ -216,7 +206,7 @@ l_{g\ell}
 {\sum_{h=1}^G T_{h\ell}P_{h\ell}^\theta},
 \label{eq:landshare}
 \end{equation}
-which is also the weight of good $g$ in the elasticity of $z_{A\ell}$ with respect to prices. Define adjusted agricultural productivity as
+Log-differentiating equation \eqref{eq:zA} shows that the land shares are also the elasticities of aggregate revenue productivity with respect to the disaggregated prices, $\partial \ln z_{A\ell}/\partial \ln P_{g\ell} = l_{g\ell}$. Define adjusted agricultural productivity as
 
 \begin{equation}
 \tilde z_{A\ell} \equiv \frac{z_{A\ell}}{E_{T\ell}},
@@ -241,12 +231,12 @@ and the sectoral wage-rental ratio is
 
 For agriculture, the aggregation result in equation~\eqref{eq:zA} implies
 that the sector can be treated as a single-good sector with common
-revenue productivity $z_{A\ell}$. Thus, employment density ($n_{A\ell}$) and the wage-rental ratio ($\omega_{A\ell}$) take the same form as equations \eqref{eq:n} and \eqref{eq:omega} but using the expected land rent $r_{A\ell}=E[r_{\ell j}]$) and replacing $P_{i\ell}z_{i\ell}$ with aggregate revenue productivity ($z_{A\ell}$) 
+revenue productivity $z_{A\ell}$. Thus, employment density ($n_{A\ell}$) and the wage-rental ratio ($\omega_{A\ell}$) take the same form as equations \eqref{eq:n} and \eqref{eq:omega} but using the expected land rent $r_{A\ell}=E[r_{\ell j}]$ and replacing $P_{i\ell}z_{i\ell}$ with aggregate revenue productivity ($z_{A\ell}$).
 
 
 \paragraph{D. General Equilibrium Definition} ~\\
 
-\noindent  A general equilibrium consists of expected utility $u^\ast$, a total population $N$, allocations of population density $n_\ell$, land $\{L_{i\ell}\}_{i=A,M,N}$, and employment density $\{n_{i\ell}\}_{i=A,M,N}$, wages $w_\ell$, land rents $r_\ell$, and prices $\{P_{g\ell}\}_{g=1}^{G}$, $P_{M\ell}$, and $P_{N\ell}$ for all
+\noindent Given the exogenous total population $N$, a general equilibrium consists of expected utility $u^\ast$, allocations of population density $n_\ell$, land $\{L_{i\ell}\}_{i=A,M,N}$, and employment density $\{n_{i\ell}\}_{i=A,M,N}$, wages $w_\ell$, land rents $r_\ell$, and prices $\{P_{g\ell}\}_{g=1}^{G}$, $P_{M\ell}$, and $P_{N\ell}$ for all
 $\ell \in L$, such that:
 \begin{enumerate}[label=\roman*.]
     \item Workers maximize utility and choose their location optimally; $n_\ell L_\ell = \left(\frac{u_\ell}{u^*}\right)^\epsilon N$.
@@ -282,16 +272,7 @@ With a common land intensity in the two traded sectors ($\alpha_M=\alpha_A$), th
 \begin{equation}
 \Omega(t)
 \equiv
-\frac{z_A(t)}{P_M(t)\, z_M}
-=
-\frac{
-\Gamma\!\left(\frac{\alpha_A\theta-1}{\alpha_A\theta}\right)^{\alpha_A}
-\left[
-\sum_{g=1}^G T_g (P_g^\ast)^\theta e^{-\theta \tau_g t}
-\right]^{1/\theta}
-}{
-P_M^\ast e^{\tau_M t} z_M
-}.
+\frac{z_A(t)}{P_M(t)\, z_M}.
 \label{eq:openness_index}
 \end{equation}
 The openness index compares the location's revenue productivity in its export sector with the delivered cost of obtaining manufactures through trade. When $\Omega(t_\ell)\geq 1$, importing manufactures dominates producing them locally and the location is open; when $\Omega(t_\ell)<1$, the location produces its own manufactures and stops importing. The threshold value of one is thus derived from the zero-profit conditions rather than imposed. \footnote{I assume throughout that no location finds it profitable to export manufactures, i.e., $P_M^\ast e^{-\tau_M t} z_M < z_A(t)$ on $[0,\bar T]$, consistent with the maintained assumption that all locations have a comparative advantage in agriculture relative to the rest of the world.}
@@ -301,81 +282,18 @@ The openness index compares the location's revenue productivity in its export se
 Suppose $T_{g\ell}=T_g$ for all $g$, $z_{M\ell}=z_M$, and $\alpha_M=\alpha_A$. If $\Omega(0)>1$ and $\Omega(\bar T)<1$, there exists a unique cutoff $\bar t \in (0,\bar T)$ such that $\Omega(\bar t)=1$; every location with $t_\ell \leq \bar t$ is open, exporting agricultural goods and importing manufactures, and every location with $t_\ell>\bar t$ produces manufactures locally and does not import them.
 \end{proposition}
 
-\begin{proof}
-Continuity follows immediately from \eqref{eq:openness_index}, since $\Omega(t)$ is composed of finite sums, exponentials, products, and powers of positive terms.
+\noindent\emph{Proof.} See Appendix B.\medskip
 
-To show monotonicity, differentiate $\log \Omega(t)$:
-\begin{align}
-\frac{d}{dt}\log \Omega(t)
-&=
-\frac{1}{\theta}
-\frac{
-\sum_{g=1}^G T_g (P_g^\ast)^\theta (-\theta \tau_g)e^{-\theta \tau_g t}
-}{
-\sum_{g=1}^G T_g (P_g^\ast)^\theta e^{-\theta \tau_g t}
-}
--\tau_M \nonumber \\
-&=
--\sum_{g=1}^G l_g(t)\tau_g - \tau_M,
-\label{eq:dlogOmega}
-\end{align}
-where
-\begin{equation}
-l_g(t)
-\equiv
-\frac{
-T_g (P_g^\ast)^\theta e^{-\theta \tau_g t}
-}{
-\sum_{h=1}^G T_h (P_h^\ast)^\theta e^{-\theta \tau_h t}
-},
-\qquad
-l_g(t)\geq 0,
-\qquad
-\sum_{g=1}^G l_g(t)=1,
-\label{eq:lg_t}
-\end{equation}
-is the agricultural land share of good $g$ from equation \eqref{eq:landshare}, evaluated at the no-arbitrage prices $P_{g\ell}=P_g^\ast e^{-\tau_g t}$ and $T_{g\ell}=T_g$. Because $\tau_g,\tau_M>0$, equation \eqref{eq:dlogOmega} implies
-\[
-\frac{d}{dt}\log \Omega(t)<0,
-\]
-so $\Omega(t)$ is strictly decreasing.
-
-Since $\Omega(t)$ is continuous on $[0,\bar T]$ with $\Omega(0)>1$ and $\Omega(\bar T)<1$, the Intermediate Value Theorem implies that there exists at least one $\bar t \in (0,\bar T)$ such that $\Omega(\bar t)=1$. Since $\Omega(t)$ is strictly decreasing, $\bar t$ is unique.
-
-Finally, strict monotonicity implies
-\[
-t\leq \bar t \;\Rightarrow\; \Omega(t)\geq 1,
-\qquad
-t>\bar t \;\Rightarrow\; \Omega(t)<1.
-\]
-By condition \eqref{eq:M_margin}, locations with $t_\ell \leq \bar t$ import manufactures and are open, while those with $t_\ell > \bar t$ produce manufactures locally.
-\end{proof}
+The proof establishes that $\Omega(t)$ is continuous and strictly decreasing, so the cutoff follows from the Intermediate Value Theorem. Because $\Omega(t)$ is strictly decreasing, an infrastructure improvement that lowers travel times pointwise weakly expands the set of open locations: the frontier moves inland as travel times fall.
 
 \begin{remark}
 \label{rem:partial_autarky}
 Locations beyond the frontier need not be in complete autarky: a location with $t_\ell>\bar t$ may continue to export a subset of agricultural goods with low transport-cost sensitivity, and export margins close good by good as travel time increases, following the ordering of $\tau_g$ (cf. Proposition \ref{prop:specialization}). The frontier $\bar t$ therefore characterizes the manufacturing-import margin rather than complete autarky.
 \end{remark}
 
-\begin{corollary}[The frontier moves inland as travel times fall]
-\label{cor:frontier_inland}
-Suppose an infrastructure improvement lowers travel times pointwise, so that $t'_\ell \leq t_\ell$ for all locations $\ell$, with strict inequality for a non-empty set of locations. Then the set of open locations under $t'_\ell$ weakly contains the set of open locations under $t_\ell$.
-\end{corollary}
-
-\begin{proof}
-By Proposition \ref{prop:trade_frontier}, $\Omega(t)$ is strictly decreasing in travel time. Hence
-\[
-t'_\ell \leq t_\ell
-\quad\Rightarrow\quad
-\Omega(t'_\ell)\geq \Omega(t_\ell).
-\]
-Therefore any location that was open before remains open after the infrastructure improvement, and some locations that previously produced manufactures locally may switch to importing them. Thus the frontier moves inland.
-\end{proof}
-
-
-
 \paragraph{F. Local Equilibrium}~\\
 
-\noindent Consider a location within the trade frontier ($t_\ell\leq\bar t$). By the analysis in Section 3.E, such a location produces no manufactures, so its active sectors are agriculture and non-tradables; the non-tradable sector always operates because the CES preferences in \eqref{eq:utility} imply unbounded marginal utility as consumption of non-tradables approaches zero. Since land is allocated to the sector with the highest rent, both active sectors pay a common land rent $r_\ell$ in equilibrium, so I write $\omega_\ell \equiv w_\ell/r_\ell$ for the location-level wage-rental ratio. Let $\lambda_{A\ell}$ and $\nu_{A\ell}$ denote the agricultural land and labor share respectively.
+\noindent Having characterized which locations trade with the world market, I now solve for the equilibrium within an open location. Consider a location within the trade frontier ($t_\ell\leq\bar t$). By the analysis in Section 3.E, such a location produces no manufactures, so its active sectors are agriculture and non-tradables; the non-tradable sector always operates because the CES preferences in \eqref{eq:utility} imply unbounded marginal utility as consumption of non-tradables approaches zero. Since land is allocated to the sector with the highest rent, both active sectors pay a common land rent $r_\ell$ in equilibrium, so I write $\omega_\ell \equiv w_\ell/r_\ell$ for the location-level wage-rental ratio. Let $\lambda_{A\ell}$ and $\nu_{A\ell}$ denote the agricultural land and labor share respectively.
 
 Under CES demand, tradable expenditure share is given by
 \begin{equation}
@@ -384,37 +302,7 @@ s_{T\ell}=\beta_T\left(\frac{E_{T\ell}}{E_\ell}\right)^{1-\sigma},
 \end{equation}
 where $E_\ell$ is the overall consumption price index.
 
-Combining profit maximization in non-tradables from equation \eqref{eq:n} and non-tradable market clearing in each location, we obtain: 
-\begin{equation}
-    \frac{N_{N\ell}}{L_\ell} = (1-\alpha_N)(1-s_{T\ell})\left(n_\ell+\omega_\ell^{-1}\right)
-    \label{eq:Nlabor}
-\end{equation}
-\begin{equation}
-    \frac{L_{N\ell}}{L_\ell}= \alpha_N (1-s_{T\ell}) \omega_\ell \left(n_\ell+\omega_\ell^{-1}\right)
-\end{equation}
-
-Then land market clearing condition can be re-written as 
-\begin{equation}
-    \alpha_N(1-s_{T\ell})\left(n_\ell+\frac{1}{\omega_\ell}\right)
-+ \frac{\lambda_{A\ell}}{\omega_\ell}= \frac{1}{\omega_\ell}
-\label{eq:labor market clearing}
-\end{equation}
-
-and combining profit maximization in agriculture from equation \eqref{eq:n}, labor market clearing condition can be re-written as 
-\begin{equation}
-    (1-\alpha_N)(1-s_{T\ell})\left(n_\ell+\frac{1}{\omega_\ell}\right)
-+ \frac{1-\alpha_A}{\alpha_A}\frac{\lambda_{A\ell}}{\omega_\ell}= n_\ell
-\end{equation}
-
-Adding up these two equations gives agricultural land share as
-
-\begin{equation}
-    \lambda_{A\ell}=\alpha_A s_{T\ell}(1+\omega_\ell n_\ell)
-    \label{eq:lambda}
-\end{equation}
-
-Plugging this back to equation \eqref{eq:labor market clearing} to solve for population density
-
+Combining profit maximization with the land, labor, and non-tradable market clearing conditions yields closed-form solutions for population density and the agricultural labor share (the derivation is in Appendix A):
 \begin{equation}
 n_\ell
 =
@@ -424,9 +312,6 @@ n_\ell
 \frac{1}{\omega_\ell},
 \label{eq:density}
 \end{equation}
-
-By definition, the agricultural labor share can be written as $\nu_{A\ell}=\frac{N_{A\ell}/L_\ell}{n_\ell}$. Using equations \eqref{eq:Nlabor}, \eqref{eq:lambda} and \eqref{eq:density}, 
-
 \begin{equation}
 \nu_{A\ell}
 =
@@ -434,6 +319,7 @@ By definition, the agricultural labor share can be written as $\nu_{A\ell}=\frac
 {1-\alpha_N-(\alpha_A-\alpha_N)s_{T\ell}}.
 \label{eq:nuA}
 \end{equation}
+Population density is decreasing in the wage-rental ratio and, given $\alpha_A>\alpha_N$, in the tradable expenditure share, while the agricultural labor share is increasing in the tradable expenditure share.
 
 
 To derive the sufficient statistics for local equilibrium, using zero-profit conditions in the two active sectors, factor prices satisfy
@@ -446,29 +332,7 @@ P_{N\ell} &= \frac{z_{A\ell}}{z_{N\ell}}\,\omega_\ell^{\alpha_A-\alpha_N}.
 \label{eq:PN}
 \end{align}
 
-Expressing the common component of utility in equation \eqref{eq:utility} in the indirect utility form $u_\ell=w_\ell/E_\ell$ together with equation \eqref{eq:wage} gives
-\begin{align}
-\frac{E_{T\ell}}{E_\ell}
-&=
-\frac{u_\ell}{\omega_\ell^{\alpha_A}\tilde z_{A\ell}},
-\label{eq:ETE}\\
-\frac{P_{N\ell}}{E_\ell}
-&=
-\frac{u_\ell}{\omega_\ell^{\alpha_N}z_{N\ell}},
-\label{eq:PNE}
-\end{align}
-and therefore
-\begin{equation}
-s_{T\ell}
-=
-\beta_T
-\left(
-\frac{u_\ell}{\tilde z_{A\ell} \omega_\ell^{\alpha_A}}
-\right)^{1-\sigma}.
-\label{eq:sT}
-\end{equation}
-
-Substituting these expressions into the CES price-index identity yields
+Expressing the common component of utility in the indirect form $u_\ell=w_\ell/E_\ell$ and substituting the factor prices into the CES price-index identity $E_\ell^{1-\sigma}=\beta_T E_{T\ell}^{1-\sigma}+(1-\beta_T)P_{N\ell}^{1-\sigma}$ yields (Appendix A):
 \begin{equation}
 u_\ell
 =
@@ -490,7 +354,7 @@ n(\ell)=n\!\left(\tilde z_A(\ell),z_N(\ell)\right),
 \end{equation}
 
 
-I first establish that better market access raises adjusted agricultural productivity, which is the first link in the chain from trade costs to structural transformation.
+With the local equilibrium characterized, the remainder of this section derives the model's three empirical predictions. The first concerns structural transformation. Since travel time affects local outcomes only through the sufficient statistic $\tilde z_{A\ell}$ in equation \eqref{eq:reduced_local}, the argument proceeds in two steps: Lemma \ref{lem:zad} establishes that better market access raises adjusted agricultural productivity, and Proposition \ref{prop:bs} characterizes how the local equilibrium responds to it.
 
 \begin{lemma}[Trade costs and adjusted agricultural productivity]
 \label{lem:zad}
@@ -503,33 +367,27 @@ Suppose location $\ell$ is open, exports every agricultural good ($l_{g\ell} > \
 so a reduction in travel time strictly raises adjusted agricultural productivity.
 \end{lemma}
 
-\begin{proof}
-Log-differentiating equation \eqref{eq:zA} with respect to $t_\ell$ using the no-arbitrage prices $P_{g\ell}=P_g^\ast e^{-\tau_g t_\ell}$ gives $d\ln z_{A\ell}/dt_\ell = -\sum_g l_{g\ell}\tau_g$, where the weights are the land shares in equation \eqref{eq:landshare}. Log-differentiating the tradables price index \eqref{eq:ET} with $P_{M\ell}=P_M^\ast e^{\tau_M t_\ell}$ gives $d\ln E_{T\ell}/dt_\ell = -\sum_g \gamma_g\tau_g + (1-\gamma_A)\tau_M$. Subtracting the second expression from the first and using $\tilde z_{A\ell}=z_{A\ell}/E_{T\ell}$ yields \eqref{eq:zad_t}, which is strictly negative since $l_{g\ell}>\gamma_g$ and $\tau_g,\tau_M>0$.
-\end{proof}
+\noindent\emph{Proof.} See Appendix B.\medskip
 
 The exporting condition $l_{g\ell}>\gamma_g$ is not innocuous: better market access raises not only the prices received by local producers but also the local cost of consuming agricultural goods, and the net effect on $\tilde z_{A\ell}$ is positive precisely when the location produces more of each good than it consumes. The condition is always feasible, since land shares sum to one while $\sum_g \gamma_g=\gamma_A<1$.
+
+The second step characterizes the comparative statics of the local equilibrium with respect to adjusted agricultural productivity. This is the spatial Balassa-Samuelson effect: an improvement in the revenue productivity of the traded sector, deflated by tradable prices, reallocates the local economy toward the labor-intensive non-tradable sector.
 
 \begin{proposition}[Spatial Balassa-Samuelson effect]
 \label{prop:bs}
 Assume agricultural and non-tradable goods are complements ($\sigma<1$), agriculture is more land-intensive than non-tradables ($\alpha_A>\alpha_N$), and labor is perfectly mobile ($\epsilon\to\infty$), and consider a location small enough that $u^\ast$ is unaffected by its outcomes. Then an increase in adjusted agricultural productivity $\tilde z_{A\ell}$, holding $z_{N\ell}$ fixed, (i) lowers the wage-rental ratio $\omega_\ell$; (ii) lowers the tradable expenditure share $s_{T\ell}$; (iii) raises population density $n_\ell$; and (iv) lowers the agricultural employment share $\nu_{A\ell}$.
 \end{proposition}
 
-\begin{proof}
-With perfect mobility, $u_\ell = u^\ast$ for all populated locations. Define $x_\ell \equiv \tilde z_{A\ell}\,\omega_\ell^{\alpha_A}$ and $y_\ell \equiv z_{N\ell}\,\omega_\ell^{\alpha_N}$, so that equation \eqref{eq:omega_eq} reads
-\[
-\beta_T\, x_\ell^{\sigma-1} + (1-\beta_T)\, y_\ell^{\sigma-1} = (u^\ast)^{\sigma-1}.
-\]
-(i) Since $\sigma<1$, the left-hand side is strictly decreasing in both $\omega_\ell$ and $\tilde z_{A\ell}$; holding $u^\ast$ fixed, an increase in $\tilde z_{A\ell}$ therefore requires $\omega_\ell$ to fall. (ii) A lower $\omega_\ell$ with $z_{N\ell}$ fixed lowers $y_\ell$ and hence raises $y_\ell^{\sigma-1}$; the identity then requires $x_\ell^{\sigma-1}$ to fall, i.e., $x_\ell$ to rise. By equation \eqref{eq:sT}, $s_{T\ell}=\beta_T (u^\ast/x_\ell)^{1-\sigma}$ falls. (iii) In equation \eqref{eq:density}, the term in parentheses is positive and strictly decreasing in $s_{T\ell}$ given $\alpha_A>\alpha_N$, so a lower $s_{T\ell}$ raises it; combined with a lower $\omega_\ell$, population density $n_\ell$ rises. (iv) In equation \eqref{eq:nuA}, the numerator is increasing and the denominator decreasing in $s_{T\ell}$, so $\nu_{A\ell}$ is strictly increasing in $s_{T\ell}$ and therefore falls.
-\end{proof}
+\noindent\emph{Proof.} See Appendix B.\medskip
+
+Combining the two steps delivers the first empirical prediction: locations with larger reductions in travel time to world markets experience larger increases in population, urbanization, and income.
 
 \begin{corollary}[Effects of travel-time reductions]
 \label{cor:tt}
 Under the assumptions of Lemma \ref{lem:zad} and Proposition \ref{prop:bs}, a reduction in travel time $t_\ell$ raises population density $n_\ell$, the non-tradable (urban) employment share $1-\nu_{A\ell}$, and GDP per unit of land, defined as $Y_\ell \equiv w_\ell n_\ell + r_\ell$.
 \end{corollary}
 
-\begin{proof}
-By Lemma \ref{lem:zad}, a lower $t_\ell$ raises $\tilde z_{A\ell}$, so Proposition \ref{prop:bs} delivers the results for $n_\ell$ and $1-\nu_{A\ell}$. For GDP, write $Y_\ell = r_\ell (1+\omega_\ell n_\ell)$. From equation \eqref{eq:rent}, $r_\ell = z_{A\ell}\,\omega_\ell^{\alpha_A-1}$: a lower $t_\ell$ raises $z_{A\ell}$ (Lemma \ref{lem:zad}) and lowers $\omega_\ell$ (Proposition \ref{prop:bs}), and since $\alpha_A-1<0$ both movements raise $r_\ell$. From equation \eqref{eq:density}, $\omega_\ell n_\ell = \left[\alpha_N+(\alpha_A-\alpha_N)s_{T\ell}\right]^{-1}-1$ rises as $s_{T\ell}$ falls. Hence $Y_\ell$ rises.
-\end{proof}
+\noindent\emph{Proof.} See Appendix B.\medskip
 
 \begin{remark}
 \label{rem:mobility}
@@ -537,6 +395,8 @@ Perfect mobility is stronger than necessary. Fajgelbaum and Redding (2022, Propo
 \end{remark}
 
 The economic intuition is as follows. Better access to world markets raises profitability in the tradable rural sector, which increases income and attracts population. When population rises, the reward to immobile land increases relative to the reward to mobile labor. This induces either more labor-intensive techniques within sectors or a reallocation of labor toward the labor-intensive non-tradable sector. Hence, reductions in internal trade costs to world markets generate structural transformation from tradable rural activity toward non-tradable urban activity, given the inelastic demand between sectors.
+
+The first prediction concerns aggregate outcomes within a location. The model also has sharp implications for the composition of agricultural production across the disaggregated goods, which constitutes the second empirical prediction: because transport costs are good-specific, market access is itself a source of comparative advantage within agriculture.
 
 \begin{proposition}[Specialization within agriculture]
 \label{prop:specialization}
@@ -551,16 +411,7 @@ Locations with shorter travel time to the international gateway allocate relativ
 where $\bar{\tau}_\ell$ is the land-share-weighted average transport-cost sensitivity in location $\ell$. As travel time falls, the land share rises for goods with above-average transport-cost sensitivity ($\tau_g > \bar{\tau}_\ell$) and falls for goods with below-average sensitivity.
 \end{proposition}
 
-\begin{proof}
-Substituting the no-arbitrage prices $P_{g\ell}=P_g^\ast/\delta_{g(\ell,\ell^*)}=P_g^\ast e^{-\tau_g t_\ell}$ into the land shares \eqref{eq:landshare}, define the good-specific competitiveness term
-\[
-A_{g\ell}(t_\ell)\equiv T_{g\ell}P_{g\ell}(t_\ell)^\theta
-= T_{g\ell}(P_g^*)^\theta e^{-\theta\tau_g t_\ell},
-\qquad
-l_{g\ell}=\frac{A_{g\ell}}{\sum_h A_{h\ell}}.
-\]
-Then $d\ln A_{g\ell}/dt_\ell = -\theta\tau_g$ and $d \ln \left(\sum_h A_{h\ell}\right)/dt_\ell = -\theta\sum_h l_{h\ell}\tau_h = -\theta\bar{\tau}_\ell$; subtracting the second expression from the first yields \eqref{eq:landshare_d}.
-\end{proof}
+\noindent\emph{Proof.} See Appendix B.\medskip
 
 Intuitively, transport-cost-insensitive goods face little penalty from being produced inland, whereas transport-cost-sensitive goods benefit disproportionately from improved access to ports. Therefore, locations with better export access will specialize in transport-cost-sensitive goods: for the same reduction in $t_\ell$, land shares grow faster for more transport-cost-sensitive goods.
 
@@ -568,7 +419,7 @@ Intuitively, transport-cost-insensitive goods face little penalty from being pro
 
 \paragraph{G. Trade Liberalization and the Border Wedge}~\\
 
-\noindent The analysis so far takes the trade regime as given. I now consider changes in the trade regime alongside changes in internal transport costs. To that end, I introduce a border wedge $\chi \in (0,1]$ that summarizes the trade regime: producers of agricultural goods receive only a fraction $\chi$ of the world price at the gateway, and importers of manufactures pay a markup $1/\chi$ over the world price. \footnote{The symmetric treatment of the export and import wedges follows Lerner symmetry: an import tariff is equivalent to an export tax, so protection of the import-competing sector acts as an implicit tax on the export sector. A good-specific wedge $\chi_g$ is a straightforward extension; I impose a common $\chi$ for simplicity.} The no-arbitrage prices in an open location become
+\noindent The first two predictions take the trade regime as given. The third prediction concerns how internal transport costs and the trade regime interact. To capture both forces within the model, I introduce a border wedge $\chi \in (0,1]$ that summarizes the trade regime: producers of agricultural goods receive only a fraction $\chi$ of the world price at the gateway, and importers of manufactures pay a markup $1/\chi$ over the world price. \footnote{The symmetric treatment of the export and import wedges follows Lerner symmetry: an import tariff is equivalent to an export tax, so protection of the import-competing sector acts as an implicit tax on the export sector. A good-specific wedge $\chi_g$ is a straightforward extension; I impose a common $\chi$ for simplicity.} The no-arbitrage prices in an open location become
 \begin{equation}
 P_{g\ell} = \chi\, P_g^\ast e^{-\tau_g t_\ell},
 \qquad
@@ -593,16 +444,12 @@ Suppose the conditions of Proposition \ref{prop:trade_frontier} hold at each tra
 \frac{d \bar t}{d \ln \chi}
 = \frac{2}{\sum_{g=1}^G l_g(\bar t)\tau_g + \tau_M} > 0.
 \]
-\item On the intensive margin, roads and liberalization are separable: for an open location, $\ln \tilde z_{A\ell}$ is additively separable in $\ln\chi$ and $t_\ell$, so the elasticity of adjusted agricultural productivity (and hence of population density and urbanization through Proposition \ref{prop:bs}) with respect to travel time does not depend on the trade regime.
-\item On the extensive margin, roads and liberalization are complements: consider a road that lowers travel time by $\Delta>0$ and a liberalization from $\chi$ to $\chi'>\chi$. A location with $\bar t(\chi) < t_\ell - \Delta \leq \bar t(\chi') < t_\ell$ is opened to trade neither by the road alone nor by the liberalization alone, but only by the combination of the two.
+\item On the intensive margin, travel-time reductions and liberalization are separable: for an open location, $\ln \tilde z_{A\ell}$ is additively separable in $\ln\chi$ and $t_\ell$, so the elasticity of adjusted agricultural productivity (and hence of population density and urbanization through Proposition \ref{prop:bs}) with respect to travel time does not depend on the trade regime.
+\item On the extensive margin, travel-time reductions and liberalization are complements: consider a reduction in travel time of $\Delta>0$ and a liberalization from $\chi$ to $\chi'>\chi$. A location with $\bar t(\chi) < t_\ell - \Delta \leq \bar t(\chi') < t_\ell$ is opened to trade neither by the travel-time reduction alone nor by the liberalization alone, but only by the combination of the two.
 \end{enumerate}
 \end{proposition}
 
-\begin{proof}
-(i) Differentiating the frontier condition $2\ln\chi + \ln\Omega(\bar t(\chi))=0$ with respect to $\ln\chi$ and using $d\ln\Omega/dt = -\left[\sum_g l_g(t)\tau_g + \tau_M\right]$ from equation \eqref{eq:dlogOmega} yields the expression, which is strictly positive since $\tau_g,\tau_M>0$.
-(ii) From equation \eqref{eq:prices_chi}, $\ln P_{g\ell} = \ln\chi + \ln P_g^\ast - \tau_g t_\ell$, so all prices are log-additive in $(\ln\chi, t_\ell)$, and the land shares $l_{g\ell}$ are invariant to the common scaling of agricultural prices by $\chi$. Hence $\ln z_{A\ell}$ shifts by $\ln\chi$, $\ln E_{T\ell}$ shifts by $(2\gamma_A-1)\ln\chi$, and $\ln \tilde z_{A\ell}$ shifts by $2(1-\gamma_A)\ln\chi>0$, uniformly across locations, while the travel-time derivative in Lemma \ref{lem:zad} is unchanged. Therefore $\partial^2 \ln\tilde z_{A\ell}/\partial\ln\chi\,\partial t_\ell = 0$.
-(iii) By Proposition \ref{prop:trade_frontier}, the set of open locations under regime $\chi$ is $\{\ell : t_\ell \leq \bar t(\chi)\}$. With the road alone, the location's travel time $t_\ell-\Delta$ exceeds $\bar t(\chi)$, so it remains closed; with the liberalization alone, its travel time $t_\ell$ exceeds $\bar t(\chi')$, so it remains closed; with both, $t_\ell-\Delta \leq \bar t(\chi')$ and the location opens.
-\end{proof}
+\noindent\emph{Proof.} See Appendix B.\medskip
 
 Proposition \ref{prop:complementarity} implies that the response of a location to a given reduction in internal trade costs depends on the trade regime only through the extensive margin. Under a restrictive regime, a reduction in travel time leaves locations beyond the frontier closed to trade and therefore has no effect on their tradable prices or productivity; once the regime liberalizes, the frontier moves inland and previously accumulated reductions in travel time determine which locations cross it. Part (ii) further shows that liberalization raises adjusted agricultural productivity uniformly across open locations, so cross-sectional differences in outcomes among open locations continue to be driven by differences in travel time.
 
@@ -931,6 +778,117 @@ Overall, infrastructure-led integration with world markets can act as a powerful
 \newpage
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix}
+
+\subsection*{Appendix A: Derivation of the Local Equilibrium}
+
+This appendix derives the closed-form solutions for population density in equation \eqref{eq:density} and the agricultural labor share in equation \eqref{eq:nuA}. Combining profit maximization in non-tradables from equation \eqref{eq:n} with non-tradable market clearing in each location gives non-tradable employment and land per unit of land area:
+\begin{equation}
+    \frac{N_{N\ell}}{L_\ell} = (1-\alpha_N)(1-s_{T\ell})\left(n_\ell+\omega_\ell^{-1}\right),
+    \label{eq:Nlabor}
+\end{equation}
+\begin{equation}
+    \frac{L_{N\ell}}{L_\ell}= \alpha_N (1-s_{T\ell}) \omega_\ell \left(n_\ell+\omega_\ell^{-1}\right).
+\end{equation}
+The land market clearing condition can then be re-written as
+\begin{equation}
+    \alpha_N(1-s_{T\ell})\left(n_\ell+\frac{1}{\omega_\ell}\right)
++ \frac{\lambda_{A\ell}}{\omega_\ell}= \frac{1}{\omega_\ell},
+\label{eq:land_clearing}
+\end{equation}
+and, combining profit maximization in agriculture from equation \eqref{eq:n}, the labor market clearing condition as
+\begin{equation}
+    (1-\alpha_N)(1-s_{T\ell})\left(n_\ell+\frac{1}{\omega_\ell}\right)
++ \frac{1-\alpha_A}{\alpha_A}\frac{\lambda_{A\ell}}{\omega_\ell}= n_\ell,
+\label{eq:labor_clearing}
+\end{equation}
+where $\lambda_{A\ell}$ is the agricultural land share. Adding up equations \eqref{eq:land_clearing} and \eqref{eq:labor_clearing} gives
+\begin{equation}
+    \lambda_{A\ell}=\alpha_A s_{T\ell}(1+\omega_\ell n_\ell).
+    \label{eq:lambda}
+\end{equation}
+Substituting equation \eqref{eq:lambda} back into equation \eqref{eq:land_clearing} and solving for $n_\ell$ yields equation \eqref{eq:density} in the main text. Finally, the agricultural labor share satisfies $\nu_{A\ell}=\frac{N_{A\ell}/L_\ell}{n_\ell}$ with $N_{A\ell}/L_\ell = n_\ell - N_{N\ell}/L_\ell$; combining equations \eqref{eq:Nlabor}, \eqref{eq:lambda}, and \eqref{eq:density} yields equation \eqref{eq:nuA}.
+
+Turning to the sufficient-statistic representation, expressing the common component of utility in equation \eqref{eq:utility} in the indirect utility form $u_\ell=w_\ell/E_\ell$ together with equation \eqref{eq:wage} gives
+\begin{equation}
+\frac{E_{T\ell}}{E_\ell}
+=
+\frac{u_\ell}{\omega_\ell^{\alpha_A}\tilde z_{A\ell}},
+\qquad
+\frac{P_{N\ell}}{E_\ell}
+=
+\frac{u_\ell}{\omega_\ell^{\alpha_N}z_{N\ell}},
+\label{eq:ETE}
+\end{equation}
+and therefore, using equation \eqref{eq:sT_def},
+\begin{equation}
+s_{T\ell}
+=
+\beta_T
+\left(
+\frac{u_\ell}{\tilde z_{A\ell} \omega_\ell^{\alpha_A}}
+\right)^{1-\sigma}.
+\label{eq:sT}
+\end{equation}
+Substituting equation \eqref{eq:ETE} into the CES price-index identity $E_\ell^{1-\sigma}=\beta_T E_{T\ell}^{1-\sigma}+(1-\beta_T)P_{N\ell}^{1-\sigma}$ and rearranging yields equation \eqref{eq:omega_eq} in the main text.
+
+\subsection*{Appendix B: Proofs}
+
+\begin{proof}[Proof of Proposition \ref{prop:trade_frontier}]
+Continuity follows immediately from \eqref{eq:openness_index} and \eqref{eq:zA_t}, since $\Omega(t)$ is composed of finite sums, exponentials, products, and powers of positive terms.
+
+To show monotonicity, let $l_g(t)$ denote the land share in equation \eqref{eq:landshare} evaluated at the no-arbitrage prices $P_{g\ell}=P_g^\ast e^{-\tau_g t}$ and $T_{g\ell}=T_g$. Using the elasticity result $\partial \ln z_{A}/\partial \ln P_{g} = l_{g}$ following equation \eqref{eq:landshare},
+\begin{equation}
+\frac{d}{dt}\log \Omega(t)
+=
+-\sum_{g=1}^G l_g(t)\tau_g - \tau_M
+< 0,
+\label{eq:dlogOmega}
+\end{equation}
+since the land shares are nonnegative and $\tau_g,\tau_M>0$, so $\Omega(t)$ is strictly decreasing.
+
+Since $\Omega(t)$ is continuous on $[0,\bar T]$ with $\Omega(0)>1$ and $\Omega(\bar T)<1$, the Intermediate Value Theorem implies that there exists at least one $\bar t \in (0,\bar T)$ such that $\Omega(\bar t)=1$. Since $\Omega(t)$ is strictly decreasing, $\bar t$ is unique.
+
+Finally, strict monotonicity implies
+\[
+t\leq \bar t \;\Rightarrow\; \Omega(t)\geq 1,
+\qquad
+t>\bar t \;\Rightarrow\; \Omega(t)<1.
+\]
+By condition \eqref{eq:M_margin}, locations with $t_\ell \leq \bar t$ import manufactures and are open, while those with $t_\ell > \bar t$ produce manufactures locally.
+\end{proof}
+
+\begin{proof}[Proof of Lemma \ref{lem:zad}]
+By the elasticity result following equation \eqref{eq:landshare} and the no-arbitrage prices $P_{g\ell}=P_g^\ast e^{-\tau_g t_\ell}$, $d\ln z_{A\ell}/dt_\ell = -\sum_g l_{g\ell}\tau_g$. Log-differentiating the tradables price index \eqref{eq:ET} with $P_{M\ell}=P_M^\ast e^{\tau_M t_\ell}$ gives $d\ln E_{T\ell}/dt_\ell = -\sum_g \gamma_g\tau_g + (1-\gamma_A)\tau_M$. Subtracting the second expression from the first and using $\tilde z_{A\ell}=z_{A\ell}/E_{T\ell}$ yields \eqref{eq:zad_t}, which is strictly negative since $l_{g\ell}>\gamma_g$ and $\tau_g,\tau_M>0$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:bs}]
+With perfect mobility, $u_\ell = u^\ast$ for all populated locations. Define $x_\ell \equiv \tilde z_{A\ell}\,\omega_\ell^{\alpha_A}$ and $y_\ell \equiv z_{N\ell}\,\omega_\ell^{\alpha_N}$, so that equation \eqref{eq:omega_eq} reads
+\[
+\beta_T\, x_\ell^{\sigma-1} + (1-\beta_T)\, y_\ell^{\sigma-1} = (u^\ast)^{\sigma-1}.
+\]
+(i) Since $\sigma<1$, the left-hand side is strictly decreasing in both $\omega_\ell$ and $\tilde z_{A\ell}$; holding $u^\ast$ fixed, an increase in $\tilde z_{A\ell}$ therefore requires $\omega_\ell$ to fall. (ii) A lower $\omega_\ell$ with $z_{N\ell}$ fixed lowers $y_\ell$ and hence raises $y_\ell^{\sigma-1}$; the identity then requires $x_\ell^{\sigma-1}$ to fall, i.e., $x_\ell$ to rise. By equation \eqref{eq:sT}, $s_{T\ell}=\beta_T (u^\ast/x_\ell)^{1-\sigma}$ falls. (iii) In equation \eqref{eq:density}, the term in parentheses is positive and strictly decreasing in $s_{T\ell}$ given $\alpha_A>\alpha_N$, so a lower $s_{T\ell}$ raises it; combined with a lower $\omega_\ell$, population density $n_\ell$ rises. (iv) In equation \eqref{eq:nuA}, the numerator is increasing and the denominator decreasing in $s_{T\ell}$, so $\nu_{A\ell}$ is strictly increasing in $s_{T\ell}$ and therefore falls.
+\end{proof}
+
+\begin{proof}[Proof of Corollary \ref{cor:tt}]
+By Lemma \ref{lem:zad}, a lower $t_\ell$ raises $\tilde z_{A\ell}$, so Proposition \ref{prop:bs} delivers the results for $n_\ell$ and $1-\nu_{A\ell}$. For GDP, write $Y_\ell = r_\ell (1+\omega_\ell n_\ell)$. From equation \eqref{eq:rent}, $r_\ell = z_{A\ell}\,\omega_\ell^{\alpha_A-1}$: a lower $t_\ell$ raises $z_{A\ell}$ (Lemma \ref{lem:zad}) and lowers $\omega_\ell$ (Proposition \ref{prop:bs}), and since $\alpha_A-1<0$ both movements raise $r_\ell$. From equation \eqref{eq:density}, $\omega_\ell n_\ell = \left[\alpha_N+(\alpha_A-\alpha_N)s_{T\ell}\right]^{-1}-1$ rises as $s_{T\ell}$ falls. Hence $Y_\ell$ rises.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:specialization}]
+Substituting the no-arbitrage prices $P_{g\ell}=P_g^\ast/\delta_{g(\ell,\ell^*)}=P_g^\ast e^{-\tau_g t_\ell}$ into the land shares \eqref{eq:landshare}, define the good-specific competitiveness term
+\[
+A_{g\ell}(t_\ell)\equiv T_{g\ell}P_{g\ell}(t_\ell)^\theta
+= T_{g\ell}(P_g^*)^\theta e^{-\theta\tau_g t_\ell},
+\qquad
+l_{g\ell}=\frac{A_{g\ell}}{\sum_h A_{h\ell}}.
+\]
+Then $d\ln A_{g\ell}/dt_\ell = -\theta\tau_g$ and $d \ln \left(\sum_h A_{h\ell}\right)/dt_\ell = -\theta\sum_h l_{h\ell}\tau_h = -\theta\bar{\tau}_\ell$; subtracting the second expression from the first yields \eqref{eq:landshare_d}.
+\end{proof}
+
+\begin{proof}[Proof of Proposition \ref{prop:complementarity}]
+(i) Differentiating the frontier condition $2\ln\chi + \ln\Omega(\bar t(\chi))=0$ with respect to $\ln\chi$ and using $d\ln\Omega/dt = -\left[\sum_g l_g(t)\tau_g + \tau_M\right]$ from equation \eqref{eq:dlogOmega} yields the expression, which is strictly positive since $\tau_g,\tau_M>0$.
+(ii) From equation \eqref{eq:prices_chi}, $\ln P_{g\ell} = \ln\chi + \ln P_g^\ast - \tau_g t_\ell$, so all prices are log-additive in $(\ln\chi, t_\ell)$, and the land shares $l_{g\ell}$ are invariant to the common scaling of agricultural prices by $\chi$. Hence $\ln z_{A\ell}$ shifts by $\ln\chi$, $\ln E_{T\ell}$ shifts by $(2\gamma_A-1)\ln\chi$, and $\ln \tilde z_{A\ell}$ shifts by $2(1-\gamma_A)\ln\chi>0$, uniformly across locations, while the travel-time derivative in Lemma \ref{lem:zad} is unchanged. Therefore $\partial^2 \ln\tilde z_{A\ell}/\partial\ln\chi\,\partial t_\ell = 0$.
+(iii) By Proposition \ref{prop:trade_frontier}, the set of open locations under regime $\chi$ is $\{\ell : t_\ell \leq \bar t(\chi)\}$. With the travel-time reduction alone, the location's travel time $t_\ell-\Delta$ exceeds $\bar t(\chi)$, so it remains closed; with the liberalization alone, its travel time $t_\ell$ exceeds $\bar t(\chi')$, so it remains closed; with both, $t_\ell-\Delta \leq \bar t(\chi')$ and the location opens.
+\end{proof}
 
 
 \begin{figure}[ht]
