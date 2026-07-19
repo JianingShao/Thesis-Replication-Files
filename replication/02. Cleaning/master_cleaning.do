@@ -11,6 +11,7 @@ Outline:
 	V. Geographical Characteristics
 	VI. Travel Time
 	VII. Data Aggregation
+	VIII. Agricultural Land Shares
 ================================================================================*/
 
 *------------------------------- Setup -----------------------------------------*
@@ -63,3 +64,7 @@ do "$code\06.traveltime.do"
 
 *------------- VII. Data Aggregation --------------------*
 do "$code\07.aggregation.do"
+
+*------------- VIII. Agricultural Land Shares --------------------*
+* Requires the SIDRA pulls from 00.pam_pull.R in $input\pam\
+do "$code\08.landshare.do"

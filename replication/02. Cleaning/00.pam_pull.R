@@ -153,7 +153,7 @@ tidy_pam <- function(df, product_col) {
 
 pam_temp_raw <- pull_table(1612, "c81", vars_pam, "pam1612")
 pam_temp <- tidy_pam(pam_temp_raw, "Produto das lavouras temporárias")
-write_csv(pam_temp, file.path(raw_dir, "pam_temporary.csv"))
+write_csv(pam_temp, file.path(raw_dir, "pam_temporary.csv"), na = "")
 message(sprintf("Saved pam_temporary.csv: %d rows, %d products",
                 nrow(pam_temp), n_distinct(pam_temp$product)))
 
@@ -161,7 +161,7 @@ message(sprintf("Saved pam_temporary.csv: %d rows, %d products",
 
 pam_perm_raw <- pull_table(1613, "c82", vars_pam, "pam1613")
 pam_perm <- tidy_pam(pam_perm_raw, "Produto das lavouras permanentes")
-write_csv(pam_perm, file.path(raw_dir, "pam_permanent.csv"))
+write_csv(pam_perm, file.path(raw_dir, "pam_permanent.csv"), na = "")
 message(sprintf("Saved pam_permanent.csv: %d rows, %d products",
                 nrow(pam_perm), n_distinct(pam_perm$product)))
 
@@ -186,7 +186,7 @@ ppm_cattle <- ppm_raw %>%
          head         = `Valor`) %>%
   filter(str_detect(herd_type, regex("^bovino", ignore_case = TRUE))) %>%
   select(code7, municipality, year, herd_type, head)
-write_csv(ppm_cattle, file.path(raw_dir, "ppm_cattle.csv"))
+write_csv(ppm_cattle, file.path(raw_dir, "ppm_cattle.csv"), na = "")
 message(sprintf("Saved ppm_cattle.csv: %d rows", nrow(ppm_cattle)))
 
 # --- 5. Merge hint -------------------------------------------------------------
