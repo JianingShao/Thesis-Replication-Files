@@ -1,0 +1,11 @@
+.venv/
+.uv-cache/
+.uv-python/
+references/markdown/
+
+# Large regenerable FAOSTAT bulk downloads
+replication/01. Raw Data/faostat/cache/
+
+# Scratch Stata datasets in the cleaning temp folder
+replication/02. Cleaning/temp/*.dta
+

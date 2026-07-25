@@ -11,7 +11,7 @@ Outline:
 
 *------------------------------- Setup -----------------------------------------*
 
-version 18.5
+version 18
 clear all                                                       
 set more off, perm
 cap log close

@@ -1,73 +1,73 @@
-product,cargo_category,shelf_life_days,unit_ton,category6,category_final,category4
-"Pastagem (equivalente, bovinos)",geral,,0,pasture,pasture,pasture
-Mandioca,geral,5,1,staples,dom_staples,other_crops
-Milho (em grão),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Feijão (em grão),granel,365,1,staples,dom_staples,other_crops
-Banana (cacho),geral,7,1,fruits_veg,dom_fruits_other,other_crops
-Cana-de-açúcar,geral,2,1,industrial,exp_industrial,exp_trad
-Laranja,geral,30,1,fruits_veg,dom_fruits_other,other_crops
-Arroz (em casca),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Tomate,geral,7,1,fruits_veg,dom_fruits_other,other_crops
-Coco-da-baía*,geral,60,0,fruits_veg,dom_fruits_other,other_crops
-Maracujá,geral,14,1,fruits_veg,dom_fruits_other,other_crops
-Manga,geral,14,1,fruits_veg,exp_fruits,other_crops
-Limão,geral,30,1,fruits_veg,dom_fruits_other,other_crops
-Melancia,geral,14,1,fruits_veg,dom_fruits_other,other_crops
-Goiaba,geral,7,1,fruits_veg,dom_fruits_other,other_crops
-Tangerina,geral,21,1,fruits_veg,dom_fruits_other,other_crops
-Abacaxi*,geral,14,0,fruits_veg,dom_fruits_other,other_crops
-Batata-doce,geral,30,1,staples,dom_staples,other_crops
-Café (em grão) Total,geral,365,1,industrial,exp_industrial,exp_trad
-Mamão,frigo,7,1,fruits_veg,exp_fruits,other_crops
-Soja (em grão),granel,365,1,grains_oilseeds,exp_grains,exp_new
-Amendoim (em casca),granel,180,1,grains_oilseeds,exp_grains,exp_new
-Uva,frigo,7,1,fruits_veg,exp_fruits,other_crops
-Abacate,geral,10,1,fruits_veg,dom_fruits_other,other_crops
-Sorgo (em grão),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Castanha de caju,geral,180,1,industrial,exp_industrial,exp_trad
-Cebola,geral,90,1,staples,dom_staples,other_crops
-Fumo (em folha),geral,365,1,industrial,exp_industrial,exp_trad
-Batata-inglesa,geral,60,1,staples,dom_staples,other_crops
-Alho,geral,120,1,staples,dom_staples,other_crops
-Pêssego,frigo,7,1,fruits_veg,dom_fruits_other,other_crops
-Algodão herbáceo (em caroço),geral,365,1,industrial,exp_industrial,exp_trad
-Caqui,geral,14,1,fruits_veg,dom_fruits_other,other_crops
-Trigo (em grão),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Borracha (látex coagulado),geral,365,1,industrial,dom_fruits_other,other_crops
-Fava (em grão),granel,365,1,staples,dom_staples,other_crops
-Mamona (baga),granel,365,1,grains_oilseeds,exp_grains,exp_new
-Melão,geral,14,1,fruits_veg,exp_fruits,other_crops
-Palmito,geral,3,1,fruits_veg,dom_fruits_other,other_crops
-Figo,frigo,3,1,fruits_veg,dom_fruits_other,other_crops
-Urucum (semente),geral,365,1,industrial,dom_fruits_other,other_crops
-Girassol (em grão),granel,365,1,grains_oilseeds,exp_grains,exp_new
-Pera,frigo,30,1,fruits_veg,dom_fruits_other,other_crops
-Maçã,frigo,30,1,fruits_veg,dom_fruits_other,other_crops
-Erva-mate (folha verde),geral,7,1,industrial,dom_fruits_other,other_crops
-Cacau (em amêndoa),geral,365,1,industrial,exp_industrial,exp_trad
-Aveia (em grão),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Triticale (em grão),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Pimenta-do-reino,geral,365,1,industrial,exp_industrial,exp_trad
-Noz (fruto seco),geral,365,1,industrial,dom_fruits_other,other_crops
-Cevada (em grão),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Ervilha (em grão),granel,180,1,staples,dom_staples,other_crops
-Sisal ou agave (fibra),geral,365,1,industrial,exp_industrial,exp_trad
-Marmelo,geral,30,1,fruits_veg,dom_fruits_other,other_crops
-Centeio (em grão),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Guaraná (semente),geral,365,1,industrial,dom_fruits_other,other_crops
-Dendê (cacho de coco),geral,2,1,industrial,dom_fruits_other,other_crops
-Linho (semente),granel,365,1,grains_oilseeds,dom_staples,other_crops
-Algodão arbóreo (em caroço),geral,365,1,industrial,exp_industrial,exp_trad
-Malva (fibra),geral,365,1,industrial,dom_fruits_other,other_crops
-Juta (fibra),geral,365,1,industrial,dom_fruits_other,other_crops
-Tungue (fruto seco),geral,365,1,industrial,dom_fruits_other,other_crops
-Chá-da-índia (folha verde),geral,7,1,industrial,dom_fruits_other,other_crops
-Rami (fibra),geral,365,1,industrial,dom_fruits_other,other_crops
-Alfafa fenada,geral,180,1,staples,dom_staples,other_crops
-Azeitona,geral,14,1,fruits_veg,dom_fruits_other,other_crops
-Açaí,geral,1,1,fruits_veg,dom_fruits_other,other_crops
-Borracha (látex líquido),geral,5,1,industrial,dom_fruits_other,other_crops
-Café (em grão) Arábica,geral,365,1,industrial,exp_industrial,exp_trad
-Café (em grão) Canephora,geral,365,1,industrial,exp_industrial,exp_trad
-Caju,geral,3,1,fruits_veg,dom_fruits_other,other_crops
-Cana para forragem,geral,2,1,staples,dom_staples,other_crops
+product,shelf_life_days,category_ex5
+"Pastagem (equivalente, bovinos)",NA,pasture
+Mandioca,5,domestic
+Milho (em grão),365,domestic
+Feijão (em grão),365,domestic
+Banana (cacho),7,domestic
+Cana-de-açúcar,2,exp_processed
+Laranja,30,exp_processed
+Arroz (em casca),365,domestic
+Tomate,7,domestic
+Coco-da-baía*,60,domestic
+Maracujá,14,domestic
+Manga,14,domestic
+Limão,30,domestic
+Melancia,14,domestic
+Goiaba,7,domestic
+Tangerina,21,domestic
+Abacaxi*,14,domestic
+Batata-doce,30,domestic
+Café (em grão) Total,365,exp_insensitive
+Mamão,7,domestic
+Soja (em grão),365,exp_sensitive
+Amendoim (em casca),180,exp_sensitive
+Uva,7,domestic
+Abacate,10,domestic
+Sorgo (em grão),365,domestic
+Castanha de caju,180,exp_insensitive
+Cebola,90,domestic
+Fumo (em folha),365,exp_insensitive
+Batata-inglesa,60,domestic
+Alho,120,domestic
+Pêssego,7,domestic
+Algodão herbáceo (em caroço),365,exp_sensitive
+Caqui,14,domestic
+Trigo (em grão),365,domestic
+Borracha (látex coagulado),365,domestic
+Fava (em grão),365,domestic
+Mamona (baga),365,exp_sensitive
+Melão,14,domestic
+Palmito,3,domestic
+Figo,3,domestic
+Urucum (semente),365,domestic
+Girassol (em grão),365,domestic
+Pera,30,domestic
+Maçã,30,domestic
+Erva-mate (folha verde),7,domestic
+Cacau (em amêndoa),365,exp_insensitive
+Aveia (em grão),365,domestic
+Triticale (em grão),365,domestic
+Pimenta-do-reino,365,exp_insensitive
+Noz (fruto seco),365,exp_insensitive
+Cevada (em grão),365,domestic
+Ervilha (em grão),180,domestic
+Sisal ou agave (fibra),365,exp_sensitive
+Marmelo,30,domestic
+Centeio (em grão),365,domestic
+Guaraná (semente),365,domestic
+Dendê (cacho de coco),2,domestic
+Linho (semente),365,domestic
+Algodão arbóreo (em caroço),365,exp_sensitive
+Malva (fibra),365,domestic
+Juta (fibra),365,domestic
+Tungue (fruto seco),365,domestic
+Chá-da-índia (folha verde),7,domestic
+Rami (fibra),365,domestic
+Alfafa fenada,180,domestic
+Azeitona,14,domestic
+Açaí,1,domestic
+Borracha (látex líquido),5,domestic
+Café (em grão) Arábica,365,domestic
+Café (em grão) Canephora,365,domestic
+Caju,3,domestic
+Cana para forragem,2,domestic

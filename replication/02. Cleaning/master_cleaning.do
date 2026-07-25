@@ -16,7 +16,7 @@ Outline:
 
 *------------------------------- Setup -----------------------------------------*
 
-version 18.5
+version 18
 clear all                                                       
 set more off, perm
 cap log close
@@ -68,3 +68,10 @@ do "$code\07.aggregation.do"
 *------------- VIII. Agricultural Land Shares --------------------*
 * Requires the SIDRA pulls from 00.pam_pull.R in $input\pam\
 do "$code\08.landshare.do"
+
+*------------- IX. Product Classification --------------------*
+* FAOSTAT export-orientation ratio (defines traded status) and the
+* rule-based product grouping used in the specialization analysis.
+* 01b and 09 are R scripts, run outside Stata:
+*   Rscript "01b.faostat_pull.R"   -> ex_ratio.csv
+*   Rscript "09.classify_rule.R"   -> product_class.csv (category_ex5)
