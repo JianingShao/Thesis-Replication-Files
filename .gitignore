@@ -1,7 +1,11 @@
 .venv/
 .uv-cache/
 .uv-python/
-references/markdown/
+
+# Local notes and reference papers (not part of the replication package)
+*.md
+!README.md
+references/
 
 # Large regenerable FAOSTAT bulk downloads
 replication/01. Raw Data/faostat/cache/
