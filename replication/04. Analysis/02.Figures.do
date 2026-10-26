@@ -1,3 +1,4 @@
+set scheme s2color
 
 foreach X in pop urbpop urbshare{
 	foreach year in 1950 1960 1970 1980 1990 2000 2010{
@@ -11,8 +12,10 @@ foreach X in gdp{
 	}
 }
 
-foreach X in soy cotton cattle{
-	foreach year in 1970 1980 1985 1990 1995 2000 2005 2010{
+* Agricultural categories. Years follow the pipeline grid, so 1970 is the PAM
+* 1974 survey and 1990 is 1991 (see 09.aggregation.do).
+foreach X in sens ins past{
+	foreach year in 1970 1980 1990 2000 2010{
 		gen log`X'`year'=log(`X'`year'+1)
 	}
 }
@@ -25,6 +28,8 @@ foreach year in 1960 1970 1980 1990 2000 2010{
 **********************************************************************
 *** Figure 3/4: Event Study
 **********************************************************************
+* The four panels share one y axis: common range, round step, identical title.
+* Range -0.5 to 1.5 covers every confidence bound.
 eststo clear
 foreach X in gdp pop urbpop urbshare{
 	preserve
@@ -35,28 +40,38 @@ foreach X in gdp pop urbpop urbshare{
 	twoway (sc beta year, mcolor(navy) lwidth(medthick) lcolor(navy) connect(direct)) ///
 		  (rcap lb ub year, lcolor(navy)), ///
 		  xtitle("Year") ytitle("Coefficients") legend(off) ///
-		  xline(1974 1988, lcolor(black) lpattern("dash")) scheme(plotplain)
+		  xline(1974 1988, lcolor(black) lpattern("dash")) ///
+		  graphregion(color(white)) bgcolor(white) ///
+		  ysc(range(-0.5 1.5)) ylabel(-.5(.5)1.5, nogrid)
 	graph export "$output\\`X'.png", replace
 	restore
 }
 esttab using "$output\appendix\table1.tex", replace star(* 0.1 ** 0.05 *** 0.01) cell(b(fmt(3) star) se(fmt(3) par)) stats(N, labels("Observations") fmt(0)) collabels(none) label numbers mlabel("GDP" "Population" "Urban Population" "Urban Population Share") keep(*.year#c.pin_induced_reduction) order(1950.year#c.pin_induced_reduction 1960.year#c.pin_induced_reduction) title("Event Study on Income and Population, 1970-2010") nonotes
 eststo clear
 
-foreach X in soy cotton cattle{
+* uf is kept because the categories absorb state x year fixed effects.
+* Graphs are exported under the full category names, not the variable stems.
+* The three panels share one y axis: common range, round step, identical title.
+* Range -1 to 4 covers every confidence bound.
+foreach X in sens ins past{
+	if "`X'" == "sens" local fname "sensitive"
+	if "`X'" == "ins"  local fname "insensitive"
+	if "`X'" == "past" local fname "pasture"
 	preserve
-	keep micro log`X'* pin_induced_reduction
+	keep micro uf log`X'* pin_induced_reduction
 	reshape long log`X', i(micro) j(year)
-	event_study_plot, depvar(log`X') inst(pin_induced_reduction) baseyear(1970)
+	event_study_plot_sy, depvar(log`X') inst(pin_induced_reduction) baseyear(1970)
 	* make the event study plot
 	twoway (sc beta year, mcolor(navy) lwidth(medthick) lcolor(navy) connect(direct)) ///
 		  (rcap lb ub year, lcolor(navy)), ///
 		  xtitle("Year") ytitle("Coefficients") legend(off) ///
-		  xline(1974 1988, lcolor(black) lpattern("dash")) scheme(plotplain) ///
-		  ysc(range(-1 6))
-	graph export "$output\\`X'.png", replace
+		  xline(1974 1988, lcolor(black) lpattern("dash")) ///
+		  graphregion(color(white)) bgcolor(white) ///
+		  ysc(range(-1 4)) ylabel(-1(1)4, nogrid)
+	graph export "$output\\`fname'.png", replace
 	restore
 }
-esttab using "$output\appendix\table2.tex", replace star(* 0.1 ** 0.05 *** 0.01) cell(b(fmt(3) star) se(fmt(3) par)) stats(N, labels("Observations") fmt(0)) collabels(none) label numbers mlabel("Soybean" "Cotton" "Cattle") keep(*.year#c.pin_induced_reduction)  title("Event Study on Agricultural Production, 1970-2010") nonotes
+esttab using "$output\appendix\table2.tex", replace star(* 0.1 ** 0.05 *** 0.01) cell(b(fmt(3) star) se(fmt(3) par)) stats(N, labels("Observations") fmt(0)) collabels(none) label numbers mlabel("Sensitive" "Insensitive" "Pasture") keep(*.year#c.pin_induced_reduction)  title("Event Study on Agricultural Land Use, 1974-2010") nonotes
 eststo clear
 
 **********************************************************************
@@ -70,7 +85,8 @@ event_study_plot, depvar(logfm) inst(pin_induced_reduction) baseyear(1970)
 twoway (sc beta year, mcolor(navy) lwidth(medthick) lcolor(navy) connect(direct)) ///
 	   (rcap lb ub year, lcolor(navy)), ///
 	    xtitle("Year") ytitle("Coefficients") legend(off) ///
-		xline(1974, lcolor(black) lpattern("dash")) scheme(plotplain)
+		xline(1974, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+  ysc(range(-0.8 0.2)) ylabel(-.8(.2).2, nogrid)
 graph export "$output\road_twfe.png", replace
 restore
 
@@ -86,7 +102,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.8 0.2)) ylabel(-.8(.2).2, nogrid)
 graph export "$output\road_imputation.png", replace
 restore
 
@@ -102,7 +119,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.8 0.2)) ylabel(-.8(.2).2, nogrid)
 graph export "$output\road_csdid.png", replace
 restore
 
@@ -124,7 +142,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-3 "1950" -2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.5 1.5)) ylabel(-.5(.5)1.5, nogrid)
 graph export "$output\appendix\urbpop_imputation.png", replace
 restore
 
@@ -141,7 +160,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-3 "1950" -2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.5 1.5)) ylabel(-.5(.5)1.5, nogrid)
 graph export "$output\appendix\urbpop_csdid.png", replace
 restore
 
@@ -161,7 +181,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-3 "1950" -2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.5 1.5)) ylabel(-.5(.5)1.5, nogrid)
 graph export "$output\appendix\urbshare_imputation.png", replace
 restore
 
@@ -178,7 +199,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-3 "1950" -2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.5 1.5)) ylabel(-.5(.5)1.5, nogrid)
 graph export "$output\appendix\urbshare_csdid.png", replace
 restore
 
@@ -198,7 +220,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-3 "1950" -2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.5 1.5)) ylabel(-.5(.5)1.5, nogrid)
 graph export "$output\appendix\pop_imputation.png", replace
 restore
 
@@ -215,7 +238,8 @@ sort t
 twoway (sc didcoef t, mcolor(navy) lcolor(navy) lwidth(medthick) connect(direct)) ///
 (rcap didci_low didci_high t, lcolor(navy)), ///
  xlabel(-3 "1950" -2 "1960" -1 "1970" 0 "1980" 1 "1990" 2 "2000" 3 "2010") xtitle("Year") ytitle("Coefficients") legend(off) ///
-xline(-0.6, lcolor(black) lpattern("dash")) scheme(plotplain)
+xline(-0.6, lcolor(black) lpattern("dash")) graphregion(color(white)) bgcolor(white) ///
+ysc(range(-0.5 1.5)) ylabel(-.5(.5)1.5, nogrid)
 graph export "$output\appendix\pop_csdid.png", replace
 restore
 
@@ -241,7 +265,7 @@ foreach v in pop urbpop urbshare{
 			   xtitle("Treatment Intensity") ///
 			   ytitle("Coefficients") ///
 			   legend(off) ///
-			   scheme(plotplain) ///
+			   graphregion(color(white)) bgcolor(white) ylabel(, nogrid) ///
 			   ysc(range(-1.5 1.5))
 		graph export "$output\appendix\\`v'_treatment_intensity_`y'.png", replace
 	}

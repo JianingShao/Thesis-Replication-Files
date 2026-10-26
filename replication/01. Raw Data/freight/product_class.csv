@@ -20,17 +20,17 @@ Batata-doce,30,domestic
 Café (em grão) Total,365,exp_insensitive
 Mamão,7,domestic
 Soja (em grão),365,exp_sensitive
-Amendoim (em casca),180,exp_sensitive
+Amendoim (em casca),180,exp_processed
 Uva,7,domestic
 Abacate,10,domestic
 Sorgo (em grão),365,domestic
-Castanha de caju,180,exp_insensitive
+Castanha de caju,180,exp_processed
 Cebola,90,domestic
 Fumo (em folha),365,exp_insensitive
 Batata-inglesa,60,domestic
 Alho,120,domestic
 Pêssego,7,domestic
-Algodão herbáceo (em caroço),365,exp_sensitive
+Algodão herbáceo (em caroço),365,exp_processed
 Caqui,14,domestic
 Trigo (em grão),365,domestic
 Borracha (látex coagulado),365,domestic
@@ -57,7 +57,7 @@ Centeio (em grão),365,domestic
 Guaraná (semente),365,domestic
 Dendê (cacho de coco),2,domestic
 Linho (semente),365,domestic
-Algodão arbóreo (em caroço),365,exp_sensitive
+Algodão arbóreo (em caroço),365,exp_processed
 Malva (fibra),365,domestic
 Juta (fibra),365,domestic
 Tungue (fruto seco),365,domestic

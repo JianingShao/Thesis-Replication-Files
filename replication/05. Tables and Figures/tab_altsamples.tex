@@ -1,0 +1,45 @@
+\begin{table}[p]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begingroup
+\renewcommand{\arraystretch}{1.3}
+\caption{Long-difference estimates using alternative Sample Choices \label{tab:altsamples}}
+\sbox{\tabbox}{%
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l*{8}{c}}
+\hline
+&\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         &\multicolumn{1}{c}{(5)}         &\multicolumn{1}{c}{(6)}         &\multicolumn{1}{c}{(7)}         &\multicolumn{1}{c}{(8)}         \\
+&         GDP         &  Population         &Urban Population         &Urban Employment Share         &Total Cropland         &   Sensitive         & Insensitive         &     Pasture         \\
+\hline
+\multicolumn{8}{l}{\textbf{\textit{Panel A: Micro-regions}}} \\
+$\Delta Log Travel Time$&       0.272         &       0.076         &       0.329\sym{**} &       0.048         &      -0.035         &       3.732\sym{*}  &       1.050         &       0.465         \\
+&     (0.287)         &     (0.230)         &     (0.148)         &     (0.040)         &     (0.591)         &     (1.928)         &     (1.239)         &     (0.495)         \\
+Observations        &         528         &         528         &         528         &         528         &         528         &         528         &         528         &         528         \\
+State FE            &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+Initial level of outcome&         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+Geographical Characteristics&         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+\hline
+\multicolumn{8}{l}{\linebreak \textbf{\textit{Panel B: Micro-regions excluding the Amazon}}} \\
+$\Delta Log Travel Time$&       0.128         &      -0.024         &       0.269\sym{*}  &       0.039         &      -0.467         &       4.059\sym{*}  &       0.163         &      -0.185         \\
+&     (0.292)         &     (0.237)         &     (0.146)         &     (0.043)         &     (0.562)         &     (2.138)         &     (0.966)         &     (0.265)         \\
+Observations        &         490         &         490         &         490         &         490         &         490         &         490         &         490         &         490         \\
+State FE            &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+Initial level of outcome&         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+Geographical Characteristics&         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+\hline
+\multicolumn{8}{l}{\linebreak \textbf{\textit{Panel C: Meso-regions}}} \\
+$\Delta Log Travel Time$&       0.097         &       0.097         &       0.225         &       0.034         &       0.393         &       2.717         &       1.194         &       0.506         \\
+&     (0.611)         &     (0.310)         &     (0.335)         &     (0.085)         &     (0.709)         &     (2.096)         &     (1.174)         &     (0.600)         \\
+Observations        &         132         &         132         &         132         &         132         &         132         &         132         &         132         &         132         \\
+State FE            &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+Initial level of outcome&         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+Geographical Characteristics&         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         &         Yes         \\
+\hline\hline
+\end{tabular}}
+}
+\usebox{\tabbox}
+\begin{minipage}{\wd\tabbox}
+    \vspace{0.1cm}
+    {\footnotesize \sloppy \textit{Notes: } Each observation is a micro-region. Log change in travel time on roads is instrumented by the change in travel times on the predicted road network. The predicted road network is created by geo-referencing the PNV National Transportation Plan in 1973. The Kleibergen-Paap F-statistic (First-stage F stat) for weak identification is reported for IV estimates. Standard errors clustered at the state level are reported in parentheses. Panel B drops micro-regions in the Legal Amazon. Panel C aggregates to meso-regions. ***,**,* imply significance at the 1\%, 5\%, and 10\% levels, respectively.}
+\end{minipage}
+\endgroup
+\end{table}

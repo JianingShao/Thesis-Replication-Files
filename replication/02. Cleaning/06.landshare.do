@@ -97,8 +97,10 @@ save "$temp\landshare_micro.dta", replace
 
 *----------------- 4. Meso-region aggregation (robustness) -------------------*
 
-collapse (sum) area_ha, by(meso year product)
+collapse (sum) area_ha quantity value_prod, by(meso year product)
 bysort meso year: egen total_agland = total(area_ha)
 gen landshare = area_ha / total_agland
 label var landshare "l_g: share of agricultural land in product g (meso)"
+label var area_ha   "Harvested or pasture-equivalent area (ha)"
+label var quantity  "Output quantity (tons for crops; missing for pasture)"
 save "$temp\landshare_meso.dta", replace
