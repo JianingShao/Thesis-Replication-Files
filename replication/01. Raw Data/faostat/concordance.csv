@@ -1,0 +1,74 @@
+product,use,fao_regex,factor
+Soja (em grão),prod,^Soya beans$,1
+Soja (em grão),exp,^Soya beans$,1
+Soja (em grão),exp,^Soya bean oil,5.5
+Soja (em grão),exp,^Cake of soya beans,1.3
+Milho (em grão),both,^Maize,1
+Arroz (em casca),both,"^Rice, paddy|^Rice$",1
+Trigo (em grão),both,^Wheat$,1
+Sorgo (em grão),both,^Sorghum$,1
+Aveia (em grão),both,^Oats$,1
+Cevada (em grão),both,^Barley$,1
+Centeio (em grão),both,^Rye$,1
+Triticale (em grão),both,^Triticale$,1
+Feijão (em grão),both,"^Beans, dry",1
+Fava (em grão),both,^Broad beans,1
+Ervilha (em grão),both,"^Peas, dry",1
+Amendoim (em casca),prod,"^Groundnuts, excluding shelled",1
+Amendoim (em casca),exp,"^Groundnuts, shelled",1.4
+Amendoim (em casca),exp,"^Groundnuts, excluding shelled",1
+Amendoim (em casca),exp,^Groundnut oil,2.5
+Mamona (baga),both,^Castor oil seed,1
+Girassol (em grão),both,^Sunflower seed,1
+Linho (semente),both,^Linseed,1
+Mandioca,both,^Cassava,1
+Batata-doce,both,^Sweet potatoes,1
+Batata-inglesa,both,^Potatoes$,1
+Cebola,both,^Onions,1
+Alho,both,garlic,1
+Tomate,both,^Tomatoes$,1
+Melancia,both,^Watermelons$,1
+Melão,both,Cantaloupes|^Melons,1
+Abacaxi*,both,^Pineapples$,1
+Banana (cacho),both,^Bananas$,1
+Laranja,both,^Oranges$,1
+Laranja,exp,Orange juice,5.5
+Limão,both,^Lemons and limes,1
+Tangerina,both,^Tangerines,1
+Manga,both,^Mangoes,1
+Goiaba,both,^Mangoes,1
+Mamão,both,^Papayas$,1
+Uva,both,^Grapes$,1
+Maçã,both,^Apples$,1
+Pera,both,^Pears$,1
+Pêssego,both,^Peaches,1
+Figo,both,^Figs$,1
+Caqui,both,^Persimmons$,1
+Abacate,both,^Avocados$,1
+Coco-da-baía*,both,^Coconuts,1
+Castanha de caju,prod,"^Cashew nuts, in shell",1
+Castanha de caju,exp,"^Cashew nuts, shelled",4
+Castanha de caju,exp,"^Cashew nuts, in shell",1
+Noz (fruto seco),both,^Walnuts,1
+Cacau (em amêndoa),both,"^Cocoa beans|^Cocoa, beans",1
+Café (em grão) Total,both,"^Coffee, green",1
+Fumo (em folha),both,"^Tobacco, unmanufactured|^Unmanufactured tobacco",1
+Cana-de-açúcar,prod,^Sugar cane$,1
+Cana-de-açúcar,exp,"Sugar, raw|^Raw cane|^Sugar raw",7.7
+Algodão herbáceo (em caroço),prod,^Seed cotton|^Cotton seed,1
+Algodão herbáceo (em caroço),exp,^Cotton lint,2.5
+Algodão arbóreo (em caroço),prod,^Seed cotton|^Cotton seed,1
+Algodão arbóreo (em caroço),exp,^Cotton lint,2.5
+Sisal ou agave (fibra),both,^Sisal,1
+Juta (fibra),both,^Jute,1
+Rami (fibra),both,^Ramie,1
+Borracha (látex coagulado),both,"rubber, natural|^Natural rubber",1
+Pimenta-do-reino,both,^Pepper,1
+Erva-mate (folha verde),both,at.. leaves,1
+Dendê (cacho de coco),prod,^Oil palm fruit,1
+Dendê (cacho de coco),exp,^Palm oil$,5
+Tungue (fruto seco),both,^Tung nuts,1
+Chá-da-índia (folha verde),both,^Tea,1
+Azeitona,both,^Olives$,1
+Marmelo,both,^Quinces$,1
+Caju,both,^Cashewapple,1

@@ -1,0 +1,73 @@
+product,shelf_life_days,category_ex5
+"Pastagem (equivalente, bovinos)",NA,pasture
+Mandioca,5,domestic
+Milho (em grão),365,domestic
+Feijão (em grão),365,domestic
+Banana (cacho),7,domestic
+Cana-de-açúcar,2,exp_processed
+Laranja,30,exp_processed
+Arroz (em casca),365,domestic
+Tomate,7,domestic
+Coco-da-baía*,60,domestic
+Maracujá,14,domestic
+Manga,14,domestic
+Limão,30,domestic
+Melancia,14,domestic
+Goiaba,7,domestic
+Tangerina,21,domestic
+Abacaxi*,14,domestic
+Batata-doce,30,domestic
+Café (em grão) Total,365,exp_insensitive
+Mamão,7,domestic
+Soja (em grão),365,exp_sensitive
+Amendoim (em casca),180,exp_processed
+Uva,7,domestic
+Abacate,10,domestic
+Sorgo (em grão),365,domestic
+Castanha de caju,180,exp_processed
+Cebola,90,domestic
+Fumo (em folha),365,exp_insensitive
+Batata-inglesa,60,domestic
+Alho,120,domestic
+Pêssego,7,domestic
+Algodão herbáceo (em caroço),365,exp_processed
+Caqui,14,domestic
+Trigo (em grão),365,domestic
+Borracha (látex coagulado),365,domestic
+Fava (em grão),365,domestic
+Mamona (baga),365,exp_sensitive
+Melão,14,domestic
+Palmito,3,domestic
+Figo,3,domestic
+Urucum (semente),365,domestic
+Girassol (em grão),365,domestic
+Pera,30,domestic
+Maçã,30,domestic
+Erva-mate (folha verde),7,domestic
+Cacau (em amêndoa),365,exp_insensitive
+Aveia (em grão),365,domestic
+Triticale (em grão),365,domestic
+Pimenta-do-reino,365,exp_insensitive
+Noz (fruto seco),365,exp_insensitive
+Cevada (em grão),365,domestic
+Ervilha (em grão),180,domestic
+Sisal ou agave (fibra),365,exp_sensitive
+Marmelo,30,domestic
+Centeio (em grão),365,domestic
+Guaraná (semente),365,domestic
+Dendê (cacho de coco),2,domestic
+Linho (semente),365,domestic
+Algodão arbóreo (em caroço),365,exp_processed
+Malva (fibra),365,domestic
+Juta (fibra),365,domestic
+Tungue (fruto seco),365,domestic
+Chá-da-índia (folha verde),7,domestic
+Rami (fibra),365,domestic
+Alfafa fenada,180,domestic
+Azeitona,14,domestic
+Açaí,1,domestic
+Borracha (látex líquido),5,domestic
+Café (em grão) Arábica,365,domestic
+Café (em grão) Canephora,365,domestic
+Caju,3,domestic
+Cana para forragem,2,domestic

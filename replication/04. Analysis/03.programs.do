@@ -45,6 +45,53 @@ end
 
 
 
+*** Event Study, state x year fixed effects ***
+* Identical to event_study_plot except that state x year fixed effects are
+* absorbed alongside the micro-region effects. Requires uf to be present in
+* the estimation sample.
+capture program drop event_study_plot_sy
+program define event_study_plot_sy
+
+	syntax [varlist], depvar(string) inst(string) baseyear(real)
+
+	* Run the event study regression
+	eststo: reghdfe `depvar' c.`inst'##ib`baseyear'.year, a(micro uf#year) vce(cluster micro)
+
+	* save beta and se
+	matrix beta = e(b)
+	mata st_matrix("se",sqrt(diagonal(st_matrix("e(V)")))')
+
+	* convert to variables
+	svmat beta
+	svmat se
+
+	* reshape beta and s.e. to plot
+	keep beta* se*
+	keep if _n==1
+	gen i = 1
+	reshape long beta se, i(i) j(num)
+
+	* attach label
+	local names: colfullnames beta, quoted
+	sum num
+	gen varname = ""
+	forvalues i = 1/`r(max)' {
+		local betaname : word `i' of `names'
+		replace varname = "`betaname'" if num == `i'
+		}
+
+	* keep the treatment effects of the instrument (including the omitted base)
+	keep if regexm(varname, "c.`inst'") | regexm(varname, "co.`inst'")
+	gen year = substr(varname,1,4)
+	destring year, replace
+
+	* make the 95% c.i.
+	gen lb = beta-1.96*se
+	gen ub = beta+1.96*se
+
+end
+
+
 *** Imputator (Borusyak et al. 2024) ***
 cap program drop event_study_plot_imputation
 

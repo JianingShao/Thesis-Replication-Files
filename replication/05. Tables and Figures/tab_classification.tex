@@ -1,0 +1,37 @@
+\begin{table}[htbp]\centering
+\begingroup
+\renewcommand{\arraystretch}{1.3}
+\caption{Product Classification \label{tab:classification}}
+\sbox{\tabbox}{%
+\begin{tabular}{lccc}
+\hline\hline
+ & Export & Value per & Micro-regions \\
+Crop & ratio & tonne (R\$) & growing, 1974 (\%) \\
+\hline
+\multicolumn{4}{l}{\emph{Transport-cost-sensitive}} \\
+\quad Soybean & 0.99 & 543 & 34.2 \\
+\quad Sisal & -- & 897 & 10.9 \\
+\quad Castor & -- & 951 & 38.3 \\
+\addlinespace \multicolumn{4}{l}{\emph{Transport-cost-insensitive}} \\
+\quad Walnut & 0.08 & 2,692 & 3.4 \\
+\quad Coffee & 0.69 & 3,983 & 52.8 \\
+\quad Black pepper & 0.65 & 5,156 & 8.1 \\
+\quad Cocoa & 0.26 & 5,226 & 7.9 \\
+\quad Tobacco & 0.49 & 5,733 & 55.3 \\
+\addlinespace \multicolumn{4}{l}{\emph{Excluded}} \\
+\quad Sugarcane & 0.11 & 39 & 89.3 \\
+\quad Orange & 0.32 & 332 & 94.2 \\
+\quad Cotton (arboreal) & 0.10 & 869 & 21.4 \\
+\quad Cashew & 0.92 & 1,085 & 0.0 \\
+\quad Peanut & 0.30 & 1,094 & 60.0 \\
+\quad Cotton (herbaceous) & 0.10 & 1,400 & 53.9 \\
+\hline\hline
+\end{tabular}
+}
+\usebox{\tabbox}
+\begin{minipage}{\wd\tabbox}
+    \vspace{0.1cm}
+    {\footnotesize \sloppy \textit{Notes: } Value per tonne is national production value divided by quantity in 2010, from the Municipal Agricultural Production survey. The export ratio is the FAOSTAT mean ratio of exports to production; it is omitted for sisal and castor because their FAOSTAT export items do not match the production series. The final column is the share of micro-regions recording positive area in 1974.}
+\end{minipage}
+\endgroup
+\end{table}
