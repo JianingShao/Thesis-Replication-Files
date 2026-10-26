@@ -1,0 +1,51 @@
+\begin{table}[p]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begingroup
+\renewcommand{\arraystretch}{1.3}
+\caption{Interaction with Micro-Region Traits \label{tab:heterogeneity}}
+\sbox{\tabbox}{%
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l*{4}{c}}
+\hline \hline
+&\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         \\
+&         GDP         &  Population         &Urban Population         &Urban Employment Share         \\
+\hline
+\multicolumn{4}{l}{\textbf{\textit{Panel A: Distance to Waterway}}} \\
+$\Delta Log Travel Time$&       0.312         &       0.237         &       0.638         &       0.107         \\
+&     (0.678)         &     (0.517)         &     (0.499)         &     (0.113)         \\
+$\Delta Log Travel Time \times Distance To Waterway$&      -0.058         &      -0.194         &      -0.406         &      -0.079         \\
+&     (0.702)         &     (0.424)         &     (0.504)         &     (0.127)         \\
+Observations        &         528         &         528         &         528         &         528         \\
+State FE            &         Yes         &         Yes         &         Yes         &         Yes         \\
+Initial level of outcome&         Yes         &         Yes         &         Yes         &         Yes         \\
+Geographical Characteristics&         Yes         &         Yes         &         Yes         &         Yes         \\
+\hline
+\multicolumn{4}{l}{\linebreak \textbf{\textit{Panel B: Center-West Region}}} \\
+$\Delta Log Travel Time$&       0.228         &       0.014         &       0.257         &       0.038         \\
+&     (0.305)         &     (0.245)         &     (0.174)         &     (0.044)         \\
+$\Delta Log Travel Time \times CenterWest$&       1.051         &       1.571         &       1.783         &       0.239         \\
+&     (1.369)         &     (1.275)         &     (1.748)         &     (0.208)         \\
+Observations        &         528         &         528         &         528         &         528         \\
+State FE            &         Yes         &         Yes         &         Yes         &         Yes         \\
+Initial level of outcome&         Yes         &         Yes         &         Yes         &         Yes         \\
+Geographical Characteristics&         Yes         &         Yes         &         Yes         &         Yes         \\
+\hline
+\multicolumn{4}{l}{\linebreak \textbf{\textit{Panel C: Distance to State Capital}}} \\
+$\Delta Log Travel Time$&       0.866\sym{**} &       0.516\sym{*}  &       0.927\sym{***}&       0.023         \\
+&     (0.317)         &     (0.286)         &     (0.265)         &     (0.071)         \\
+$\Delta Log Travel Time \times Distance To Capital$&      -1.239\sym{***}&      -0.736\sym{**} &      -1.121\sym{**} &      -0.006         \\
+&     (0.375)         &     (0.286)         &     (0.428)         &     (0.130)         \\
+Observations        &         528         &         528         &         528         &         528         \\
+State FE            &         Yes         &         Yes         &         Yes         &         Yes         \\
+Initial level of outcome&         Yes         &         Yes         &         Yes         &         Yes         \\
+Geographical Characteristics&         Yes         &         Yes         &         Yes         &         Yes         \\
+\hline\hline
+\end{tabular}}
+}
+\usebox{\tabbox}
+\begin{minipage}{\wd\tabbox}
+    \vspace{0.1cm}
+    {\footnotesize \sloppy \textit{Notes: } Each observation is a micro-region. Log change in travel time on roads is instrumented by the change in travel times on the predicted road network. The predicted road network is created by geo-referencing the PNV National Transportation Plan in 1973. The Kleibergen-Paap F-statistic (First-stage F stat) for weak identification is reported for IV estimates. Standard errors clustered at the state level are reported in parentheses. ***,**,* imply significance at the 1\%, 5\%, and 10\% levels, respectively.}
+\end{minipage}
+\endgroup
+\end{table}

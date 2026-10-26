@@ -1,0 +1,41 @@
+\begin{table}[p]\centering
+\def\sym#1{\ifmmode^{#1}\else\(^{#1}\)\fi}
+\begingroup
+\renewcommand{\arraystretch}{1.3}
+\caption{Long-Difference Regressions on Income and Population, 1970-2010 \label{tab:aggregate}}
+\sbox{\tabbox}{%
+\resizebox{\linewidth}{!}{
+\begin{tabular}{l*{8}{c}}
+\hline
+\hline
+&\multicolumn{2}{c}{GDP}                    &\multicolumn{2}{c}{Population}             &\multicolumn{2}{c}{Urban Population}       &\multicolumn{2}{c}{Urban Employment Share} \\\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}
+&\multicolumn{1}{c}{(1)}         &\multicolumn{1}{c}{(2)}         &\multicolumn{1}{c}{(3)}         &\multicolumn{1}{c}{(4)}         &\multicolumn{1}{c}{(5)}         &\multicolumn{1}{c}{(6)}         &\multicolumn{1}{c}{(7)}         &\multicolumn{1}{c}{(8)}         \\
+&         OLS         &          IV         &         OLS         &          IV         &         OLS         &          IV         &         OLS         &          IV         \\
+\hline
+\multicolumn{8}{l}{\textbf{\textit{Panel A: Baseline controlling only for the initial value of the outcome}}} \\
+$\Delta Log Travel Time$&       0.485\sym{*}  &       0.826\sym{**} &       0.056         &       0.454         &       0.366\sym{*}  &       0.969\sym{***}&       0.062         &       0.147\sym{***}\\
+&     (0.269)         &     (0.355)         &     (0.193)         &     (0.277)         &     (0.207)         &     (0.212)         &     (0.057)         &     (0.056)         \\
+Observations        &         531         &         531         &         531         &         531         &         531         &         531         &         531         &         531         \\
+First-stage F stat  &                     &      82.721         &                     &      87.028         &                     &      81.812         &                     &      66.947         \\
+\hline
+\multicolumn{8}{l}{\linebreak \textbf{\textit{Panel B: Panel (A) including state fixed effects}}} \\
+$\Delta Log Travel Time$&       0.149         &       0.340         &      -0.197         &       0.043         &       0.038         &       0.428\sym{***}&      -0.058         &       0.079\sym{**} \\
+&     (0.212)         &     (0.310)         &     (0.144)         &     (0.244)         &     (0.113)         &     (0.148)         &     (0.040)         &     (0.034)         \\
+Observations        &         528         &         528         &         528         &         528         &         528         &         528         &         528         &         528         \\
+First-stage F stat  &                     &      66.786         &                     &      64.828         &                     &      64.029         &                     &      60.368         \\
+\hline
+\multicolumn{8}{l}{\linebreak \textbf{\textit{Panel C: Panel (B) including covariates for additional geographical traits}}} \\
+$\Delta Log Travel Time$&       0.057         &       0.272         &      -0.222         &       0.076         &      -0.075         &       0.329\sym{**} &      -0.079\sym{**} &       0.048         \\
+&     (0.231)         &     (0.287)         &     (0.167)         &     (0.230)         &     (0.152)         &     (0.148)         &     (0.038)         &     (0.040)         \\
+Observations        &         528         &         528         &         528         &         528         &         528         &         528         &         528         &         528         \\
+First-stage F stat  &                     &      59.867         &                     &      58.992         &                     &      57.661         &                     &      55.388         \\
+\hline\hline
+\end{tabular}}
+}
+\usebox{\tabbox}
+\begin{minipage}{\wd\tabbox}
+    \vspace{0.1cm}
+    {\footnotesize \sloppy \textit{Notes: } Each observation is a micro-region. Log change in travel time on roads is instrumented by the change in travel times on the predicted road network. The predicted road network is created by geo-referencing the PNV National Transportation Plan in 1973. The Kleibergen-Paap F-statistic (First-stage F stat) for weak identification is reported for IV estimates. Standard errors clustered at the state level are reported in parentheses. ***,**,* imply significance at the 1\%, 5\%, and 10\% levels, respectively.}
+\end{minipage}
+\endgroup
+\end{table}
